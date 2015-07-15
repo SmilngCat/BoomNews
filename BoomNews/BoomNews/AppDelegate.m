@@ -26,6 +26,7 @@
 	[self.window makeKeyAndVisible];
 	
 #warning - add custom rootViewController
+#warning - test waring
 	UIViewController *vc = [[UIViewController alloc] init];
 	self.window.rootViewController = vc;
 	[vc release];
