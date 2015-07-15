@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class NewsTypeScrollBarButton;
+@class BNSNewsTypeScrollBarButton;
 
-@protocol NewsTypeScrollBarButtonDelegate <NSObject>
+@protocol BNSNewsTypeScrollBarButtonDelegate <NSObject>
 
-- (void)scrollBarButtonDidSelect:(NewsTypeScrollBarButton *)button;
+- (void)scrollBarButtonDidSelect:(BNSNewsTypeScrollBarButton *)button;
 @end

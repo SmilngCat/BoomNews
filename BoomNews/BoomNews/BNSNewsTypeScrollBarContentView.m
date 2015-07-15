@@ -6,18 +6,13 @@
 //  Copyright (c) 2015年 jsix lei. All rights reserved.
 //
 
-#import "NewsTypeScrollBarContentView.h"
-#import "NewsTypeScrollBarButton.h"
+#import "BNSNewsTypeScrollBarContentView.h"
+#import "BNSNewsTypeScrollBarButton.h"
 
-@interface NewsTypeScrollBarContentView ()
-
-@property (retain, nonatomic) UIButton *politicsButton;
-@property (retain, nonatomic) UIButton *entertainmentButton;
-@property (retain, nonatomic) UIButton *sportsButton;
-@property (retain, nonatomic) UIButton *gamesButton;
+@interface BNSNewsTypeScrollBarContentView ()
 @end
 
-@implementation NewsTypeScrollBarContentView
+@implementation BNSNewsTypeScrollBarContentView
 
 #pragma mark - NewsTypeScrollBar Lifecycle
 
@@ -43,10 +38,10 @@
 
 - (void)buildLayout {
 	
-	self.politicsButton = [NewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
-	self.entertainmentButton = [NewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
-	self.sportsButton = [NewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
-	self.gamesButton = [NewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
+	self.politicsButton = [BNSNewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
+	self.entertainmentButton = [BNSNewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
+	self.sportsButton = [BNSNewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
+	self.gamesButton = [BNSNewsTypeScrollBarButton buttonWithType:UIButtonTypeCustom];
 	
 	[_politicsButton setTitle:@"政务" forState:UIControlStateNormal];
 	[_entertainmentButton setTitle:@"娱乐" forState:UIControlStateNormal];

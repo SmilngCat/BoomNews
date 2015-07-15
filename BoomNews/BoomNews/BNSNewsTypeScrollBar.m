@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 jsix lei. All rights reserved.
 //
 
-#import "NewsTypeScrollBar.h"
-#import "NewsTypeScrollBarContentView.h"
+#import "BNSNewsTypeScrollBar.h"
+#import "BNSNewsTypeScrollBarContentView.h"
 
-@interface NewsTypeScrollBar ()
+@interface BNSNewsTypeScrollBar ()
 @end
 
-@implementation NewsTypeScrollBar
+@implementation BNSNewsTypeScrollBar
 
 #pragma mark - NewsTypeScrollBar Lifecycle
 
@@ -42,9 +42,9 @@
 
 #pragma mark - Lazy loading
 
-- (NewsTypeScrollBarContentView *)contentView {
+- (BNSNewsTypeScrollBarContentView *)contentView {
 	if (!_contentView) {
-		_contentView = [[NewsTypeScrollBarContentView alloc] init];
+		_contentView = [[BNSNewsTypeScrollBarContentView alloc] init];
 		_contentView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _contentView;

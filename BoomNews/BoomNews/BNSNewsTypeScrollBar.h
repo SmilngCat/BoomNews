@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class NewsTypeScrollBarContentView;
+@class BNSNewsTypeScrollBarContentView;
 
-@interface NewsTypeScrollBar : UIScrollView
+@interface BNSNewsTypeScrollBar : UIScrollView
 
-@property (retain, nonatomic) NewsTypeScrollBarContentView *contentView;
+@property (retain, nonatomic) BNSNewsTypeScrollBarContentView *contentView;
 @end

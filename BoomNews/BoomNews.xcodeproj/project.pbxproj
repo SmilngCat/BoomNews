@@ -16,10 +16,9 @@
 		E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5311B5696A7004DA8B3 /* BNSVideoViewController.m */; };
 		E092F5351B5696B3004DA8B3 /* BNSAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5341B5696B3004DA8B3 /* BNSAccountViewController.m */; };
 		E092F5381B569700004DA8B3 /* BNSRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5371B569700004DA8B3 /* BNSRootViewController.m */; };
-		E092F5421B569C82004DA8B3 /* NewsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F53B1B569C82004DA8B3 /* NewsContentView.m */; };
-		E092F5431B569C82004DA8B3 /* NewsTypeScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F53D1B569C82004DA8B3 /* NewsTypeScrollBar.m */; };
-		E092F5441B569C82004DA8B3 /* NewsTypeScrollBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F53F1B569C82004DA8B3 /* NewsTypeScrollBarButton.m */; };
-		E092F5451B569C82004DA8B3 /* NewsTypeScrollBarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5411B569C82004DA8B3 /* NewsTypeScrollBarContentView.m */; };
+		E092F5431B569C82004DA8B3 /* BNSNewsTypeScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F53D1B569C82004DA8B3 /* BNSNewsTypeScrollBar.m */; };
+		E092F5441B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F53F1B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.m */; };
+		E092F5451B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5411B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m */; };
 		E092F54F1B56A578004DA8B3 /* BNSMutipleImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F54A1B56A578004DA8B3 /* BNSMutipleImageCell.m */; };
 		E092F5501B56A578004DA8B3 /* BNSSingleImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F54C1B56A578004DA8B3 /* BNSSingleImageCell.m */; };
 		E092F5511B56A578004DA8B3 /* BNSTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F54E1B56A578004DA8B3 /* BNSTitleCell.m */; };
@@ -72,14 +71,12 @@
 		E092F5341B5696B3004DA8B3 /* BNSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSAccountViewController.m; sourceTree = "<group>"; };
 		E092F5361B569700004DA8B3 /* BNSRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSRootViewController.h; sourceTree = "<group>"; };
 		E092F5371B569700004DA8B3 /* BNSRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSRootViewController.m; sourceTree = "<group>"; };
-		E092F53A1B569C82004DA8B3 /* NewsContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsContentView.h; sourceTree = "<group>"; };
-		E092F53B1B569C82004DA8B3 /* NewsContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsContentView.m; sourceTree = "<group>"; };
-		E092F53C1B569C82004DA8B3 /* NewsTypeScrollBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBar.h; sourceTree = "<group>"; };
-		E092F53D1B569C82004DA8B3 /* NewsTypeScrollBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTypeScrollBar.m; sourceTree = "<group>"; };
-		E092F53E1B569C82004DA8B3 /* NewsTypeScrollBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBarButton.h; sourceTree = "<group>"; };
-		E092F53F1B569C82004DA8B3 /* NewsTypeScrollBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTypeScrollBarButton.m; sourceTree = "<group>"; };
-		E092F5401B569C82004DA8B3 /* NewsTypeScrollBarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBarContentView.h; sourceTree = "<group>"; };
-		E092F5411B569C82004DA8B3 /* NewsTypeScrollBarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTypeScrollBarContentView.m; sourceTree = "<group>"; };
+		E092F53C1B569C82004DA8B3 /* BNSNewsTypeScrollBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsTypeScrollBar.h; sourceTree = "<group>"; };
+		E092F53D1B569C82004DA8B3 /* BNSNewsTypeScrollBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsTypeScrollBar.m; sourceTree = "<group>"; };
+		E092F53E1B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsTypeScrollBarButton.h; sourceTree = "<group>"; };
+		E092F53F1B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsTypeScrollBarButton.m; sourceTree = "<group>"; };
+		E092F5401B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsTypeScrollBarContentView.h; sourceTree = "<group>"; };
+		E092F5411B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsTypeScrollBarContentView.m; sourceTree = "<group>"; };
 		E092F5461B569D05004DA8B3 /* NewsTypeScrollBarButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBarButtonDelegate.h; sourceTree = "<group>"; };
 		E092F5491B56A578004DA8B3 /* BNSMutipleImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMutipleImageCell.h; sourceTree = "<group>"; };
 		E092F54A1B56A578004DA8B3 /* BNSMutipleImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMutipleImageCell.m; sourceTree = "<group>"; };
@@ -333,14 +330,12 @@
 		E092F5391B569C3F004DA8B3 /* ScrollBar */ = {
 			isa = PBXGroup;
 			children = (
-				E092F53A1B569C82004DA8B3 /* NewsContentView.h */,
-				E092F53B1B569C82004DA8B3 /* NewsContentView.m */,
-				E092F53C1B569C82004DA8B3 /* NewsTypeScrollBar.h */,
-				E092F53D1B569C82004DA8B3 /* NewsTypeScrollBar.m */,
-				E092F53E1B569C82004DA8B3 /* NewsTypeScrollBarButton.h */,
-				E092F53F1B569C82004DA8B3 /* NewsTypeScrollBarButton.m */,
-				E092F5401B569C82004DA8B3 /* NewsTypeScrollBarContentView.h */,
-				E092F5411B569C82004DA8B3 /* NewsTypeScrollBarContentView.m */,
+				E092F53C1B569C82004DA8B3 /* BNSNewsTypeScrollBar.h */,
+				E092F53D1B569C82004DA8B3 /* BNSNewsTypeScrollBar.m */,
+				E092F53E1B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.h */,
+				E092F53F1B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.m */,
+				E092F5401B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.h */,
+				E092F5411B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m */,
 				E092F5461B569D05004DA8B3 /* NewsTypeScrollBarButtonDelegate.h */,
 			);
 			name = ScrollBar;
@@ -520,13 +515,12 @@
 				E092F5841B56A5F0004DA8B3 /* UIImage+WebP.m in Sources */,
 				E092F52A1B569615004DA8B3 /* BNSNewsViewController.m in Sources */,
 				E092F57F1B56A5F0004DA8B3 /* SDWebImageManager.m in Sources */,
-				E092F5431B569C82004DA8B3 /* NewsTypeScrollBar.m in Sources */,
-				E092F5451B569C82004DA8B3 /* NewsTypeScrollBarContentView.m in Sources */,
+				E092F5431B569C82004DA8B3 /* BNSNewsTypeScrollBar.m in Sources */,
+				E092F5451B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m in Sources */,
 				E092F4A61B560DF0004DA8B3 /* AppDelegate.m in Sources */,
 				E092F57D1B56A5F0004DA8B3 /* SDWebImageDownloader.m in Sources */,
-				E092F5441B569C82004DA8B3 /* NewsTypeScrollBarButton.m in Sources */,
+				E092F5441B569C82004DA8B3 /* BNSNewsTypeScrollBarButton.m in Sources */,
 				E092F58A1B56A6A8004DA8B3 /* Model.m in Sources */,
-				E092F5421B569C82004DA8B3 /* NewsContentView.m in Sources */,
 				E092F54F1B56A578004DA8B3 /* BNSMutipleImageCell.m in Sources */,
 				E092F5501B56A578004DA8B3 /* BNSSingleImageCell.m in Sources */,
 				E092F5781B56A5F0004DA8B3 /* MKAnnotationView+WebCache.m in Sources */,

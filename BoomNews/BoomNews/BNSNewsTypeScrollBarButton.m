@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 jsix lei. All rights reserved.
 //
 
-#import "NewsTypeScrollBarButton.h"
+#import "BNSNewsTypeScrollBarButton.h"
 #import "NewsTypeScrollBarButtonDelegate.h"
 
-@implementation NewsTypeScrollBarButton
+@implementation BNSNewsTypeScrollBarButton
 
 + (instancetype)buttonWithType:(UIButtonType)type {
-	NewsTypeScrollBarButton *button= [super buttonWithType:type];
+	BNSNewsTypeScrollBarButton *button= [super buttonWithType:type];
 	if (button) {
 		button.translatesAutoresizingMaskIntoConstraints = NO;
 		[button addTarget:self
