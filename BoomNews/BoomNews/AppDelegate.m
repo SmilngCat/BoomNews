@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "BNSRootViewController.h"
+#import "BNSNewsViewController.h"
+#import "BNSVideoViewController.h"
+#import "BNSAccountViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,10 +29,32 @@
 	self.window.backgroundColor = [UIColor whiteColor];
 	[self.window makeKeyAndVisible];
 	
-#warning - add custom rootViewController
-	UIViewController *vc = [[UIViewController alloc] init];
-	self.window.rootViewController = vc;
-	[vc release];
+	//configure view controller hierarchy
+	
+	//rootViewController - tabBarController
+	BNSRootViewController *rootViewController = [[[BNSRootViewController alloc] init] autorelease];
+	
+	//newsViewController - embed in a navigationController
+	BNSNewsViewController *newsViewController = [[[BNSNewsViewController alloc] init] autorelease];
+	UINavigationController *newsNavigationController = [[[UINavigationController alloc] initWithRootViewController:newsViewController] autorelease];
+	newsViewController.navigationItem.title = @"新闻";
+	newsNavigationController.tabBarItem.title = @"新闻";
+	
+	//videoViewController - embed in a navigationController
+	BNSVideoViewController *videoViewController = [[[BNSVideoViewController alloc] init] autorelease];
+	UINavigationController *videoNavigationController = [[[UINavigationController alloc] initWithRootViewController:videoViewController] autorelease];
+	videoViewController.navigationItem.title = @"视听";
+	videoNavigationController.tabBarItem.title = @"视听";
+	
+	//accountViewController - embed in a navigationController
+	BNSAccountViewController *accountViewController = [[[BNSAccountViewController alloc] init] autorelease];
+	accountViewController.tabBarItem.title = @"我的";
+	
+	rootViewController.viewControllers = @[newsNavigationController,
+										   videoNavigationController,
+										   accountViewController];
+	
+	self.window.rootViewController = rootViewController;
 	
 	return YES;
 }
