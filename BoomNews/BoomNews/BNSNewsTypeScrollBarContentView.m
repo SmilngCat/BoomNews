@@ -64,8 +64,11 @@
 														 _entertainmentButton,
 														 _sportsButton,
 														 _gamesButton);
-	NSDictionary *metrics = @{@"spacing" : @20,
-							  @"margin" : @10};
+	CGFloat width = CGRectGetWidth(self.bounds);
+	CGFloat gapWidth = (width - 4 * 50) / 5.f;
+	NSDictionary *metrics = @{@"spacing" : @(gapWidth),
+							  @"margin" : @10,
+							  @"buttonWidth" : @50};
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_politicsButton]-spacing-[_entertainmentButton]-spacing-[_sportsButton]-spacing-[_gamesButton]-margin-|"
 																 options:0
 																 metrics:metrics

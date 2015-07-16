@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BNSModelCell.h"
 
-@class Model;
+@interface BNSMutipleImageCell : BNSModelCell
 
-@interface BNSMutipleImageCell : UITableViewCell
-
-@property (retain, nonatomic) Model *model;
 @end

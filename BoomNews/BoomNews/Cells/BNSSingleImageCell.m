@@ -7,7 +7,6 @@
 //
 
 #import "BNSSingleImageCell.h"
-#import "Model.h"
 #import "UIImageView+WebCache.h"
 
 //font
@@ -30,8 +29,6 @@
 #pragma mark - BNSSingleImageCell Lifecycle
 
 - (void)dealloc {
-	
-	[_model release];
 	
 	[_profileImageView release];
 	[_titleLabel release];

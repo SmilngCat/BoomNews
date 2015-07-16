@@ -7,7 +7,6 @@
 //
 
 #import "BNSTitleCell.h"
-#import "Model.h"
 #import "UIImageView+WebCache.h"
 
 @interface BNSTitleCell ()
@@ -21,8 +20,6 @@
 #pragma mark - BNSTitleCell Lifecycle
 
 - (void)dealloc {
-	
-	[_model release];
 	
 	[_titleLabel release];
 	[_profileImageView release];

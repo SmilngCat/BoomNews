@@ -7,7 +7,6 @@
 //
 
 #import "BNSMutipleImageCell.h"
-#import "Model.h"
 #import "UIImageView+WebCache.h"
 
 //font
@@ -30,8 +29,6 @@
 #pragma mark - BNSMutipleImageCell Lifecycle
 
 - (void)dealloc {
-	
-	[_model release];
 	
 	[_titleLabel release];
 	[_leftImageView release];
