@@ -14,15 +14,16 @@
 + (instancetype)buttonWithType:(UIButtonType)type {
 	BNSNewsTypeScrollBarButton *button= [super buttonWithType:type];
 	if (button) {
+		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		button.translatesAutoresizingMaskIntoConstraints = NO;
-		[button addTarget:self
-				   action:@selector(selected:)
+		[button addTarget:button
+				   action:@selector(clicked:)
 		 forControlEvents:UIControlEventTouchUpInside];
 	}
 	return button;
 }
 
-- (void)selected:(UIButton *)button {
+- (void)clicked:(UIButton *)button {
 	
 	if (self.buttonDelegate && [self.buttonDelegate respondsToSelector:@selector(scrollBarButtonDidSelect:)]) {
 		[self.buttonDelegate scrollBarButtonDidSelect:self];

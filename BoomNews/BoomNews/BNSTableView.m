@@ -8,7 +8,9 @@
 
 #import "BNSTableView.h"
 
-@implementation BNSTableView
+@implementation BNSTableView 
+
+#pragma mark - BNSTableView Lifecycle
 
 - (void)dealloc {
 	objc_setAssociatedObject(self,
@@ -16,4 +18,30 @@
 							 nil, OBJC_ASSOCIATION_RETAIN);
 	[super dealloc];
 }
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
+	self = [super initWithFrame:frame style:style];
+	if (self) {
+		Class mutipleImageCellClass = [BNSMutipleImageCell class];
+		Class singleImageCellClass = [BNSSingleImageCell class];
+		Class titleCellClass = [BNSTitleCell class];
+		
+		[self registerClass:mutipleImageCellClass forCellReuseIdentifier:NSStringFromClass(mutipleImageCellClass)];
+		[self registerClass:singleImageCellClass forCellReuseIdentifier:NSStringFromClass(singleImageCellClass)];
+		[self registerClass:titleCellClass forCellReuseIdentifier:NSStringFromClass(titleCellClass)];
+		
+	}
+	return self;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return nil;
+}
+
 @end

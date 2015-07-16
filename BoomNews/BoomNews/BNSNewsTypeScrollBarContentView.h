@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class BNSNewsTypeScrollBarButton;
+#import "BNSNewsTypeScrollBarButton.h"
 
 @interface BNSNewsTypeScrollBarContentView : UIView
 

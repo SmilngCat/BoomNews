@@ -7,7 +7,6 @@
 //
 
 #import "BNSNewsTypeScrollBarContentView.h"
-#import "BNSNewsTypeScrollBarButton.h"
 
 @interface BNSNewsTypeScrollBarContentView ()
 @end
@@ -47,7 +46,7 @@
 	[_entertainmentButton setTitle:@"娱乐" forState:UIControlStateNormal];
 	[_sportsButton setTitle:@"体育" forState:UIControlStateNormal];
 	[_gamesButton setTitle:@"游戏" forState:UIControlStateNormal];
-	
+		
 	[self addSubview:_politicsButton];
 	[self addSubview:_entertainmentButton];
 	[self addSubview:_sportsButton];
@@ -64,28 +63,31 @@
 														 _entertainmentButton,
 														 _sportsButton,
 														 _gamesButton);
+	//button之间的间距
 	CGFloat width = CGRectGetWidth(self.bounds);
 	CGFloat gapWidth = (width - 4 * 50) / 5.f;
+	
 	NSDictionary *metrics = @{@"spacing" : @(gapWidth),
-							  @"margin" : @10,
 							  @"buttonWidth" : @50};
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_politicsButton]-spacing-[_entertainmentButton]-spacing-[_sportsButton]-spacing-[_gamesButton]-margin-|"
+	//横向布局
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-spacing-[_entertainmentButton(buttonWidth)]-spacing-[_sportsButton(buttonWidth)]-spacing-[_gamesButton(buttonWidth)]-spacing-[_politicsButton(>=buttonWidth)]-spacing-|"
 																 options:0
 																 metrics:metrics
 																   views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_politicsButton]-margin-|"
+	//纵向布局
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_politicsButton(30)]|"
 																 options:0
 																 metrics:metrics
 																   views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_entertainmentButton]-margin-|"
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_entertainmentButton(30)]|"
 																 options:0
 																 metrics:metrics
 																   views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_sportsButton]-margin-|"
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_sportsButton(30)]|"
 																 options:0
 																 metrics:metrics
 																   views:views]];
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_gamesButton]-margin-|"
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_gamesButton(30)]|"
 																 options:0
 																 metrics:metrics
 																   views:views]];

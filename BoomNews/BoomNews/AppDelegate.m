@@ -56,6 +56,10 @@
 	
 	self.window.rootViewController = rootViewController;
 	
+	//保存TabBar的高度
+	CGFloat tabBarHeight = CGRectGetHeight(rootViewController.tabBar.frame);
+	[[NSUserDefaults standardUserDefaults] setFloat:tabBarHeight forKey:@"tabBarHeight"];
+	
 	return YES;
 }
 
