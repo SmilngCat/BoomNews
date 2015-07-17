@@ -10,4 +10,5 @@
 
 @interface BNSNewsEntertainmentTableView : BNSTableView
 
+- (void)loadData:(NSUInteger)index;
 @end

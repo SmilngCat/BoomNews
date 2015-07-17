@@ -19,8 +19,10 @@
 
 @interface BNSNewsViewController () <UIScrollViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
 
+@property (retain, nonatomic) NSMutableArray *newsArray;
+
 @property (retain, nonatomic) BNSNewsTypeScrollBarContentView *newsTypeBar;
-@property (retain, nonatomic) UIScrollView *contentScrollView;
+@property (retain, nonatomic) OrderView *orderView;
 @end
 
 @implementation BNSNewsViewController
@@ -29,8 +31,9 @@
 
 - (void)dealloc {
 	
+	[_newsArray release];
 	[_newsTypeBar release];
-	[_contentScrollView release];
+	[_orderView release];
 	[super dealloc];
 }
 
@@ -40,8 +43,24 @@
 	//关闭ViewController的自动调整scrollView功能
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	
+	[self loadData];
 	[self loadUI];
 	
+}
+
+- (void)loadData {
+	self.newsArray = [NSMutableArray array];
+	//娱乐
+	[_newsArray addObject:@"http://c.3g.163.com/nc/article/list/T1348648517839/0-20.html"];
+	//体育
+	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062/0-20.html"];
+	//游戏
+	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579/0-20.html"];
+	//政务
+	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384/0-20.html"];
+	//科技
+	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692/0-20.html"];
+
 }
 
 #pragma mark - Layout 
@@ -69,29 +88,16 @@
 											   contentScrollViewY,
 											   contentScrollViewWidth,
 											   contentScrollViewHeight);
-	self.contentScrollView = [[[UIScrollView alloc] initWithFrame:contentScrollViewFrame] autorelease];
-	_contentScrollView.delegate = self;
-	_contentScrollView.bounces = NO;
-	_contentScrollView.pagingEnabled = YES;
-	_contentScrollView.directionalLockEnabled = YES;
-	_contentScrollView.showsHorizontalScrollIndicator = NO;
-	_contentScrollView.showsVerticalScrollIndicator = NO;
-	_contentScrollView.contentSize = CGSizeMake(4 * contentScrollViewWidth, contentScrollViewHeight);
+	self.orderView = [[[OrderView alloc] initWithFrame:contentScrollViewFrame] autorelease];
+	_orderView.datas = _newsArray;
+	[_orderView configureScrollViewAtIndex:0 count:_newsArray.count];
 	
-	[self.view addSubview:_contentScrollView];
+	[self.view addSubview:_orderView];
 	[self.view addSubview:_newsTypeBar];
 	
-	//给scrollView添加tableView
-	[self loadScrollContentViewWithWidth:contentScrollViewWidth height:contentScrollViewHeight];
+	[_orderView setNeedsLayout];
+	[_orderView layoutIfNeeded];
 	
-}
-
-- (void)loadScrollContentViewWithWidth:(CGFloat)width height:(CGFloat)height{
-	CGRect rect = CGRectMake(0, 0, width, height);
-	BNSNewsEntertainmentTableView *entertainmentTableView = [[BNSNewsEntertainmentTableView alloc] initWithFrame:rect style:UITableViewStylePlain];
-	[_contentScrollView addSubview:entertainmentTableView];
-	
-	[entertainmentTableView release];
 }
 
 #pragma mark - BNSNewsTypeScrollBarButtonDelegate

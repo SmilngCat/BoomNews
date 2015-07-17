@@ -29,7 +29,12 @@ typedef NS_ENUM(NSInteger, BNSHTTPRequestResourceType){
 	/**
 	 *  政务
 	 */
-	BNSHTTPRequestResourceTypePolicyOfNews
+	BNSHTTPRequestResourceTypePolicyOfNews,
+	/**
+	 *  科技
+	 */
+	BNSHTTPRequestResourceTypeTechnologyOfNews
+	
 };
 
 

@@ -7,6 +7,8 @@
 //
 
 #import "OrderScrollContentView.h"
+#import "BNSTableView.h"
+#import "BNSNewsEntertainmentTableView.h"
 
 @interface OrderScrollContentView ()
 
@@ -72,7 +74,7 @@
 
 - (UIView *)leftView {
 	if (!_leftView) {
-		_leftView = [[UIImageView alloc] init];
+		_leftView = [[BNSNewsEntertainmentTableView alloc] init];
 		_leftView.contentMode = UIViewContentModeScaleToFill;
 		_leftView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
@@ -81,7 +83,7 @@
 
 - (UIView *)middleView {
 	if (!_middleView) {
-		_middleView = [[UIImageView alloc] init];
+		_middleView = [[BNSNewsEntertainmentTableView alloc] init];
 		_middleView.contentMode = UIViewContentModeScaleToFill;
 		_middleView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
@@ -90,7 +92,7 @@
 
 - (UIView *)rightView {
 	if (!_rightView) {
-		_rightView = [[UIImageView alloc] init];
+		_rightView = [[BNSNewsEntertainmentTableView alloc] init];
 		_rightView.contentMode = UIViewContentModeScaleToFill;
 		_rightView.translatesAutoresizingMaskIntoConstraints = NO;
 	}

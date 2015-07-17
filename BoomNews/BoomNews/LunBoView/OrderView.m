@@ -20,7 +20,7 @@
 #pragma mark - LunBoView Lifecycle
 
 - (void)dealloc {
-	[_images release];
+	[_datas release];
 	[_scrollView release];
 	[super dealloc];
 }
@@ -38,7 +38,7 @@
 		_scrollView.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addSubview:_scrollView];
 		
-		_top = 0;
+		_top = 1;
 	}
 	return self;
 }
@@ -83,7 +83,7 @@
 - (void)scrollViewDidEndDecelerating:(OrderScrollView *)scrollView {
 	
 	CGFloat width =  CGRectGetWidth(self.bounds);
-	NSUInteger count = _images.count;
+	NSUInteger count = _datas.count;
 	
 	if (scrollView.contentOffset.x == 2*width) {
 		
@@ -106,9 +106,22 @@
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index count:(NSUInteger)count {
 	
-//	_scrollView.contentView.leftView.image = _images[index % count];
-//	_scrollView.contentView.middleView.image = _images[(index + 1) % count];
-//	_scrollView.contentView.rightView.image = _images[(index + 2) % count];
+	NSUInteger leftIndex = index % count;
+	NSUInteger middleIndex = (index + 1) % count;
+	NSUInteger rightIndex = (index + 2) % count;
+	
+	NSString *leftString = _datas[leftIndex];
+	NSString *middleString = _datas[middleIndex];
+	NSString *rightString = _datas[rightIndex];
+	
+	[_scrollView.contentView.leftView setUrlString:leftString];
+	[_scrollView.contentView.leftView loadData:leftIndex];
+	
+	[_scrollView.contentView.middleView setUrlString:middleString];
+	[_scrollView.contentView.middleView loadData:middleIndex];
+	
+	[_scrollView.contentView.rightView setUrlString:rightString];
+	[_scrollView.contentView.rightView loadData:rightIndex];
 }
 
 - (NSString *)description {

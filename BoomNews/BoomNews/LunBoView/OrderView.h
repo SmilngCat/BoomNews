@@ -16,7 +16,7 @@
 
 @interface OrderView : UIView
 
-@property (copy, nonatomic) NSArray *images;
+@property (copy, nonatomic) NSArray *datas;
 @property (retain, nonatomic) OrderScrollView *scrollView;
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index count:(NSUInteger)count;

@@ -87,6 +87,10 @@ static BNSHTTPRequest *sharedRequest = nil;
 			array = dic[@"T1414142214384"];
 			break;
 		}
+		case BNSHTTPRequestResourceTypeTechnologyOfNews: {
+			array = dic[@"T1348649580692"];
+			break;
+		}
 	}
 	
 	for (NSDictionary *dic in array) {

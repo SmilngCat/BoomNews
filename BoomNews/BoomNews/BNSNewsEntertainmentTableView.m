@@ -29,17 +29,20 @@
 	if (self) {
 		self.dataSource = self;
 		self.delegate = self;
-		NSString *urlString = @"http://c.3g.163.com/nc/article/list/T1348648517839/0-20.html";
-		[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:urlString
-															type:BNSHTTPRequestResourceTypeEntertainmentOfNews
-														httpBody:nil completion:^(id data) {
-			_datas = [data copy];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self reloadData];
-			});
-		}] ;
 	}
 	return self;
+}
+
+- (void)loadData:(NSUInteger)index {
+	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:self.urlString
+														type:index
+													httpBody:nil
+												  completion:^(id data) {
+														_datas = [data copy];
+														dispatch_async(dispatch_get_main_queue(), ^{
+															[self reloadData];
+														});
+	}] ;
 }
 
 #pragma mark - UITableViewDataSource

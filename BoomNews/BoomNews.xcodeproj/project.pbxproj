@@ -10,6 +10,7 @@
 		E05DFDAA1B57D89500759CD6 /* OrderScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA51B57D89500759CD6 /* OrderScrollContentView.m */; };
 		E05DFDAB1B57D89500759CD6 /* OrderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA71B57D89500759CD6 /* OrderScrollView.m */; };
 		E05DFDAC1B57D89500759CD6 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA91B57D89500759CD6 /* OrderView.m */; };
+		E05DFDAF1B5893E400759CD6 /* BNSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */; };
 		E092F4751B56086D004DA8B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F4741B56086D004DA8B3 /* main.m */; };
 		E092F47A1B56086D004DA8B3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E092F4791B56086D004DA8B3 /* Images.xcassets */; };
 		E092F47D1B56086D004DA8B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E092F47B1B56086D004DA8B3 /* LaunchScreen.xib */; };
@@ -31,7 +32,6 @@
 		E092F59F1B573C25004DA8B3 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F59C1B573C25004DA8B3 /* Model.m */; };
 		E092F5A01B573C25004DA8B3 /* Model2.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F59E1B573C25004DA8B3 /* Model2.m */; };
 		E092F5A31B576370004DA8B3 /* BNSNewsEntertainmentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5A21B576370004DA8B3 /* BNSNewsEntertainmentTableView.m */; };
-		E092F5A71B577704004DA8B3 /* BNSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5A61B577704004DA8B3 /* BNSHTTPRequest.m */; };
 		E092F5CA1B57B5EF004DA8B3 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5AA1B57B5EF004DA8B3 /* MKAnnotationView+WebCache.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E092F5CB1B57B5EF004DA8B3 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5AC1B57B5EF004DA8B3 /* NSData+ImageContentType.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		E092F5CC1B57B5EF004DA8B3 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F5AE1B57B5EF004DA8B3 /* SDImageCache.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -67,6 +67,8 @@
 		E05DFDA71B57D89500759CD6 /* OrderScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderScrollView.m; sourceTree = "<group>"; };
 		E05DFDA81B57D89500759CD6 /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		E05DFDA91B57D89500759CD6 /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
+		E05DFDAD1B5893E400759CD6 /* BNSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSHTTPRequest.h; sourceTree = "<group>"; };
+		E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSHTTPRequest.m; sourceTree = "<group>"; };
 		E092F46F1B56086D004DA8B3 /* BoomNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E092F4731B56086D004DA8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E092F4741B56086D004DA8B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,8 +113,6 @@
 		E092F59E1B573C25004DA8B3 /* Model2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model2.m; sourceTree = "<group>"; };
 		E092F5A11B576370004DA8B3 /* BNSNewsEntertainmentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsEntertainmentTableView.h; sourceTree = "<group>"; };
 		E092F5A21B576370004DA8B3 /* BNSNewsEntertainmentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsEntertainmentTableView.m; sourceTree = "<group>"; };
-		E092F5A51B577704004DA8B3 /* BNSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSHTTPRequest.h; sourceTree = "<group>"; };
-		E092F5A61B577704004DA8B3 /* BNSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSHTTPRequest.m; sourceTree = "<group>"; };
 		E092F5A91B57B5EF004DA8B3 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		E092F5AA1B57B5EF004DA8B3 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		E092F5AB1B57B5EF004DA8B3 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -436,8 +436,8 @@
 		E092F5A41B5776A1004DA8B3 /* HttpRequest */ = {
 			isa = PBXGroup;
 			children = (
-				E092F5A51B577704004DA8B3 /* BNSHTTPRequest.h */,
-				E092F5A61B577704004DA8B3 /* BNSHTTPRequest.m */,
+				E05DFDAD1B5893E400759CD6 /* BNSHTTPRequest.h */,
+				E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */,
 			);
 			name = HttpRequest;
 			sourceTree = "<group>";
@@ -588,6 +588,7 @@
 				E092F5D81B57B5EF004DA8B3 /* UIImageView+WebCache.m in Sources */,
 				E092F5D01B57B5EF004DA8B3 /* SDWebImageDownloaderOperation.m in Sources */,
 				E092F5451B569C82004DA8B3 /* BNSNewsTypeScrollBarContentView.m in Sources */,
+				E05DFDAF1B5893E400759CD6 /* BNSHTTPRequest.m in Sources */,
 				E092F5D71B57B5EF004DA8B3 /* UIImageView+HighlightedWebCache.m in Sources */,
 				E092F4A61B560DF0004DA8B3 /* AppDelegate.m in Sources */,
 				E092F5CE1B57B5EF004DA8B3 /* SDWebImageDecoder.m in Sources */,
@@ -616,7 +617,6 @@
 				E092F5CD1B57B5EF004DA8B3 /* SDWebImageCompat.m in Sources */,
 				E092F5351B5696B3004DA8B3 /* BNSAccountViewController.m in Sources */,
 				E05DFDAA1B57D89500759CD6 /* OrderScrollContentView.m in Sources */,
-				E092F5A71B577704004DA8B3 /* BNSHTTPRequest.m in Sources */,
 				E092F5D31B57B5EF004DA8B3 /* UIButton+WebCache.m in Sources */,
 				E092F5511B56A578004DA8B3 /* BNSTitleCell.m in Sources */,
 			);

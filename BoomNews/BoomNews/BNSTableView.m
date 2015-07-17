@@ -16,6 +16,7 @@
 	objc_setAssociatedObject(self,
 							 @selector(bns_templateCellWithIdentifier:),
 							 nil, OBJC_ASSOCIATION_RETAIN);
+	[_urlString release];
 	[super dealloc];
 }
 

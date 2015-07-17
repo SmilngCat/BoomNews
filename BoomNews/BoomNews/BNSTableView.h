@@ -20,4 +20,5 @@
 
 @interface BNSTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
+@property (copy, nonatomic) NSString *urlString;
 @end
