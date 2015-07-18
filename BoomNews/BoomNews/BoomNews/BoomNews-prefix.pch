@@ -1,0 +1,32 @@
+//
+//  BoomNews-prefix.pch
+//  BoomNews
+//
+//  Created by jsix lei on 15/7/15.
+//  Copyright (c) 2015年 jsix lei. All rights reserved.
+//
+
+#ifndef BoomNews_BoomNews_prefix_pch
+#define BoomNews_BoomNews_prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+	#import <objc/runtime.h>
+#endif
+
+
+#define Absent @"absent.jpg"
+
+#import "BNSNewsModel.h"
+#import "Model.h"
+#define NewsModel BNSNewsModel
+
+
+
+
+#endif
