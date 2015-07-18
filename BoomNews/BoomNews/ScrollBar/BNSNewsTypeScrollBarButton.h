@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol BNSNewsTypeScrollBarButtonDelegate;
+#import "NewsTypeScrollBarButtonDelegate.h"
 
 @interface BNSNewsTypeScrollBarButton : UIButton
 

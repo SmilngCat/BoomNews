@@ -7,13 +7,14 @@
 //
 
 #import "BNSNewsTypeScrollBar.h"
-#import "BNSNewsButton.h"
 
+#define GAP ( (CGRectGetWidth(self.bounds)) / 9.f )
 
 @interface BNSNewsTypeScrollBar ()
 
 @property (assign, nonatomic) NSInteger top;
 @property (assign, nonatomic) CGFloat scrollDistance;
+@property (retain, nonatomic) BNSNewsButton *contentButton;
 @end
 
 @implementation BNSNewsTypeScrollBar
@@ -30,13 +31,16 @@
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
+		self.delegate = self;
 		self.bounces = NO;
 		self.pagingEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
-        
-        [self addSubview:self.contentButton];
-        self.delegate = self;
-
+		
+		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30)];
+		_contentButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:_contentButton];
+		
+		self.top = 0;
 	}
 	return self;
 }
@@ -45,31 +49,21 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	//CGRectGetWidth(self.bounds) / 9.f
-    CGFloat width = CGRectGetWidth(self.frame);
-    self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 4 * (width / 9), 30);
-
-    self.contentButton.politicsButton.frame = CGRectMake(width / 9, 0, width / 9, 30);
-    self.contentButton.entertainmentButton.frame = CGRectMake(3 * (width / 9), 0, width / 9, 30);
-    self.contentButton.sportsButton.frame = CGRectMake(5 * (width / 9), 0, width / 9, 30);
-    self.contentButton.gamesButton.frame = CGRectMake(7 * (width / 9) , 0, width / 9, 30);
-    self.contentButton.historyButton.frame = CGRectMake(9 * (width / 9), 0, width / 9, 30);
-    self.contentButton.technologyButton.frame = CGRectMake(11 * (width / 9), 0, width / 9, 30);
-
+	self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30);
 }
 
-#pragma mark - Lazy loading
+#pragma mark - setter
 
-
-
-- (BNSNewsButton *)contentButton {
-
-    if (!_contentButton) {
-        _contentButton = [[BNSNewsButton alloc] init];
-        _contentButton.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    return _contentButton;
+- (void)setScrollBarButtonDelegate:(id)delegate {
+	
+	_contentButton.entertainmentButton.buttonDelegate = delegate;
+	_contentButton.sportsButton.buttonDelegate = delegate;
+	_contentButton.gamesButton.buttonDelegate = delegate;
+	_contentButton.politicsButton.buttonDelegate = delegate;
 }
+
+
+#pragma mark - private method
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index
 							 count:(NSUInteger)count
@@ -82,12 +76,12 @@
     NSUInteger fifthIndex = (index + 4) % count;
     NSUInteger sixthIndex = (index + 5) % count;
     
-    [_contentButton.politicsButton setTitle:_datas[firstIndex] forState:UIControlStateNormal];
+    [_contentButton.technologyButton setTitle:_datas[firstIndex] forState:UIControlStateNormal];
     [_contentButton.entertainmentButton setTitle:_datas[secondIndex] forState:UIControlStateNormal];
     [_contentButton.sportsButton setTitle:_datas[thirdIndex] forState:UIControlStateNormal];
     [_contentButton.gamesButton setTitle:_datas[fourthIndex] forState:UIControlStateNormal];
-    [_contentButton.historyButton setTitle:_datas[fifthIndex] forState:UIControlStateNormal];
-    [_contentButton.technologyButton setTitle:_datas[sixthIndex] forState:UIControlStateNormal];
+    [_contentButton.politicsButton setTitle:_datas[fifthIndex] forState:UIControlStateNormal];
+    [_contentButton.historyButton setTitle:_datas[sixthIndex] forState:UIControlStateNormal];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
@@ -111,14 +105,13 @@
 	}
     
     [self configureScrollViewAtIndex:_top count:_datas.count options:type];
-    
-	self.contentOffset = CGPointMake(2 * (self.frame.size.width / 9), 0);
+	self.contentOffset = CGPointMake(2 * GAP, 0);
 }
 
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 	
-    self.scrollDistance = targetContentOffset->x - 2 * (self.frame.size.width / 9);
+    self.scrollDistance = targetContentOffset->x - 2 * GAP;
 }
 
 @end

@@ -9,28 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BNSNewsButton.h"
 
-/**
- *  轮播图滚动方向
- */
-typedef NS_ENUM(NSUInteger, OrderDirectionType){
-    /**
-     *  未滚动
-     */
-    OrderDirectionTypeNone = 0,
-    /**
-     *  向左滚动
-     */
-    OrderDirectionTypeLeft,
-    /**
-     *  向右滚动
-     */
-    OrderDirectionTypeRight
-};
-
 @interface BNSNewsTypeScrollBar : UIScrollView<UIScrollViewDelegate>
 
-@property (nonatomic, retain)NSArray *datas;
-@property (retain, nonatomic) BNSNewsButton *contentButton;
+@property (retain, nonatomic) NSArray *datas;
+@property (assign, nonatomic) id scrollBarButtonDelegate;
 
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index

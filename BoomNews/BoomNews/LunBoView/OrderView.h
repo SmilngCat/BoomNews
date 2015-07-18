@@ -13,25 +13,6 @@
 #import <UIKit/UIKit.h>
 #import "OrderScrollView.h"
 
-
-/**
- *  轮播图滚动方向
- */
-typedef NS_ENUM(NSUInteger, OrderDirectionType){
-	/**
-	 *  未滚动
-	 */
-	OrderDirectionTypeNone = 0,
-	/**
-	 *  向左滚动
-	 */
-	OrderDirectionTypeLeft,
-	/**
-	 *  向右滚动
-	 */
-	OrderDirectionTypeRight
-};
-
 @interface OrderView : UIView
 
 @property (copy, nonatomic) NSArray *datas;

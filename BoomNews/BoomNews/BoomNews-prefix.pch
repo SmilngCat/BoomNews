@@ -19,14 +19,7 @@
 	#import <objc/runtime.h>
 #endif
 
-
-#define Absent @"absent.jpg"
-
-#import "BNSNewsModel.h"
-#import "Model.h"
-#define NewsModel BNSNewsModel
-
-
+#import "Default.h"
 
 
 #endif

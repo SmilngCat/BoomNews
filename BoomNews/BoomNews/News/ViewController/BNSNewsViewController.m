@@ -7,21 +7,26 @@
 //
 
 #import "BNSNewsViewController.h"
+
 #import "OrderView.h"
 
-#import "BNSNewsTypeScrollBarContentView.h"
+#import "BNSNewsTypeScrollBar.h"
 #import "NewsTypeScrollBarButtonDelegate.h"
 
 #import "BNSNewsTableView.h"
 
 //layout
 #define HEIGHT_NEWSTYPEBAR 30
+#define GAP_LEN ( (CGRectGetWidth(self.view.bounds)) / 9.f )
 
 @interface BNSNewsViewController () <UIScrollViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
 
-@property (retain, nonatomic) NSMutableArray *newsArray;
+@property (retain, nonatomic) NSMutableArray *newsTypeArray;
+@property (retain, nonatomic) NSMutableArray *newsAddressArray;
 
-@property (retain, nonatomic) BNSNewsTypeScrollBarContentView *newsTypeBar;
+//顶部轮播图
+@property (retain, nonatomic) BNSNewsTypeScrollBar *newsTypeBar;
+//底部轮播图
 @property (retain, nonatomic) OrderView *orderView;
 @end
 
@@ -31,7 +36,8 @@
 
 - (void)dealloc {
 	
-	[_newsArray release];
+	[_newsTypeArray release];
+	[_newsAddressArray release];
 	[_newsTypeBar release];
 	[_orderView release];
 	[super dealloc];
@@ -49,18 +55,35 @@
 }
 
 - (void)loadData {
-	self.newsArray = [NSMutableArray array];
+	
+	/**
+	 *  新闻类型
+	 */
+	self.newsTypeArray = [NSMutableArray array];
+	[_newsTypeArray addObject:@"科技"];
+	[_newsTypeArray addObject:@"娱乐"];
+	[_newsTypeArray addObject:@"体育"];
+	[_newsTypeArray addObject:@"游戏"];
+	[_newsTypeArray addObject:@"政务"];
+	[_newsTypeArray addObject:@"历史"];
+	
+	
+	/**
+	 *  新闻地址
+	 */
+	self.newsAddressArray = [NSMutableArray array];
 	//科技
-	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692/0-20.html"];
 	//娱乐
-	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839/0-20.html"];
 	//体育
-	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062/0-20.html"];
 	//游戏
-	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579/0-20.html"];
 	//政务
-	[_newsArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384/0-20.html"];
 
+	
 }
 
 #pragma mark - Layout 
@@ -69,13 +92,13 @@
 	
 	CGFloat width = CGRectGetWidth(self.view.bounds);
 	CGFloat height = CGRectGetHeight(self.view.bounds);
+	
 	//顶部的新闻类型选项栏
-	self.newsTypeBar = [[[BNSNewsTypeScrollBarContentView alloc]
-						initWithFrame:CGRectMake(0, 64, width, HEIGHT_NEWSTYPEBAR)] autorelease];
-	_newsTypeBar.politicsButton.buttonDelegate = self;
-	_newsTypeBar.entertainmentButton.buttonDelegate = self;
-	_newsTypeBar.sportsButton.buttonDelegate = self;
-	_newsTypeBar.gamesButton.buttonDelegate = self;
+	self.newsTypeBar = [[[BNSNewsTypeScrollBar alloc] initWithFrame:CGRectMake(0, 64, width, HEIGHT_NEWSTYPEBAR)] autorelease];
+	_newsTypeBar.scrollBarButtonDelegate = self;
+	_newsTypeBar.datas = _newsTypeArray;
+	_newsTypeBar.contentSize = CGSizeMake(width + 4 * GAP_LEN, HEIGHT_NEWSTYPEBAR);
+	_newsTypeBar.contentOffset = CGPointMake(2 * GAP_LEN, 0);
 
 	//底部的转动视图
 	CGFloat contentScrollViewX = 0;
@@ -89,9 +112,9 @@
 											   contentScrollViewWidth,
 											   contentScrollViewHeight);
 	self.orderView = [[[OrderView alloc] initWithFrame:contentScrollViewFrame] autorelease];
-	_orderView.datas = _newsArray;
+	_orderView.datas = _newsAddressArray;
 	[_orderView configureScrollViewAtIndex:0
-									 count:_newsArray.count
+									 count:_newsAddressArray.count
 								   options:OrderDirectionTypeNone];
 	
 	[self.view addSubview:_orderView];
@@ -102,11 +125,13 @@
 	_orderView.scrollView.contentOffset = CGPointMake(contentScrollViewWidth, 0);
 }
 
+
 #pragma mark - BNSNewsTypeScrollBarButtonDelegate
 
 - (void)scrollBarButtonDidSelect:(BNSNewsTypeScrollBarButton *)button {
 #warning - add actions
 	NSLog(@"jump");
 }
+
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "BNSNewsTypeScrollBarButton.h"
-#import "NewsTypeScrollBarButtonDelegate.h"
 
 @implementation BNSNewsTypeScrollBarButton
 
@@ -17,13 +16,13 @@
 		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		button.translatesAutoresizingMaskIntoConstraints = NO;
 		[button addTarget:button
-				   action:@selector(clicked:)
+				   action:@selector(buttonClicked:)
 		 forControlEvents:UIControlEventTouchUpInside];
 	}
 	return button;
 }
 
-- (void)clicked:(UIButton *)button {
+- (void)buttonClicked:(UIButton *)button {
 	
 	if (self.buttonDelegate && [self.buttonDelegate respondsToSelector:@selector(scrollBarButtonDidSelect:)]) {
 		[self.buttonDelegate scrollBarButtonDidSelect:self];
