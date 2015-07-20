@@ -83,6 +83,7 @@
 		E05DFDB21B589F6D00759CD6 /* BNSVideoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSVideoTableView.h; path = Video/Content/BNSVideoTableView.h; sourceTree = "<group>"; };
 		E05DFDB31B589F6D00759CD6 /* BNSVideoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSVideoTableView.m; path = Video/Content/BNSVideoTableView.m; sourceTree = "<group>"; };
 		E05DFDB51B58A72A00759CD6 /* absent.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = absent.jpg; sourceTree = "<group>"; };
+		E06260B81B5C82D600D28598 /* Default.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default.h; sourceTree = "<group>"; };
 		E092F46F1B56086D004DA8B3 /* BoomNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E092F4731B56086D004DA8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E092F4741B56086D004DA8B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		E09953651B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsTypeScrollBarContentView.h; sourceTree = "<group>"; };
 		E09953661B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsTypeScrollBarContentView.m; sourceTree = "<group>"; };
 		E09953671B5A921C002B8D1C /* NewsTypeScrollBarButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBarButtonDelegate.h; sourceTree = "<group>"; };
-		E0D948091B5A2CDC000B760A /* Default.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Default.h; path = ../../../../Documents/Default.h; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
 		E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSNewsModel.m; path = "Reused Resource/Model/BNSNewsModel.m"; sourceTree = "<group>"; };
 		E0DC355C1B58E07E00FF2E8F /* BNSModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSModelCell.h; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				E092F4731B56086D004DA8B3 /* Info.plist */,
 				E092F4741B56086D004DA8B3 /* main.m */,
 				E092F49D1B560BA4004DA8B3 /* BoomNews-prefix.pch */,
-				E0D948091B5A2CDC000B760A /* Default.h */,
+				E06260B81B5C82D600D28598 /* Default.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
