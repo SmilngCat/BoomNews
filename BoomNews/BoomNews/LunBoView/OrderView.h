@@ -25,6 +25,11 @@
  *  @param count   当前数据原数组datas的大小
  *  @param options 滚动方向
  */
+
+- (void)scrollViewDidEndScrollAtIndex:(NSUInteger)index
+								count:(NSUInteger)count
+							  options:(OrderDirectionType)options;
+
 - (void)configureScrollViewAtIndex:(NSUInteger)index
 							 count:(NSUInteger)count
 						   options:(OrderDirectionType)options;

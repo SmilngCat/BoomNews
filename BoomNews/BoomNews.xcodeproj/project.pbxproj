@@ -285,34 +285,6 @@
 			name = Video;
 			sourceTree = "<group>";
 		};
-		E092F4941B56090E004DA8B3 /* entertainment */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = entertainment;
-			sourceTree = "<group>";
-		};
-		E092F4951B56093B004DA8B3 /* policy */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = policy;
-			sourceTree = "<group>";
-		};
-		E092F4961B560951004DA8B3 /* game */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = game;
-			sourceTree = "<group>";
-		};
-		E092F4971B56095E004DA8B3 /* sport */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = sport;
-			sourceTree = "<group>";
-		};
 		E092F4981B560976004DA8B3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,10 +330,6 @@
 			children = (
 				E092F5A11B576370004DA8B3 /* BNSNewsTableView.h */,
 				E092F5A21B576370004DA8B3 /* BNSNewsTableView.m */,
-				E092F4941B56090E004DA8B3 /* entertainment */,
-				E092F4951B56093B004DA8B3 /* policy */,
-				E092F4971B56095E004DA8B3 /* sport */,
-				E092F4961B560951004DA8B3 /* game */,
 			);
 			name = Content;
 			sourceTree = "<group>";

@@ -104,9 +104,17 @@
 		}
 		directionType = OrderDirectionTypeRight;
 	}
-	[self configureScrollViewAtIndex:_top count:count options:directionType];
-	
+	[self scrollViewDidEndScrollAtIndex:_top count:count options:directionType];
+}
 
+
+- (void)scrollViewDidEndScrollAtIndex:(NSUInteger)index
+								count:(NSUInteger)count
+							  options:(OrderDirectionType)options {
+	CGFloat width =  CGRectGetWidth(self.bounds);
+	[self configureScrollViewAtIndex:index count:count options:options];
+	
+	
 	ContentView *leftView = (ContentView *)_scrollView.contentView.leftView;
 	ContentView *middleView = (ContentView *)_scrollView.contentView.middleView;
 	ContentView *rightView = (ContentView *)_scrollView.contentView.rightView;
@@ -114,12 +122,13 @@
 	[middleView scrollToRowAtIndexPath:scrollIndexPath
 					  atScrollPosition:UITableViewScrollPositionTop
 							  animated:YES];
-
+	
 	leftView.invalidate = NO;
 	middleView.invalidate = NO;
 	rightView.invalidate = NO;
 	
-	scrollView.contentOffset = CGPointMake(width, 0);
+	_scrollView.contentOffset = CGPointMake(width, 0);
+
 }
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index
@@ -157,6 +166,7 @@
 		case OrderDirectionTypeLeft: {
 			leftView.datas = middleView.datas;
 			middleView.datas = rightView.datas;
+			[leftView reloadData];
 			[middleView reloadData];
 			[rightView bns_LoadData:rightIndex];
 			break;
@@ -165,6 +175,7 @@
 			rightView.datas = middleView.datas;
 			middleView.datas = leftView.datas;
 			[middleView reloadData];
+			[rightView reloadData];
 			[leftView bns_LoadData:leftIndex];
 			break;
 		}

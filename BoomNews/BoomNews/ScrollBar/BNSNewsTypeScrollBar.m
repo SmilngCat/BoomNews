@@ -34,9 +34,11 @@
 		self.delegate = self;
 		self.bounces = NO;
 		self.pagingEnabled = YES;
+		self.directionalLockEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
 		
 		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30)];
+		self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30);
 		_contentButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_contentButton];
 		
@@ -62,7 +64,6 @@
 	_contentButton.politicsButton.buttonDelegate = delegate;
 }
 
-
 #pragma mark - private method
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index
@@ -84,18 +85,49 @@
     [_contentButton.historyButton setTitle:_datas[sixthIndex] forState:UIControlStateNormal];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-	
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//	
+//	NSUInteger count = _datas.count;
+//	OrderDirectionType type = 0;
+//	if (self.scrollDistance > 10) {
+//		
+//		_top = _top + 1;
+//		if (_top >= count) {
+//			_top = 0;
+//		}
+//		type = OrderDirectionTypeLeft;
+//	}else if (self.scrollDistance < -10) {
+//		
+//		_top = _top - 1;
+//		if (_top < 0) {
+//			_top = count - 1;
+//		}
+//		type = OrderDirectionTypeRight;
+//	}
+//    
+//    [self configureScrollViewAtIndex:_top count:_datas.count options:type];
+//	self.contentOffset = CGPointMake(2 * GAP, 0);
+//}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+
+//	BOOL buttonSelected = [[NSUserDefaults standardUserDefaults] boolForKey:@"ButtonSelect"];
+//	if (buttonSelected) {
+//		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ButtonSelect"];
+//		return;
+//	}
 	NSUInteger count = _datas.count;
 	OrderDirectionType type = 0;
-	if (self.scrollDistance > 0) {
+	CGFloat offsetX = self.contentOffset.x;
+	NSLog(@"%f", offsetX);
+	if (offsetX > 2 * GAP) {
 		
 		_top = _top + 1;
 		if (_top >= count) {
 			_top = 0;
 		}
 		type = OrderDirectionTypeLeft;
-	}else if (self.scrollDistance < 0) {
+	}else if (offsetX < 2 * GAP) {
 		
 		_top = _top - 1;
 		if (_top < 0) {
@@ -103,15 +135,16 @@
 		}
 		type = OrderDirectionTypeRight;
 	}
-    
-    [self configureScrollViewAtIndex:_top count:_datas.count options:type];
-	self.contentOffset = CGPointMake(2 * GAP, 0);
-}
-
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 	
-    self.scrollDistance = targetContentOffset->x - 2 * GAP;
+	self.contentOffset = CGPointMake(2 * GAP, 0);
+	[self configureScrollViewAtIndex:_top count:_datas.count options:type];
+	
+
 }
+
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+//	
+//    self.scrollDistance = targetContentOffset->x - 2 * GAP;
+//}
 
 @end

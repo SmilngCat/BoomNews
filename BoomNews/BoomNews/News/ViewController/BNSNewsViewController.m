@@ -66,7 +66,10 @@
 	[_newsTypeArray addObject:@"游戏"];
 	[_newsTypeArray addObject:@"政务"];
 	[_newsTypeArray addObject:@"历史"];
-	
+	[_newsTypeArray addObject:@"财经"];
+	[_newsTypeArray addObject:@"军事"];
+	[_newsTypeArray addObject:@"彩票"];
+	[_newsTypeArray addObject:@"时尚"];
 	
 	/**
 	 *  新闻地址
@@ -82,7 +85,16 @@
 	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579/0-20.html"];
 	//政务
 	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384/0-20.html"];
-
+	//历史
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1368497029546/0-20.html"];
+	//财经
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648756099/0-20.html"];
+	//军事
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648141035/0-20.html"];
+	//彩票
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035/0-20.html"];
+	//时尚
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803/0-20.html"];
 	
 }
 
@@ -129,9 +141,35 @@
 #pragma mark - BNSNewsTypeScrollBarButtonDelegate
 
 - (void)scrollBarButtonDidSelect:(BNSNewsTypeScrollBarButton *)button {
-#warning - add actions
-	NSLog(@"jump");
+
+	NSString *title = button.titleLabel.text;
+	NSUInteger index = [self indexOfString:title inArray:_newsTypeArray];
+	[self.orderView scrollViewDidEndScrollAtIndex:index - 1
+											count:_newsTypeArray.count
+										  options:OrderDirectionTypeNone];
+	
+//	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ButtonSelect"];
+	
 }
 
+/**
+ *  根据标题名找到其数组下标
+ *
+ *  @param title 标题名
+ *  @param array 数组
+ *
+ *  @return 数组下标
+ */
+- (NSUInteger)indexOfString:(NSString *)title inArray:(NSArray *)array {
+	
+	__block NSUInteger idx = 0;
+	[array enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
+		if ([title isEqualToString:obj]) {
+			idx = index;
+			*stop = YES;
+		}
+	}];
+	return idx;
+}
 
 @end
