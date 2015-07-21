@@ -10,7 +10,10 @@
 
 @implementation BNSModelCell
 
+@synthesize model = _model;
+
 - (void)dealloc {
+	
 	[_model release];
 	[super dealloc];
 }

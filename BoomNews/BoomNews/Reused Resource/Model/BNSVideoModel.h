@@ -10,6 +10,7 @@
 
 @interface BNSVideoModel : NSObject
 
+@property (copy, nonatomic) NSString *cover;
 @property (copy, nonatomic) NSString *m3u8_url;
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *length;

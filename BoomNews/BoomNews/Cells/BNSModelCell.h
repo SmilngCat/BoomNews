@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNSModelCell : UITableViewCell
+@interface BNSModelCell : UITableViewCell {
+	id _model;
+}
 
 @property (retain, nonatomic) id model;
 @end

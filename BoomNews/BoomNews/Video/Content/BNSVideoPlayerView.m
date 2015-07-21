@@ -35,10 +35,10 @@
 		//添加通知
 		[self addNotification];
 		//获取缩略图
-		[self thumbnailImageRequest];
+//		[self thumbnailImageRequest];
 		
 		[self addSubview:self.moviePlayer.view];
-		[self.moviePlayer pause];
+		[self.moviePlayer stop];
 	}
 	return self;
 }
@@ -72,21 +72,25 @@
 - (MPMoviePlayerController *)moviePlayer{
 	if (!_moviePlayer) {
 		_moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:nil];
+		_moviePlayer.view.backgroundColor = [UIColor clearColor];
+		_moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
 		_moviePlayer.view.frame = self.bounds;
 		_moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		UITapGestureRecognizer *regconnizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(play:)] autorelease];
-		regconnizer.numberOfTapsRequired = 1;
-		[_moviePlayer.view addGestureRecognizer:regconnizer];
 	}
 	return _moviePlayer;
 }
 
 
-- (void)play:(UITapGestureRecognizer *)sender {
+- (void)play {
 
 	NSURL *url = [self getNetUrl:_urlString];
 	_moviePlayer.contentURL = url;
+	[_moviePlayer prepareToPlay];
 	[self.moviePlayer play];
+}
+
+- (void)stop {
+	[self.moviePlayer stop];
 }
 
 //获取视频缩略图

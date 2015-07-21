@@ -12,4 +12,7 @@
 @interface BNSVideoPlayerView : UIView
 
 @property (copy, nonatomic)NSString *urlString;
+
+- (void)play;
+- (void)stop;
 @end

@@ -12,6 +12,7 @@
 
 - (void)dealloc {
 	
+	[_cover release];
 	[_m3u8_url release];
 	[_title release];
 	[_length release];

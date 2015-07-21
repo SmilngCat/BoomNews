@@ -71,7 +71,6 @@
 										}];
 	
 	return height;
-	return 0;
 }
 
 @end

@@ -23,6 +23,12 @@
 	[super dealloc];
 }
 
+//支持横屏和竖屏
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+	
+	return UIInterfaceOrientationMaskAll;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	// Override point for customization after application launch.
@@ -39,16 +45,19 @@
 	UINavigationController *newsNavigationController = [[[UINavigationController alloc] initWithRootViewController:newsViewController] autorelease];
 	newsViewController.navigationItem.title = @"新闻";
 	newsNavigationController.tabBarItem.title = @"新闻";
+	newsNavigationController.tabBarItem.image = [UIImage imageNamed:@"news"];
 	
 	//videoViewController - embed in a navigationController
 	BNSVideoViewController *videoViewController = [[[BNSVideoViewController alloc] init] autorelease];
 	UINavigationController *videoNavigationController = [[[UINavigationController alloc] initWithRootViewController:videoViewController] autorelease];
 	videoViewController.navigationItem.title = @"视听";
 	videoNavigationController.tabBarItem.title = @"视听";
+	videoNavigationController.tabBarItem.image = [UIImage imageNamed:@"video"];
 	
 	//accountViewController - embed in a navigationController
 	BNSAccountViewController *accountViewController = [[[BNSAccountViewController alloc] init] autorelease];
 	accountViewController.tabBarItem.title = @"我的";
+	accountViewController.tabBarItem.image = [UIImage imageNamed:@"mine"];
 	
 	rootViewController.viewControllers = @[newsNavigationController,
 										   videoNavigationController,

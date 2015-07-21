@@ -8,9 +8,11 @@
 
 #import "BNSVideoCell.h"
 #import "BNSVideoPlayerView.h"
+#import "UIImageView+WebCache.h"
 
 @interface BNSVideoCell ()
 
+@property (retain, nonatomic) UIImageView *coverImageView;
 @property (retain, nonatomic) BNSVideoPlayerView *videoPlayer;
 @property (retain, nonatomic) UILabel *titleLabel;
 @property (retain, nonatomic) UIImageView *timeImageView;
@@ -25,6 +27,7 @@
 
 - (void)dealloc {
 	
+	[_coverImageView release];
 	[_videoPlayer release];
 	[_titleLabel release];
 	[_timeLabel release];
@@ -44,10 +47,23 @@
 #pragma mark - setter
 
 - (void)setModel:(VideoModel *)model {
-	_videoPlayer.urlString = model.m3u8_url;
-	_titleLabel.text = model.title;
-	_timeLabel.text = [NSString stringWithFormat:@"%@", model.length];
-	_countLabel.text = [NSString stringWithFormat:@"%@", model.playCount];
+	
+	if (_model != model) {
+		[_model release];
+		_model = [model retain];
+		
+		_coverImageView.image = [UIImage imageNamed:nil];
+		_titleLabel.text = nil;
+		_timeLabel.text = nil;
+		_countLabel.text = nil;
+		[self reset];
+		
+		[_coverImageView sd_setImageWithURL:[NSURL URLWithString:model.cover]];
+		_titleLabel.text = model.title;
+		_timeLabel.text = [NSString stringWithFormat:@"%@", model.length];
+		_countLabel.text = [NSString stringWithFormat:@"%@", model.playCount];
+		_videoPlayer.urlString = model.m3u8_url;
+	}
 }
 
 #pragma mark - layout
@@ -59,11 +75,12 @@
 	[self.contentView addSubview:self.countLabel];
 	[self.contentView addSubview:self.timeImageView];
 	[self.contentView addSubview:self.countImageView];
+	[self.contentView addSubview:self.coverImageView];
 	
 	UIView *view = self.contentView;
-	NSDictionary *views = NSDictionaryOfVariableBindings(view, _videoPlayer, _titleLabel, _timeImageView, _timeLabel, _countImageView, _countLabel);
+	NSDictionary *views = NSDictionaryOfVariableBindings(view, _coverImageView, _videoPlayer, _titleLabel, _timeImageView, _timeLabel, _countImageView, _countLabel);
 	
-	NSDictionary *metrics = @{@"space" : @10, @"playerHeight" : @ 150, @"ImageViewHeight" : @20};
+	NSDictionary *metrics = @{@"space" : @10, @"playerHeight" : @ 200, @"ImageViewHeight" : @16};
 	
 	//videoPlayer横向布局
 	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-space-[_videoPlayer]-space-|"
@@ -98,11 +115,48 @@
 	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_countImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_timeImageView attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
 	
 	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_countLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_timeImageView attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
+	
+	//coverImageView
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
+	
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeLeft multiplier:1.f constant:0]];
+	
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeWidth multiplier:1.f constant:0]];
+	
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeHeight multiplier:1.f constant:0]];
 
 }
 
 
+#pragma mark - Actions
+
+- (void)play:(UITapGestureRecognizer *)sender {
+
+	[self.contentView sendSubviewToBack:self.coverImageView];
+	self.coverImageView.opaque = 0.0f;
+	[self.videoPlayer play];
+}
+
+- (void)reset {
+	[self.contentView bringSubviewToFront:self.coverImageView];
+	self.coverImageView.opaque = 1.f;
+	[self.videoPlayer stop];
+}
+
 #pragma mark - Lazy loading
+
+- (UIImageView *)coverImageView {
+	if (!_coverImageView) {
+		_coverImageView = [[UIImageView alloc] init];
+		_coverImageView.contentMode = UIViewContentModeScaleToFill;
+		_coverImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		_coverImageView.userInteractionEnabled = YES;
+		
+		UITapGestureRecognizer *gestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(play:)] autorelease];
+		[_coverImageView addGestureRecognizer:gestureRecognizer];
+	}
+	return _coverImageView;
+}
 
 - (BNSVideoPlayerView *)videoPlayer {
 	if (!_videoPlayer) {
@@ -127,7 +181,7 @@
 		_timeImageView = [[UIImageView alloc] init];
 		_timeImageView.contentMode = UIViewContentModeScaleToFill;
 		_timeImageView.translatesAutoresizingMaskIntoConstraints = NO;
-#warning to add pic
+		_timeImageView.image = [UIImage imageNamed:@"time"];
 	}
 	return _timeImageView;
 }
@@ -145,7 +199,7 @@
 		_countImageView = [[UIImageView alloc] init];
 		_countImageView.contentMode = UIViewContentModeScaleToFill;
 		_countImageView.translatesAutoresizingMaskIntoConstraints = NO;
-#warning to add pic
+		_countImageView.image = [UIImage imageNamed:@"count"];
 	}
 	return _countImageView;
 }

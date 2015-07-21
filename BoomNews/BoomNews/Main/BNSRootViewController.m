@@ -24,6 +24,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate {
+	return YES;
+}
+
+//只支持竖屏
+- (NSUInteger)supportedInterfaceOrientations {
+	return UIInterfaceOrientationMaskPortrait;
+}
+
 /*
 #pragma mark - Navigation
 
