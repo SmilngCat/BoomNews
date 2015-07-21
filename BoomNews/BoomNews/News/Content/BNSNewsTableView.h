@@ -12,5 +12,4 @@
 
 @interface BNSNewsTableView : BNSTableView
 
-- (void)bns_LoadData:(NSUInteger)index;
 @end

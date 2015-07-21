@@ -32,13 +32,28 @@
 		Class mutipleImageCellClass = [BNSMutipleImageCell class];
 		Class singleImageCellClass = [BNSSingleImageCell class];
 		Class titleCellClass = [BNSTitleCell class];
+		Class videoCellClass = [BNSVideoCell class];
 		
 		[self registerClass:mutipleImageCellClass forCellReuseIdentifier:NSStringFromClass(mutipleImageCellClass)];
 		[self registerClass:singleImageCellClass forCellReuseIdentifier:NSStringFromClass(singleImageCellClass)];
 		[self registerClass:titleCellClass forCellReuseIdentifier:NSStringFromClass(titleCellClass)];
-		
+		[self registerClass:videoCellClass forCellReuseIdentifier:NSStringFromClass(videoCellClass)];
 	}
 	return self;
+}
+
+- (void)bns_LoadData:(NSUInteger)index {
+	
+	__block typeof(self) weakSelf = self;
+	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:weakSelf.urlString
+														type:index
+												  completion:^(id data) {
+													  
+													  weakSelf.datas = data;
+													  dispatch_async(dispatch_get_main_queue(), ^{
+														  [self reloadData];
+													  });
+												  }] ;
 }
 
 #pragma mark - UITableViewDataSource

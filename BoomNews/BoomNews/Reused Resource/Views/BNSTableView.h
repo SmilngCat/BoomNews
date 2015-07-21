@@ -17,6 +17,7 @@
 #import "BNSMutipleImageCell.h"
 #import "BNSSingleImageCell.h"
 #import "BNSTitleCell.h"
+#import "BNSVideoCell.h"
 
 
 
@@ -24,4 +25,6 @@
 
 @property (copy, nonatomic) NSString *urlString;
 @property (copy, nonatomic) NSArray *datas;
+
+- (void)bns_LoadData:(NSUInteger)index;
 @end

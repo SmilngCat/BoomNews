@@ -13,8 +13,11 @@
 		E05DFDAC1B57D89500759CD6 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA91B57D89500759CD6 /* OrderView.m */; };
 		E05DFDAF1B5893E400759CD6 /* BNSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */; };
 		E05DFDB11B589D5300759CD6 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = E05DFDB01B589D5300759CD6 /* read_me.txt */; };
-		E05DFDB41B589F6D00759CD6 /* BNSVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDB31B589F6D00759CD6 /* BNSVideoTableView.m */; };
 		E05DFDB61B58A72A00759CD6 /* absent.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E05DFDB51B58A72A00759CD6 /* absent.jpg */; };
+		E06260C11B5C911000D28598 /* BNSVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E06260C01B5C911000D28598 /* BNSVideoTableView.m */; };
+		E06260C41B5C91BC00D28598 /* BNSVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E06260C31B5C91BC00D28598 /* BNSVideoCell.m */; };
+		E06260C71B5C924300D28598 /* BNSVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E06260C61B5C924300D28598 /* BNSVideoPlayerView.m */; };
+		E06260CA1B5CC94D00D28598 /* BNSVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E06260C91B5CC94D00D28598 /* BNSVideoModel.m */; };
 		E092F4751B56086D004DA8B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E092F4741B56086D004DA8B3 /* main.m */; };
 		E092F47A1B56086D004DA8B3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E092F4791B56086D004DA8B3 /* Images.xcassets */; };
 		E092F47D1B56086D004DA8B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E092F47B1B56086D004DA8B3 /* LaunchScreen.xib */; };
@@ -80,10 +83,16 @@
 		E05DFDAD1B5893E400759CD6 /* BNSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSHTTPRequest.h; path = ThirdSupport/HTTPRequest/BNSHTTPRequest.h; sourceTree = "<group>"; };
 		E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSHTTPRequest.m; path = ThirdSupport/HTTPRequest/BNSHTTPRequest.m; sourceTree = "<group>"; };
 		E05DFDB01B589D5300759CD6 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
-		E05DFDB21B589F6D00759CD6 /* BNSVideoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSVideoTableView.h; path = Video/Content/BNSVideoTableView.h; sourceTree = "<group>"; };
-		E05DFDB31B589F6D00759CD6 /* BNSVideoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSVideoTableView.m; path = Video/Content/BNSVideoTableView.m; sourceTree = "<group>"; };
 		E05DFDB51B58A72A00759CD6 /* absent.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = absent.jpg; sourceTree = "<group>"; };
 		E06260B81B5C82D600D28598 /* Default.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Default.h; sourceTree = "<group>"; };
+		E06260BF1B5C911000D28598 /* BNSVideoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSVideoTableView.h; path = Video/Content/BNSVideoTableView.h; sourceTree = "<group>"; };
+		E06260C01B5C911000D28598 /* BNSVideoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSVideoTableView.m; path = Video/Content/BNSVideoTableView.m; sourceTree = "<group>"; };
+		E06260C21B5C91BC00D28598 /* BNSVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSVideoCell.h; sourceTree = "<group>"; };
+		E06260C31B5C91BC00D28598 /* BNSVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSVideoCell.m; sourceTree = "<group>"; };
+		E06260C51B5C924300D28598 /* BNSVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSVideoPlayerView.h; path = Video/Content/BNSVideoPlayerView.h; sourceTree = "<group>"; };
+		E06260C61B5C924300D28598 /* BNSVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSVideoPlayerView.m; path = Video/Content/BNSVideoPlayerView.m; sourceTree = "<group>"; };
+		E06260C81B5CC94D00D28598 /* BNSVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSVideoModel.h; path = "Reused Resource/Model/BNSVideoModel.h"; sourceTree = "<group>"; };
+		E06260C91B5CC94D00D28598 /* BNSVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSVideoModel.m; path = "Reused Resource/Model/BNSVideoModel.m"; sourceTree = "<group>"; };
 		E092F46F1B56086D004DA8B3 /* BoomNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoomNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E092F4731B56086D004DA8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E092F4741B56086D004DA8B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -346,8 +355,10 @@
 		E092F52D1B569680004DA8B3 /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				E05DFDB21B589F6D00759CD6 /* BNSVideoTableView.h */,
-				E05DFDB31B589F6D00759CD6 /* BNSVideoTableView.m */,
+				E06260BF1B5C911000D28598 /* BNSVideoTableView.h */,
+				E06260C01B5C911000D28598 /* BNSVideoTableView.m */,
+				E06260C51B5C924300D28598 /* BNSVideoPlayerView.h */,
+				E06260C61B5C924300D28598 /* BNSVideoPlayerView.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -389,6 +400,8 @@
 				E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */,
 				E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */,
 				E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */,
+				E06260C81B5CC94D00D28598 /* BNSVideoModel.h */,
+				E06260C91B5CC94D00D28598 /* BNSVideoModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -484,6 +497,8 @@
 				E0DC35631B58E07E00FF2E8F /* BNSTitleCell.m */,
 				E0DC35681B58E1A100FF2E8F /* BNSSpecialImageCell.h */,
 				E0DC35691B58E1A100FF2E8F /* BNSSpecialImageCell.m */,
+				E06260C21B5C91BC00D28598 /* BNSVideoCell.h */,
+				E06260C31B5C91BC00D28598 /* BNSVideoCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -591,8 +606,8 @@
 			files = (
 				E092F52A1B569615004DA8B3 /* BNSNewsViewController.m in Sources */,
 				E092F5D21B57B5EF004DA8B3 /* SDWebImagePrefetcher.m in Sources */,
-				E05DFDB41B589F6D00759CD6 /* BNSVideoTableView.m in Sources */,
 				E092F5D61B57B5EF004DA8B3 /* UIImage+WebP.m in Sources */,
+				E06260C11B5C911000D28598 /* BNSVideoTableView.m in Sources */,
 				E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */,
 				E092F5D81B57B5EF004DA8B3 /* UIImageView+WebCache.m in Sources */,
 				E092F5D01B57B5EF004DA8B3 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -612,10 +627,12 @@
 				E05DFDAC1B57D89500759CD6 /* OrderView.m in Sources */,
 				E092F5D91B57B5EF004DA8B3 /* UIView+WebCacheOperation.m in Sources */,
 				E092F5381B569700004DA8B3 /* BNSRootViewController.m in Sources */,
+				E06260CA1B5CC94D00D28598 /* BNSVideoModel.m in Sources */,
 				E092F5A01B573C25004DA8B3 /* Model2.m in Sources */,
 				E099536B1B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m in Sources */,
 				E05DFDAB1B57D89500759CD6 /* OrderScrollView.m in Sources */,
 				E092F5971B56BF7E004DA8B3 /* BNSTableView.m in Sources */,
+				E06260C71B5C924300D28598 /* BNSVideoPlayerView.m in Sources */,
 				E092F5CF1B57B5EF004DA8B3 /* SDWebImageDownloader.m in Sources */,
 				E092F5D41B57B5EF004DA8B3 /* UIImage+GIF.m in Sources */,
 				E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */,
@@ -630,6 +647,7 @@
 				E092F4751B56086D004DA8B3 /* main.m in Sources */,
 				E092F5CD1B57B5EF004DA8B3 /* SDWebImageCompat.m in Sources */,
 				E092F5351B5696B3004DA8B3 /* BNSAccountViewController.m in Sources */,
+				E06260C41B5C91BC00D28598 /* BNSVideoCell.m in Sources */,
 				E05DFDAA1B57D89500759CD6 /* OrderScrollContentView.m in Sources */,
 				E092F5D31B57B5EF004DA8B3 /* UIButton+WebCache.m in Sources */,
 				E0DC35641B58E07E00FF2E8F /* BNSModelCell.m in Sources */,

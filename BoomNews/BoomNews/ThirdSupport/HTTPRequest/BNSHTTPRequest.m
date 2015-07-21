@@ -50,20 +50,18 @@ static BNSHTTPRequest *sharedRequest = nil;
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		
 		if (error) {
+			
 			NSLog(@"%@", error.localizedDescription);
 		}else {
-			NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 			
-			NSString *key = [urlString substringWithRange:NSMakeRange(35, 14)];
-			NSArray *array = dic[key];
-			NSMutableArray *datas = [[NSMutableArray alloc] init];
-			for (NSDictionary *dic in array) {
-				NewsModel *model = [NewsModel modelWithDictionary:dic];
-				[datas addObject:model];
+			NSArray *datas = nil;
+			if (type == BNSHTTPRequestResourceTypeVideo) {
+				datas = [self handleVideoData:data urlString:urlString];
+			}else {
+				datas = [self handleNewsData:data urlString:urlString];
 			}
-			
+
 			!completion ?: completion(datas);
-			[datas release];
 		}
 	}];
 	
@@ -71,42 +69,34 @@ static BNSHTTPRequest *sharedRequest = nil;
 
 #pragma mark - 处理数据，生成Model对象
 
-//- (NSArray *)handleData:(NSData *)data type:(BNSHTTPRequestResourceType)type{
-//	
-//	NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//	NSArray *array = nil;
-//	switch (type) {
-//		case BNSHTTPRequestResourceTypeEntertainmentOfNews: {
-//			array = dic[@"T1348648517839"];
-//			break;
-//		}
-//		case BNSHTTPRequestResourceTypeSportsOfNews: {
-//			array = dic[@"T1348649079062"];
-//			break;
-//		}
-//		case BNSHTTPRequestResourceTypeGameOfNews: {
-//			array = dic[@"T1348654151579"];
-//			break;
-//		}
-//		case BNSHTTPRequestResourceTypePolicyOfNews: {
-//			array = dic[@"T1414142214384"];
-//			break;
-//		}
-//		case BNSHTTPRequestResourceTypeTechnologyOfNews: {
-//			array = dic[@"T1348649580692"];
-//			break;
-//		}
-//	}
-//	NSString *key =
-//	for (NSDictionary *dic in array) {
-//		Model *model = [[Model alloc]init];
-//		[model setValuesForKeysWithDictionary:dic];
-//		[_datas addObject:model];
-//		[model release];
-//	}
-//	
-//	return _datas;
-//}
+- (NSArray *)handleNewsData:(NSData *)data urlString:(NSString *)urlString{
+	NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+	
+	NSString *key = [urlString substringWithRange:NSMakeRange(35, 14)];
+	
+	NSArray *array = dic[key];
+	NSMutableArray *datas = [[[NSMutableArray alloc] init] autorelease];
+	for (NSDictionary *dic in array) {
+		NewsModel *model = [NewsModel modelWithDictionary:dic];
+		[datas addObject:model];
+	}
 
+	return [datas.copy autorelease];
+}
+
+- (NSArray *)handleVideoData:(NSData *)data urlString:(NSString *)urlString {
+	NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+	
+	NSString *key = [urlString substringWithRange:NSMakeRange(33, 9)];
+	
+	NSArray *array = dic[key];
+	NSMutableArray *datas = [[[NSMutableArray alloc] init] autorelease];
+	for (NSDictionary *dic in array) {
+		VideoModel *model = [VideoModel modelWithDictionary:dic];
+		[datas addObject:model];
+	}
+	
+	return [datas.copy autorelease];
+}
 
 @end

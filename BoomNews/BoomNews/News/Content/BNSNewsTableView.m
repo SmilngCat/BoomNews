@@ -26,18 +26,6 @@
 	return self;
 }
 
-- (void)bns_LoadData:(NSUInteger)index {
-	__block typeof(self) weakSelf = self;
-	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:weakSelf.urlString
-														type:index
-												  completion:^(id data) {
-													  
-														weakSelf.datas = data;
-														dispatch_async(dispatch_get_main_queue(), ^{
-															[self reloadData];
-														});
-	}] ;
-}
 
 #pragma mark - UITableViewDataSource
 

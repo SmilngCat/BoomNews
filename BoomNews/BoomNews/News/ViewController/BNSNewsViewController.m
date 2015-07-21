@@ -95,7 +95,7 @@
 	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035/0-20.html"];
 	//时尚
 	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803/0-20.html"];
-	
+
 }
 
 #pragma mark - Layout 

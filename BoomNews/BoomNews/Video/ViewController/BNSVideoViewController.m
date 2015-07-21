@@ -7,9 +7,12 @@
 //
 
 #import "BNSVideoViewController.h"
+#import "BNSVideoTableView.h"
 
 @interface BNSVideoViewController ()
 
+@property (copy, nonatomic) NSString *urlString;
+@property (retain, nonatomic) BNSVideoTableView *videoTableView;
 @end
 
 @implementation BNSVideoViewController
@@ -17,16 +20,32 @@
 #pragma mark - VideoViewController Lifecycle
 
 - (void)dealloc {
+	
+	[_videoTableView release];
+	[_urlString release];
 	[super dealloc];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor colorWithRed:0.926 green:0.702 blue:1.000 alpha:1.000];
-	
+	[self loadData];
+	[self loadUI];
 }
 
+- (void)loadData {
+	self.urlString = @"http://c.m.163.com/nc/video/list/V9LG4B3A0/y/0-10.html";
+}
+
+#pragma mark - Layout
+
+- (void)loadUI {
+	self.videoTableView = [[[BNSVideoTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+	_videoTableView.urlString = _urlString;
+	[self.view addSubview:_videoTableView];
+	
+	[_videoTableView bns_LoadData:BNSHTTPRequestResourceTypeVideo];
+}
 
 
 

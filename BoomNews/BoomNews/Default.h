@@ -9,11 +9,14 @@
 #ifndef BoomNews_Default_h
 #define BoomNews_Default_h
 
-#import "BNSNewsModel.h"
 #import "Model.h"
+#import "BNSNewsModel.h"
+#import "BNSVideoModel.h"
 
 #define Absent @"absent.jpg"
+
 #define NewsModel BNSNewsModel
+#define VideoModel BNSVideoModel
 
 /**
  *  轮播图滚动方向

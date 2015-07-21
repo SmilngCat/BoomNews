@@ -34,7 +34,31 @@ typedef NS_ENUM(NSInteger, BNSHTTPRequestResourceType){
 	 *  政务
 	 */
 	BNSHTTPRequestResourceTypePolicyOfNews,
+	/**
+	 *  历史
+	 */
+	BNSHTTPRequestResourceTypeHistoryOfNews,
+	/**
+	 *  财经
+	 */
+	BNSHTTPRequestResourceTypeEconomicOfNews,
+	/**
+	 *  军事
+	 */
+	BNSHTTPRequestResourceTypeMilitaryOfNews,
+	/**
+	 *  彩票
+	 */
+	BNSHTTPRequestResourceTypeLotteryOfNews,
+	/**
+	 *  时尚
+	 */
+	BNSHTTPRequestResourceTypeFashionOfNews,
 	
+	/**
+	 *	视频
+	 */
+	BNSHTTPRequestResourceTypeVideo = 100
 };
 
 

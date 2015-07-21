@@ -10,5 +10,5 @@
 
 @interface BNSModelCell : UITableViewCell
 
-@property (retain, nonatomic) NewsModel *model;
+@property (retain, nonatomic) id model;
 @end
