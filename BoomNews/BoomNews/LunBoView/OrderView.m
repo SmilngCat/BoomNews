@@ -131,6 +131,13 @@
 
 }
 
+- (void)setViewController:(UIViewController *)viewController {
+    _scrollView.contentView.leftView.viewController = viewController;
+    _scrollView.contentView.middleView.viewController = viewController;
+    _scrollView.contentView.rightView.viewController = viewController;
+}
+
+
 - (void)configureScrollViewAtIndex:(NSUInteger)index
 							 count:(NSUInteger)count
 						   options:(OrderDirectionType)options{

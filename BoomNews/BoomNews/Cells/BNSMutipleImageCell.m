@@ -63,7 +63,7 @@
 	}
 	
 	if (model.imgextraArray) {
-		NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
+        NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
 		NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
 		[_middleImageView sd_setImageWithURL:middleImageURL];
 		[_rightImageView sd_setImageWithURL:rightImageURL];

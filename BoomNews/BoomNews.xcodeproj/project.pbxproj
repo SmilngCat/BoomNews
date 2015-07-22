@@ -59,6 +59,14 @@
 		E0DC35671B58E07E00FF2E8F /* BNSTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35631B58E07E00FF2E8F /* BNSTitleCell.m */; };
 		E0DC356A1B58E1A100FF2E8F /* BNSSpecialImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35691B58E1A100FF2E8F /* BNSSpecialImageCell.m */; };
 		E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */; };
+		F7916A231B5E72F500CE8BC9 /* BNSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A221B5E72F500CE8BC9 /* BNSNewsDetailViewController.m */; };
+		F7916A261B5E755400CE8BC9 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A251B5E755400CE8BC9 /* Message.m */; };
+		F7916A291B5E862200CE8BC9 /* BNSNewsPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A281B5E862200CE8BC9 /* BNSNewsPhotoViewController.m */; };
+		F7916A631B5F3E9900CE8BC9 /* BNSScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A5E1B5F3E9900CE8BC9 /* BNSScrollContentView.m */; };
+		F7916A641B5F3E9900CE8BC9 /* BNSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A601B5F3E9900CE8BC9 /* BNSScrollView.m */; };
+		F7916A651B5F3E9900CE8BC9 /* BNSView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A621B5F3E9900CE8BC9 /* BNSView.m */; };
+		F7916A681B5F428900CE8BC9 /* BNSDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A671B5F428900CE8BC9 /* BNSDetailModel.m */; };
+		F7916A6B1B5F6D0700CE8BC9 /* BNSNewsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A6A1B5F6D0700CE8BC9 /* BNSNewsDetailView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +186,22 @@
 		E0DC35691B58E1A100FF2E8F /* BNSSpecialImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSSpecialImageCell.m; sourceTree = "<group>"; };
 		E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSPrivateModel.h; path = "Reused Resource/Model/BNSPrivateModel.h"; sourceTree = "<group>"; };
 		E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSPrivateModel.m; path = "Reused Resource/Model/BNSPrivateModel.m"; sourceTree = "<group>"; };
+		F7916A211B5E72F500CE8BC9 /* BNSNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsDetailViewController.h; sourceTree = "<group>"; };
+		F7916A221B5E72F500CE8BC9 /* BNSNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsDetailViewController.m; sourceTree = "<group>"; };
+		F7916A241B5E755400CE8BC9 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		F7916A251B5E755400CE8BC9 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		F7916A271B5E862200CE8BC9 /* BNSNewsPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsPhotoViewController.h; sourceTree = "<group>"; };
+		F7916A281B5E862200CE8BC9 /* BNSNewsPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsPhotoViewController.m; sourceTree = "<group>"; };
+		F7916A5D1B5F3E9900CE8BC9 /* BNSScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSScrollContentView.h; sourceTree = "<group>"; };
+		F7916A5E1B5F3E9900CE8BC9 /* BNSScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSScrollContentView.m; sourceTree = "<group>"; };
+		F7916A5F1B5F3E9900CE8BC9 /* BNSScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSScrollView.h; sourceTree = "<group>"; };
+		F7916A601B5F3E9900CE8BC9 /* BNSScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSScrollView.m; sourceTree = "<group>"; };
+		F7916A611B5F3E9900CE8BC9 /* BNSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSView.h; sourceTree = "<group>"; };
+		F7916A621B5F3E9900CE8BC9 /* BNSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSView.m; sourceTree = "<group>"; };
+		F7916A661B5F428900CE8BC9 /* BNSDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSDetailModel.h; sourceTree = "<group>"; };
+		F7916A671B5F428900CE8BC9 /* BNSDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSDetailModel.m; sourceTree = "<group>"; };
+		F7916A691B5F6D0700CE8BC9 /* BNSNewsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsDetailView.h; sourceTree = "<group>"; };
+		F7916A6A1B5F6D0700CE8BC9 /* BNSNewsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsDetailView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +330,7 @@
 		E092F49B1B5609C2004DA8B3 /* ThirdSupport */ = {
 			isa = PBXGroup;
 			children = (
+				F7916A5C1B5F3E9900CE8BC9 /* BNSNewsLunBoView */,
 				E092F5A81B57B5EF004DA8B3 /* SDWebImage  */,
 				E092F5A41B5776A1004DA8B3 /* HttpRequest */,
 				E099535E1B5A921C002B8D1C /* ScrollBar */,
@@ -330,6 +355,10 @@
 			children = (
 				E092F5281B569615004DA8B3 /* BNSNewsViewController.h */,
 				E092F5291B569615004DA8B3 /* BNSNewsViewController.m */,
+				F7916A211B5E72F500CE8BC9 /* BNSNewsDetailViewController.h */,
+				F7916A221B5E72F500CE8BC9 /* BNSNewsDetailViewController.m */,
+				F7916A271B5E862200CE8BC9 /* BNSNewsPhotoViewController.h */,
+				F7916A281B5E862200CE8BC9 /* BNSNewsPhotoViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -339,6 +368,8 @@
 			children = (
 				E092F5A11B576370004DA8B3 /* BNSNewsTableView.h */,
 				E092F5A21B576370004DA8B3 /* BNSNewsTableView.m */,
+				F7916A691B5F6D0700CE8BC9 /* BNSNewsDetailView.h */,
+				F7916A6A1B5F6D0700CE8BC9 /* BNSNewsDetailView.m */,
 			);
 			name = Content;
 			sourceTree = "<group>";
@@ -402,6 +433,8 @@
 				E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */,
 				E06260C81B5CC94D00D28598 /* BNSVideoModel.h */,
 				E06260C91B5CC94D00D28598 /* BNSVideoModel.m */,
+				F7916A661B5F428900CE8BC9 /* BNSDetailModel.h */,
+				F7916A671B5F428900CE8BC9 /* BNSDetailModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -424,6 +457,8 @@
 			children = (
 				E05DFDAD1B5893E400759CD6 /* BNSHTTPRequest.h */,
 				E05DFDAE1B5893E400759CD6 /* BNSHTTPRequest.m */,
+				F7916A241B5E755400CE8BC9 /* Message.h */,
+				F7916A251B5E755400CE8BC9 /* Message.m */,
 			);
 			name = HttpRequest;
 			sourceTree = "<group>";
@@ -501,6 +536,19 @@
 				E06260C31B5C91BC00D28598 /* BNSVideoCell.m */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F7916A5C1B5F3E9900CE8BC9 /* BNSNewsLunBoView */ = {
+			isa = PBXGroup;
+			children = (
+				F7916A5D1B5F3E9900CE8BC9 /* BNSScrollContentView.h */,
+				F7916A5E1B5F3E9900CE8BC9 /* BNSScrollContentView.m */,
+				F7916A5F1B5F3E9900CE8BC9 /* BNSScrollView.h */,
+				F7916A601B5F3E9900CE8BC9 /* BNSScrollView.m */,
+				F7916A611B5F3E9900CE8BC9 /* BNSView.h */,
+				F7916A621B5F3E9900CE8BC9 /* BNSView.m */,
+			);
+			path = BNSNewsLunBoView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -620,6 +668,7 @@
 				E092F5CC1B57B5EF004DA8B3 /* SDImageCache.m in Sources */,
 				E0DC356A1B58E1A100FF2E8F /* BNSSpecialImageCell.m in Sources */,
 				E09953681B5A921C002B8D1C /* BNSNewsButton.m in Sources */,
+				F7916A631B5F3E9900CE8BC9 /* BNSScrollContentView.m in Sources */,
 				E092F59A1B56BFAA004DA8B3 /* BNSTableView+BNSTemplateCell.m in Sources */,
 				E09953691B5A921C002B8D1C /* BNSNewsTypeScrollBar.m in Sources */,
 				E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */,
@@ -629,11 +678,13 @@
 				E092F5381B569700004DA8B3 /* BNSRootViewController.m in Sources */,
 				E06260CA1B5CC94D00D28598 /* BNSVideoModel.m in Sources */,
 				E092F5A01B573C25004DA8B3 /* Model2.m in Sources */,
+				F7916A6B1B5F6D0700CE8BC9 /* BNSNewsDetailView.m in Sources */,
 				E099536B1B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m in Sources */,
 				E05DFDAB1B57D89500759CD6 /* OrderScrollView.m in Sources */,
 				E092F5971B56BF7E004DA8B3 /* BNSTableView.m in Sources */,
 				E06260C71B5C924300D28598 /* BNSVideoPlayerView.m in Sources */,
 				E092F5CF1B57B5EF004DA8B3 /* SDWebImageDownloader.m in Sources */,
+				F7916A651B5F3E9900CE8BC9 /* BNSView.m in Sources */,
 				E092F5D41B57B5EF004DA8B3 /* UIImage+GIF.m in Sources */,
 				E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */,
 				E092F59F1B573C25004DA8B3 /* Model.m in Sources */,
@@ -643,14 +694,19 @@
 				E092F5A31B576370004DA8B3 /* BNSNewsTableView.m in Sources */,
 				E092F5D51B57B5EF004DA8B3 /* UIImage+MultiFormat.m in Sources */,
 				E099536A1B5A921C002B8D1C /* BNSNewsTypeScrollBarButton.m in Sources */,
+				F7916A261B5E755400CE8BC9 /* Message.m in Sources */,
 				E0157DB01B59157000ABB769 /* BNSTableView+BNSHeightCache.m in Sources */,
 				E092F4751B56086D004DA8B3 /* main.m in Sources */,
+				F7916A681B5F428900CE8BC9 /* BNSDetailModel.m in Sources */,
 				E092F5CD1B57B5EF004DA8B3 /* SDWebImageCompat.m in Sources */,
+				F7916A231B5E72F500CE8BC9 /* BNSNewsDetailViewController.m in Sources */,
 				E092F5351B5696B3004DA8B3 /* BNSAccountViewController.m in Sources */,
 				E06260C41B5C91BC00D28598 /* BNSVideoCell.m in Sources */,
 				E05DFDAA1B57D89500759CD6 /* OrderScrollContentView.m in Sources */,
 				E092F5D31B57B5EF004DA8B3 /* UIButton+WebCache.m in Sources */,
+				F7916A291B5E862200CE8BC9 /* BNSNewsPhotoViewController.m in Sources */,
 				E0DC35641B58E07E00FF2E8F /* BNSModelCell.m in Sources */,
+				F7916A641B5F3E9900CE8BC9 /* BNSScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

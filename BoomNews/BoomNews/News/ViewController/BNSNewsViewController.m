@@ -125,6 +125,7 @@
 											   contentScrollViewHeight);
 	self.orderView = [[[OrderView alloc] initWithFrame:contentScrollViewFrame] autorelease];
 	_orderView.datas = _newsAddressArray;
+    _orderView.viewController = self;
 	[_orderView configureScrollViewAtIndex:0
 									 count:_newsAddressArray.count
 								   options:OrderDirectionTypeNone];

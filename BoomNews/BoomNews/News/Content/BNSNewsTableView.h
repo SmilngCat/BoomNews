@@ -12,4 +12,7 @@
 
 @interface BNSNewsTableView : BNSTableView
 
+@property (nonatomic, retain)UITabBarController *tabBatVC;
+
+
 @end

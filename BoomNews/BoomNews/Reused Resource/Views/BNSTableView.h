@@ -23,6 +23,7 @@
 
 @interface BNSTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
 
+@property (assign, nonatomic) UIViewController *viewController;
 @property (copy, nonatomic) NSString *urlString;
 @property (copy, nonatomic) NSArray *datas;
 

@@ -7,6 +7,7 @@
 //
 
 #import "BNSNewsTableView.h"
+#import "BNSNewsDetailViewController.h"
 
 @implementation BNSNewsTableView
 
@@ -88,5 +89,23 @@
 	return height;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    BNSNewsDetailViewController *detailVC = [[BNSNewsDetailViewController alloc]init];
+    
+    
+    detailVC.model = self.datas[indexPath.row];
+    
+    detailVC.hidesBottomBarWhenPushed = YES;
+
+    
+    [self.viewController.navigationController pushViewController:detailVC animated:YES];
+
+    
+    [detailVC release];
+
+    
+}
 
 @end
