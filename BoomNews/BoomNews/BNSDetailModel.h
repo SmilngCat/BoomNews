@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNSDetailModel : NSObject<NSCoding>
+@interface BNSDetailModel : NSObject
 
 
 

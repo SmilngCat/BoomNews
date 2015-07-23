@@ -43,17 +43,17 @@
 		[self registerClass:videoCellClass forCellReuseIdentifier:NSStringFromClass(videoCellClass)];
 		
 		_offset = 0;
-		_datas = [[NSMutableArray array] retain];
+		_datas = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
-- (void)bns_LoadData:(NSUInteger)index {
+- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index completion:(void(^)(void))completion {
 	
 	__block typeof(self) weakSelf = self;
 
 	NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%ld.html", weakSelf.offset, weakSelf.offset + 20];
-	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:urlString
+	BOOL result = [[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:urlString
 														type:index
 												  completion:^(id data) {
 													  
@@ -67,7 +67,11 @@
 													  dispatch_async(dispatch_get_main_queue(), ^{
 														  [self reloadData];
 													  });
+													  
+													  !completion ?: completion();
 												  }] ;
+
+	return result;
 }
 
 #pragma mark - UITableViewDataSource

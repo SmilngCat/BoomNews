@@ -55,6 +55,7 @@
 		E09953691B5A921C002B8D1C /* BNSNewsTypeScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E09953621B5A921C002B8D1C /* BNSNewsTypeScrollBar.m */; };
 		E099536A1B5A921C002B8D1C /* BNSNewsTypeScrollBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E09953641B5A921C002B8D1C /* BNSNewsTypeScrollBarButton.m */; };
 		E099536B1B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E09953661B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m */; };
+		E0D277FA1B6110EF0004A47A /* BNSResource.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0D277F91B6110EF0004A47A /* BNSResource.plist */; };
 		E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */; };
 		E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */; };
 		F73C49DD1B60E2A200842205 /* BNSMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C49DC1B60E2A200842205 /* BNSMineModel.m */; };
@@ -199,6 +200,7 @@
 		E09953651B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsTypeScrollBarContentView.h; sourceTree = "<group>"; };
 		E09953661B5A921C002B8D1C /* BNSNewsTypeScrollBarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsTypeScrollBarContentView.m; sourceTree = "<group>"; };
 		E09953671B5A921C002B8D1C /* NewsTypeScrollBarButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTypeScrollBarButtonDelegate.h; sourceTree = "<group>"; };
+		E0D277F91B6110EF0004A47A /* BNSResource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BNSResource.plist; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
 		E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSNewsModel.m; path = "Reused Resource/Model/BNSNewsModel.m"; sourceTree = "<group>"; };
 		E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSPrivateModel.h; path = "Reused Resource/Model/BNSPrivateModel.h"; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				E092F4731B56086D004DA8B3 /* Info.plist */,
+				E0D277F91B6110EF0004A47A /* BNSResource.plist */,
 				E092F4741B56086D004DA8B3 /* main.m */,
 				E092F49D1B560BA4004DA8B3 /* BoomNews-prefix.pch */,
 				F73C4A1E1B60E4CA00842205 /* Default.h */,
@@ -771,6 +774,7 @@
 				E05DFDB11B589D5300759CD6 /* read_me.txt in Resources */,
 				F7916A891B60852000CE8BC9 /* htmlCSS.css in Resources */,
 				E013F76A1B5E874800812B35 /* MJRefresh.bundle in Resources */,
+				E0D277FA1B6110EF0004A47A /* BNSResource.plist in Resources */,
 				E092F47A1B56086D004DA8B3 /* Images.xcassets in Resources */,
 				F7916A881B60852000CE8BC9 /* html.txt in Resources */,
 			);

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNSDetailWebModel : NSObject
+@interface BNSDetailWebModel : NSObject <NSCoding>
 //非图片页面
 //标题
 @property (nonatomic, retain)NSString *title;

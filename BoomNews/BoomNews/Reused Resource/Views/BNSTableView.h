@@ -35,6 +35,14 @@
 //保存数据的数组
 @property (retain, nonatomic) NSMutableArray *datas;
 
-//数据加载方法
-- (void)bns_LoadData:(NSUInteger)index;
+//数据更新有效位
+@property (assign, nonatomic) BOOL update;
+
+/**
+ *  数据加载方法
+ *
+ *  @param index 资源类型
+ *	@return YES请求成功，NO失败.
+ */
+- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index completion:(void(^)(void))completion;
 @end

@@ -45,17 +45,23 @@
 	
 	//加载地址偏移量回到0
 	self.offset = 0;
-	[self bns_LoadData:BNSHTTPRequestResourceTypeVideo];
+	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{}];
 	
 	[self headerEndRefreshing];
 }
 
 - (void)footerRefreshing {
-	//加载地址偏移量累加20
-	self.offset += 20;
 	
-	[self bns_LoadData:BNSHTTPRequestResourceTypeVideo];
-	
+	static BOOL lock = NO;
+	if (!lock) {
+		lock = YES;
+		//加载地址偏移量累加20
+		self.offset += 20;
+		
+		lock = ![self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
+			lock = NO;
+		}];
+	}
 	[self footerEndRefreshing];
 }
 

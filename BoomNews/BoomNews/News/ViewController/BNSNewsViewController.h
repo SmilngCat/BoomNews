@@ -10,5 +10,6 @@
 
 @interface BNSNewsViewController : UIViewController
 
+@property (retain, nonatomic) NSMutableArray *navigationBarImages;
 @end
 

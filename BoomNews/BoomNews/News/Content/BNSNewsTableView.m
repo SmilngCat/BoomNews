@@ -45,19 +45,25 @@
 	
 	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
 	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
-	[self bns_LoadData:currentIndex];
+	[self bns_LoadDataAtIndex:currentIndex completion:^{}];
 	
 	[self headerEndRefreshing];
 }
 
 - (void)footerRefreshing {
-	//加载地址偏移量累加20
-	self.offset += 20;
 	
-	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
-	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
-	[self bns_LoadData:currentIndex];
-	
+	static BOOL lock = NO;
+	if (!lock) {
+		lock = YES;
+		//加载地址偏移量累加20
+		self.offset += 20;
+		
+		NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
+		NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
+		[self bns_LoadDataAtIndex:currentIndex completion:^{
+			lock = NO;
+		}];
+	}
 	[self footerEndRefreshing];
 }
 

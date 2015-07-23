@@ -39,6 +39,7 @@
 
 - (void)dealloc {
 	
+	[_navigationBarImages release];
 	[_newsTypeArray release];
 	[_newsAddressArray release];
 	[_newsTypeBar release];
@@ -59,45 +60,76 @@
 
 - (void)loadData {
 	
+	NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"BNSResource" ofType:@"plist"];
+	NSArray *resourceArray = [NSArray arrayWithContentsOfFile:resourcePath];
+	NSDictionary *navigationBarImagesDic = resourceArray[0];
+	NSDictionary *newsTypeDic = resourceArray[1];
+	NSDictionary *newsAddressDic = resourceArray[2];
+	
+ /**
+  *  navigationBarImages
+  */
+	self.navigationBarImages = [NSMutableArray array];
+	[navigationBarImagesDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+		[_navigationBarImages addObject:obj];
+	}];
+	
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"technoligy"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"entermentain"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"sports"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"game"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"policy"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"history"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"finance"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"military"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"lottory"]];
+//	[_navigationBarImages addObject:[UIImage imageNamed:@"fashion"]];
+	
 	/**
 	 *  新闻类型
 	 */
 	self.newsTypeArray = [NSMutableArray array];
-	[_newsTypeArray addObject:@"科技"];
-	[_newsTypeArray addObject:@"娱乐"];
-	[_newsTypeArray addObject:@"体育"];
-	[_newsTypeArray addObject:@"游戏"];
-	[_newsTypeArray addObject:@"政务"];
-	[_newsTypeArray addObject:@"历史"];
-	[_newsTypeArray addObject:@"财经"];
-	[_newsTypeArray addObject:@"军事"];
-	[_newsTypeArray addObject:@"彩票"];
-	[_newsTypeArray addObject:@"时尚"];
+	[newsTypeDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+		[_newsTypeArray addObject:obj];
+	}];
+//	[_newsTypeArray addObject:@"科技"];
+//	[_newsTypeArray addObject:@"娱乐"];
+//	[_newsTypeArray addObject:@"体育"];
+//	[_newsTypeArray addObject:@"游戏"];
+//	[_newsTypeArray addObject:@"政务"];
+//	[_newsTypeArray addObject:@"历史"];
+//	[_newsTypeArray addObject:@"财经"];
+//	[_newsTypeArray addObject:@"军事"];
+//	[_newsTypeArray addObject:@"彩票"];
+//	[_newsTypeArray addObject:@"时尚"];
 	
 	/**
 	 *  新闻地址
 	 */
 	self.newsAddressArray = [NSMutableArray array];
-	//科技
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692"];
-	//娱乐
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839"];
-	//体育
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062"];
-	//游戏
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579"];
-	//政务
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384"];
-	//历史
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1368497029546"];
-	//财经
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648756099"];
-	//军事
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648141035"];
-	//彩票
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035"];
-	//时尚
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803"];
+	[newsAddressDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+		[_newsAddressArray addObject:obj];
+	}];
+//	//科技
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692"];
+//	//娱乐
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839"];
+//	//体育
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062"];
+//	//游戏
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579"];
+//	//政务
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384"];
+//	//历史
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1368497029546"];
+//	//财经
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648756099"];
+//	//军事
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648141035"];
+//	//彩票
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035"];
+//	//时尚
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803"];
 
 }
 

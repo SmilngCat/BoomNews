@@ -38,9 +38,11 @@ static BNSHTTPRequest *sharedRequest = nil;
 
 #pragma mark - 请求数据
 
-- (void)requestWithURLString:(NSString *)urlString
+- (BOOL)requestWithURLString:(NSString *)urlString
 						type:(BNSHTTPRequestResourceType)type
 				  completion:(RequestBlock)completion {
+	
+	__block BOOL result = NO;
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
@@ -50,10 +52,10 @@ static BNSHTTPRequest *sharedRequest = nil;
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		
 		if (error) {
-			
+			result = NO;
 			NSLog(@"%@", error.localizedDescription);
 		}else {
-			
+			result = YES;
 			NSArray *datas = nil;
 			if (type == BNSHTTPRequestResourceTypeVideo) {
 				datas = [self handleVideoData:data urlString:urlString];
@@ -64,7 +66,7 @@ static BNSHTTPRequest *sharedRequest = nil;
 			!completion ?: completion(datas);
 		}
 	}];
-	
+	return result;
 }
 
 #pragma mark - 处理数据，生成Model对象

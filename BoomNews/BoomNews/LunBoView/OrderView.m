@@ -11,6 +11,7 @@
 #import "OrderScrollContentView.h"
 
 #import "NSMutableArray+DepthCopy.h"
+#import "BNSNewsViewController.h"
 
 
 @interface OrderView () <UIScrollViewDelegate>
@@ -144,6 +145,7 @@
 							 count:(NSUInteger)count
 						   options:(OrderDirectionType)options{
 	
+	
 	NSUInteger leftIndex = index % count;
 	NSUInteger middleIndex = (index + 1) % count;
 	NSUInteger rightIndex = (index + 2) % count;
@@ -198,6 +200,9 @@
 			break;
 		}
 	}
+//	BNSNewsViewController *vc = (BNSNewsViewController*)middleView.viewController;
+//	UIImage *navigationBarImage = vc.navigationBarImages[middleIndex];
+//	[middleView.viewController.navigationController.navigationBar setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefaultPrompt];
 
 }
 

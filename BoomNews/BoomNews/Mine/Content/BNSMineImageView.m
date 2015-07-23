@@ -80,10 +80,7 @@
 		_loginLabel = [[UILabel alloc] init];
 		_loginLabel.text = @"立即登陆";
 		
-//		UIFont *font = [[NSUserDefaults standardUserDefaults] objectForKey:@"PreferredFont"];
-//		_loginLabel.font = font;
 		_loginLabel.textColor = [UIColor whiteColor];
-		_loginLabel.font = [UIFont systemFontOfSize:FONT_LABEL];
 		_loginLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _loginLabel;

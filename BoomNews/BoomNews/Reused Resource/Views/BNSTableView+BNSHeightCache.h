@@ -36,4 +36,5 @@
 
 //缓存有效性标志
 @property (assign, nonatomic) BOOL invalidate;
+
 @end
