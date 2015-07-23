@@ -20,18 +20,10 @@
 	[self bns_initWithFrame:frame];
 	if (self) {
 		NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
-		NSNumber *size = fontDic[@"fontSize"];
+		NSString *size = fontDic[@"fontSize"];
 		self.font = [UIFont fontWithName:fontDic[@"fontName"] size:size.integerValue];
 	}
 	return self;
-}
-
-- (void)changeFont {
-	if (self) {
-		NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
-		NSNumber *size = fontDic[@"fontSize"];
-		self.font = [UIFont fontWithName:fontDic[@"fontName"] size:size.integerValue];
-	}
 }
 
 

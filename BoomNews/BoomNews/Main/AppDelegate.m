@@ -20,7 +20,6 @@
 
 - (void)dealloc {
 	
-	[_fontDic release];
 	[_window release];
 	[super dealloc];
 }
@@ -34,10 +33,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	//设置全局字体
-	self.fontDic = [NSMutableDictionary dictionary];
-	_fontDic[@"fontName"] = @"CourierNewPS-ItalicMT";
-	_fontDic[@"fontSize"] = @15;
-	[[NSUserDefaults standardUserDefaults] setObject:_fontDic forKey:@"TintFont"];
+	NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
+	fontDic[@"fontName"] = @"CourierNewPS-ItalicMT";
+	fontDic[@"fontSize"] = @"15";
+	[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
 	
 	
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

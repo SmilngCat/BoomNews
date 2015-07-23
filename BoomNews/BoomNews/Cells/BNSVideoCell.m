@@ -35,7 +35,7 @@
 	[_timeImageView release];
 	[_countImageView release];
 	
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
+
 	[super dealloc];
 }
 
@@ -44,16 +44,21 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
 
-//#pragma mark - Notification
-//
-//- (void)fontChanged:(NSNotification *)notification {
-//	
-//}
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	
+	_titleLabel.font = currentFont;
+	_timeLabel.font = currentFont;
+	_countLabel.font = currentFont;
+}
+
 
 #pragma mark - setter
 
@@ -63,13 +68,12 @@
 		[_model release];
 		_model = [model retain];
 		
-//		_coverImageView.image = [UIImage imageNamed:nil];
 		_titleLabel.text = nil;
 		_timeLabel.text = nil;
 		_countLabel.text = nil;
 		[self reset];
 		
-		[_coverImageView sd_setImageWithURL:[NSURL URLWithString:model.cover]];
+		[_coverImageView sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"absent"]];
 		_titleLabel.text = model.title;
 		_timeLabel.text = [NSString stringWithFormat:@"%@", model.length];
 		_countLabel.text = [NSString stringWithFormat:@"%@", model.playCount];

@@ -11,7 +11,5 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (retain, nonatomic) UIWindow *window;
-@property (retain, nonatomic) NSMutableDictionary *fontDic;
-
 @end
 

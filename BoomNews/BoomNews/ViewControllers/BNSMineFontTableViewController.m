@@ -27,18 +27,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	BNSMineMenuViewController *viewController = [[[BNSMineMenuViewController alloc] init] autorelease];
+	__block typeof(viewController) weakViewController = viewController;
 	
 	if (indexPath.row == 0) {
 		viewController.datas = @[@"AppleGothic", @"ArialMT", @"Arial-BoldMT", @"Arial-ItalicMT",@"Arial-BoldItalicMT", @"Courier", @"CourierNewPS-ItalicMT", @"GeezaPro"];
 		viewController.index = 0;
-		viewController.then = ^(id obj) {
+		
+		viewController.then = ^(NSUInteger obj) {
 			
+			NSDictionary *fontDicOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+			
+			NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
+			fontDic[@"fontName"] = weakViewController.datas[obj];
+			fontDic[@"fontSize"] = fontDicOrigin[@"fontSize"];
+			[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TintFont"];
+			[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
+			[[NSNotificationCenter defaultCenter] postNotificationName:kBNSTintFontChanged object:nil];
 		};
 	}else {
 		viewController.datas = @[@"12", @"15", @"17"];
 		viewController.index = 1;
-		viewController.then = ^(id obj) {
+		viewController.then = ^(NSUInteger obj) {
 			
+			NSDictionary *fontDicOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+			NSString *fontName = [NSString stringWithString:fontDicOrigin[@"fontName"]];
+			NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
+			fontDic[@"fontName"] = fontName;
+			fontDic[@"fontSize"] = weakViewController.datas[obj];
+			[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TintFont"];
+			[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
+			[[NSNotificationCenter defaultCenter] postNotificationName:kBNSTintFontChanged object:nil];
 		};
 	}
 	[self.navigationController pushViewController:viewController animated:YES];

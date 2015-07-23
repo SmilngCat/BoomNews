@@ -27,7 +27,7 @@
 			  reuseIdentifier:(NSString *)identifier {
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontChanged object:nil];
 	}
 	return self;
 }
@@ -37,5 +37,6 @@
 - (void)fontChanged:(NSNotification *)notification {
 
 }
+
 
 @end

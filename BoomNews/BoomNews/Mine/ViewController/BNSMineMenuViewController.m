@@ -9,7 +9,7 @@
 #import "BNSMineMenuViewController.h"
 
 static NSUInteger type = 0;
-static NSUInteger size = 0;
+static NSUInteger size = 1;
 
 
 @interface BNSMineMenuViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -128,8 +128,7 @@ static NSUInteger size = 0;
 		size = indexPath.row;
 	}
 
-	id obj = _datas[indexPath.row];
-	!_then ?: _then(obj);
+	!_then ?: _then(indexPath.row);
 }
 
 

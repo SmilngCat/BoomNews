@@ -10,6 +10,12 @@
 
 @implementation BNSNewsTypeScrollBarButton
 
+- (void)dealloc {
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
+}
+
 + (instancetype)buttonWithType:(UIButtonType)type {
 	BNSNewsTypeScrollBarButton *button= [super buttonWithType:type];
 	if (button) {
@@ -18,9 +24,22 @@
 		[button addTarget:button
 				   action:@selector(buttonClicked:)
 		 forControlEvents:UIControlEventTouchUpInside];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:button selector:@selector(fontChanged:) name:kBNSTintFontChanged object:nil];
 	}
 	return button;
 }
+
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	
+	self.titleLabel.font = currentFont;
+}
+
+#pragma mark - Actions
 
 - (void)buttonClicked:(UIButton *)button {
 	

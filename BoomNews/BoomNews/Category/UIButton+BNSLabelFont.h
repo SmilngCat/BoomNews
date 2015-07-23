@@ -1,5 +1,5 @@
 //
-//  UILabel+BNSLabelFont.h
+//  UIButton+BNSLabelFont.h
 //  BoomNews
 //
 //  Created by jsix lei on 15/7/23.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (BNSLabelFont)
+@interface UIButton (BNSLabelFont)
 
 @end

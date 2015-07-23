@@ -24,7 +24,6 @@
 	[_titleLabel release];
 	[_profileImageView release];
 	
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -33,7 +32,6 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
@@ -48,13 +46,14 @@
 	_titleLabel.font = currentFont;
 }
 
+
 #pragma mark - setter
 
 - (void)setModel:(NewsModel *)model {
 	_titleLabel.text = model.title;
 
 	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-	[_profileImageView sd_setImageWithURL:imageURL];
+	[_profileImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
 }
 
 #pragma mark - Layout 
@@ -94,9 +93,6 @@
 	if (!_profileImageView) {
 		_profileImageView = [[UIImageView alloc] init];
 		_profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
-		
-		UIImage *absentImage = [UIImage imageNamed:@"absent"];
-		_profileImageView.image = absentImage;
 	}
 	return _profileImageView;
 }

@@ -9,8 +9,6 @@
 #import "BNSMutipleImageCell.h"
 #import "UIImageView+WebCache.h"
 
-//font
-#define kFontTitle 17
 
 //layout
 #define kImageViewWidth 100
@@ -35,7 +33,6 @@
 	[_middleImageView release];
 	[_rightImageView release];
 	
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -44,16 +41,19 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
 
-//#pragma mark - Notification
-//
-//- (void)fontChanged:(NSNotification *)notification {
-//	
-//}
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	
+	_titleLabel.font = currentFont;
+}
+
 
 #pragma mark - Setter
 
@@ -62,12 +62,12 @@
 	_titleLabel.text = model.title;
 	
 	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-	[_leftImageView sd_setImageWithURL:imageURL];
+	[_leftImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
 
 	NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
 	NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
-	[_middleImageView sd_setImageWithURL:middleImageURL];
-	[_rightImageView sd_setImageWithURL:rightImageURL];
+	[_middleImageView sd_setImageWithURL:middleImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+	[_rightImageView sd_setImageWithURL:rightImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
 
 }
 
@@ -137,7 +137,6 @@
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-//		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _titleLabel;
@@ -148,9 +147,6 @@
 		_leftImageView = [[UIImageView alloc] init];
 		_leftImageView.contentMode = UIViewContentModeScaleToFill;
 		_leftImageView.translatesAutoresizingMaskIntoConstraints = NO;
-		
-		UIImage *absentImage = [UIImage imageNamed:@"absent"];
-		_leftImageView.image = absentImage;
 	}
 	return _leftImageView;
 }
@@ -160,9 +156,6 @@
 		_middleImageView = [[UIImageView alloc] init];
 		_middleImageView.contentMode = UIViewContentModeScaleToFill;
 		_middleImageView.translatesAutoresizingMaskIntoConstraints = NO;
-		
-		UIImage *absentImage = [UIImage imageNamed:@"absent"];
-		_middleImageView.image = absentImage;
 	}
 	return _middleImageView;
 }
@@ -172,9 +165,6 @@
 		_rightImageView = [[UIImageView alloc] init];
 		_rightImageView.contentMode = UIViewContentModeScaleToFill;
 		_rightImageView.translatesAutoresizingMaskIntoConstraints = NO;
-		
-		UIImage *absentImage = [UIImage imageNamed:@"absent"];
-		_rightImageView.image = absentImage;
 	}
 	return _rightImageView;
 }

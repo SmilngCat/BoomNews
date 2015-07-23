@@ -9,9 +9,6 @@
 #import "BNSSingleImageCell.h"
 #import "UIImageView+WebCache.h"
 
-//font
-#define kFontTitle 17
-#define kFontBrief 15
 
 //layout
 #define kImageViewWidth 120
@@ -34,7 +31,6 @@
 	[_titleLabel release];
 	[_briefLabel release];
 	
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -43,7 +39,6 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
@@ -58,6 +53,7 @@
 	_briefLabel.font = currentFont;
 }
 
+
 #pragma mark - setter
 
 - (void)setModel:(NewsModel *)model {
@@ -65,7 +61,7 @@
 	_briefLabel.text = model.digest;
 
 	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-	[_profileImageView sd_setImageWithURL:imageURL];
+	[_profileImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
 }
 
 
@@ -121,9 +117,6 @@
 		_profileImageView = [[UIImageView alloc] init];
 		_profileImageView.contentMode = UIViewContentModeScaleToFill;
 		_profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
-		
-		UIImage *absentImage = [UIImage imageNamed:@"absent"];
-		_profileImageView.image = absentImage;
 	}
 	return _profileImageView;
 }
@@ -133,7 +126,6 @@
 		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_titleLabel.numberOfLines = 0;
 		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 		
 	}
@@ -145,7 +137,6 @@
 		_briefLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_briefLabel.numberOfLines = 0;
 		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//		_briefLabel.font = [UIFont systemFontOfSize:kFontBrief];
 		_briefLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _briefLabel;

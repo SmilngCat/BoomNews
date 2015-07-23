@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^BNSThen)(id obj);
+typedef void(^BNSThen)(NSUInteger obj);
 
 @interface BNSMineMenuViewController : UIViewController
 
