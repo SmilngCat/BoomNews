@@ -7,9 +7,15 @@
 //
 
 #import "BNSNewsDetailViewController.h"
+//普通界面网址
 #define URL @"http://c.3g.163.com/nc/article/"
 #define URL1 @"/full.html"
+//照片界面网址
 #define DETAILURL @"http://c.3g.163.com/photo/api/set/%@/%@.json"
+
+//特殊界面网址
+#define SPECIALURL @"http://c.3g.163.com/nc/%@/%@.html"
+
 #import "Message.h"
 #import "UIImageView+WebCache.h"
 #import "BNSView.h"
@@ -19,8 +25,8 @@
 
 #import "BNSNewsDetailView.h"
 #import "BNSDetailModel.h"
+#import "BNSNewsDetailWebView.h"
 @interface BNSNewsDetailViewController ()<BNSScrollViewDelegate>
-@property (nonatomic, retain)UIWebView *webView;
 
 @property (nonatomic, retain)NSMutableArray *dataArray;
 @property (nonatomic, retain)NSMutableArray *detailArray;
@@ -32,6 +38,7 @@
 @property (nonatomic, retain)BNSView *bnsView;
 
 @property (nonatomic, retain)BNSNewsDetailView *detailView;
+@property (nonatomic, retain)BNSNewsDetailWebView *detailWebView;
 
 @property (nonatomic, assign)NSInteger i;
 @property (nonatomic, assign)NSInteger j;
@@ -41,27 +48,33 @@
 - (void)dealloc
 {
     [_model release];
-    [_webView release];
+    [_detailView release];
+    [_detailWebView release];
+    [_webModel release];
+    [_bnsView release];
+    [_dataArray release];
+    [_detailArray release];
+    [_noteArray release];
     [super dealloc];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self loadData];
-    [self loadUI];
+    
     
     
 }
 
 
 
-- (void)loadUI {
+- (void)loadWebView:(BNSDetailWebModel *)model {
     
-    self.webView = [[UIWebView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:_webView];
-    [_webView release];
+    self.detailWebView = [[[BNSNewsDetailWebView alloc]initWithFrame:self.view.frame] autorelease];
+    [self.view addSubview:_detailWebView];
+    [self.detailWebView getThml:model];
     
     
     
@@ -71,7 +84,6 @@
 
 - (void)loadData {
     
-    
     self.dataArray = [NSMutableArray array];
     self.detailArray = [NSMutableArray array];
     self.noteArray = [NSMutableArray array];
@@ -79,17 +91,15 @@
     NSString *skipID1 = [self.model.skipID substringWithRange:NSMakeRange(4, 4)];
     NSString *skipID2 = [self.model.skipID substringFromIndex:9];
     
-    if (self.model.skipID) {
-        
-    
-    self.dataArray = [NSMutableArray array];
+    //NSLog(@"%@", self.model.imgsrc);
+    if (self.model.skipID && self.model.specialID == nil) {
         
     __block typeof(self)weakSelf = self;
     [Message recivedDataWithURLString:[NSString stringWithFormat:DETAILURL, skipID1,skipID2] method:@"GET" body:nil Block:^(id object) {
         
         NSDictionary *dic = (NSDictionary *)object;
         
-        self.model = [[BNSDetailModel alloc]init];
+        self.model = [[[BNSDetailModel alloc]init] autorelease];
 
         [_model setValuesForKeysWithDictionary:dic];
         
@@ -109,22 +119,20 @@
         }
         [self loadImageView];
         [self loadDetailView];
-        [_model release];
-        
         
         
     }];
     
     } else {
-    __block typeof(self) weakSelf = self;
     [Message recivedDataWithURLString:[NSString stringWithFormat:@"%@%@%@", URL, self.model.docid, URL1] method:@"GET" body:nil Block:^(id object) {
         NSDictionary *dic = (NSDictionary *)object;
-        NSDictionary *dic1 = [dic objectForKey:weakSelf.model.docid];
-        NSString *bodyStr = [dic1 objectForKey:@"body"];
-        [weakSelf.webView loadHTMLString:bodyStr baseURL:nil];
-        
-        
-    }];
+        NSArray *array = [dic allKeys];
+        NSDictionary *tempDic = [dic objectForKey:array[0]];
+        BNSDetailWebModel *model = [[[BNSDetailWebModel alloc]init]autorelease];
+        self.webModel = model;
+        [model setValuesForKeysWithDictionary:tempDic];
+        [self loadWebView:model];
+        }];
     }
     
 }
@@ -137,7 +145,7 @@
     [self.view addSubview:effectView];
     [effectView release];
 
-    self.bnsView = [[BNSView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    self.bnsView = [[[BNSView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)] autorelease];
     //self.bnsView.center = self.view.center;
     self.bnsView.scrollView.contentView.leftImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.bnsView.scrollView.contentView.middleImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -158,8 +166,14 @@
 - (void)changeIndex {
     if ([self.detailArray[1] isEqualToString:@""]) {
         self.detailView.digestLabel.text = self.noteArray[1];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.noteArray[1]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
     } else {
         self.detailView.digestLabel.text = self.detailArray[1];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.detailArray[1]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
     }
 
     self.detailView.picSumLabel.text = [NSString stringWithFormat:@"%ld/%@", _i, self.model.imgsum];
@@ -179,12 +193,7 @@
         if (_j > self.noteArray.count - 1) {
             _j = 0;
         }
-        if ([self.detailArray[_j] isEqualToString:@""]) {
-            self.detailView.digestLabel.text = self.noteArray[_j];
-        } else {
-            self.detailView.digestLabel.text = self.detailArray[_j];
-        }
-
+        [self getDetailViewContentSize];
     } else if (self.bnsView.scrollView.contentOffset.x == 0) {
 
         // 底部数字改变
@@ -193,34 +202,55 @@
             
             _i = imgsum;
         }
-
         self.detailView.picSumLabel.text = [NSString stringWithFormat:@"%ld/%@", _i, self.model.imgsum];
         // 底部文字改变
         _j --;
         if (_j < 0) {
             _j = self.detailArray.count - 1;
         }
-        if ([self.detailArray[_j] isEqualToString:@""]) {
-            self.detailView.digestLabel.text = self.noteArray[_j];
-        } else {
-            self.detailView.digestLabel.text = self.detailArray[_j];
-        }
-
+        [self getDetailViewContentSize];
         
     }
     
 }
 
+- (void)getDetailViewContentSize {
+
+    if ([self.detailArray[_j] isEqualToString:@""]) {
+        self.detailView.digestLabel.text = self.noteArray[_j];
+        self.detailView.digestLabel.text = self.noteArray[_j];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.noteArray[_j]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
+    } else {
+        self.detailView.digestLabel.text = self.detailArray[_j];
+        self.detailView.digestLabel.text = self.detailArray[_j];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.detailArray[_j]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
+    }
+
+
+}
+
+
 - (void)loadDetailView {
     
-    self.detailView = [[BNSNewsDetailView alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - self.view.frame.size.height/6, self.view.frame.size.width - 10, self.view.frame.size.height/4 - 80)];
+    self.detailView = [[[BNSNewsDetailView alloc]initWithFrame:CGRectMake(5, self.view.frame.size.height - self.view.frame.size.height/6, self.view.frame.size.width - 10, self.view.frame.size.height/4 - 80)] autorelease];
     self.detailView.model = self.model;
     if ([self.detailArray[0] isEqualToString:@""]) {
         self.detailView.digestLabel.text = self.noteArray[0];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.noteArray[0]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
     } else {
         self.detailView.digestLabel.text = self.detailArray[0];
+        CGFloat height = [self.detailView getStringHeightBasyFont:14 width:self.detailView.frame.size.width string:self.detailArray[0]];
+        self.detailView.digestLabel.frame = CGRectMake(0, 20, self.detailView.frame.size.width, height);
+        self.detailView.contentSize = CGSizeMake(0, height + 20);
     }
     [self.view addSubview:self.detailView];
+    
 
 }
 

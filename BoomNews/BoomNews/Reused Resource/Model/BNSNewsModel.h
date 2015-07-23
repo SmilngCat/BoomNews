@@ -16,9 +16,11 @@
 @property (copy, nonatomic) NSArray *editorArray;
 @property (copy, nonatomic) NSArray *imgextraArray;
 @property (copy, nonatomic) NSString *skipID;
+@property (copy, nonatomic) NSString *skipType;//特殊的类型
 
+@property (copy, nonatomic) NSString *specialID;//特殊的ID
 @property (copy, nonatomic) NSString *docid;
-@property (copy, nonatomic) NSArray *photosArray;
+
 + (instancetype)modelWithDictionary:(NSDictionary *)dic;
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

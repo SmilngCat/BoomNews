@@ -18,6 +18,10 @@
 	[_imgsrc release];
 	[_editorArray release];
 	[_imgextraArray release];
+    [_skipID release];
+    [_specialID release];
+    [_skipType release];
+    [_docid release];
 	
 	[super dealloc];
 }

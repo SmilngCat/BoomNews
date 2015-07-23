@@ -156,6 +156,7 @@
     
     
     detailVC.model = self.datas[indexPath.row];
+   
     
     detailVC.hidesBottomBarWhenPushed = YES;
     

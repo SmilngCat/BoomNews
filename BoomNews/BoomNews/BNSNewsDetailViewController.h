@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BNSDetailModel.h"
+#import "BNSDetailWebModel.h"
 @interface BNSNewsDetailViewController : UIViewController
 
 
 
 @property (nonatomic, retain) BNSDetailModel *model;
 
-
+@property (nonatomic, retain) BNSDetailWebModel *webModel;
 
 @end

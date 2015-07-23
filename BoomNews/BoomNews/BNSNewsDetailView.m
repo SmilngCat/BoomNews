@@ -16,6 +16,7 @@
     [_titleLabel release];
     [_digestLabel release];
     [_picSumLabel release];
+    [_model release];
     [super dealloc];
 }
 
@@ -33,15 +34,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        
-        
-        self.titleLabel = [[UILabel alloc]init];
+    
+        self.titleLabel = [[[UILabel alloc]init] autorelease];
         [self addSubview:_titleLabel];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         
         
-        self.digestLabel = [[UILabel alloc]init];
+        self.digestLabel = [[[UILabel alloc]init] autorelease];
         [self addSubview:_digestLabel];
         self.digestLabel.font = [UIFont systemFontOfSize:14];
         self.digestLabel.textColor = [UIColor whiteColor];
@@ -49,9 +49,7 @@
         self.digestLabel.textAlignment = NSTextAlignmentJustified;
         
         
-        
-        
-        self.picSumLabel = [[UILabel alloc]init];
+        self.picSumLabel = [[[UILabel alloc]init] autorelease];
         [self addSubview:_picSumLabel];
         self.picSumLabel.textColor = [UIColor whiteColor];
         
@@ -76,15 +74,13 @@
     self.titleLabel.frame = CGRectMake(0, 0, self.frame.size.width, 20);
     
     
-    self.digestLabel.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height - 20);
+    //self.digestLabel.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height - 20);
     
     self.picSumLabel.frame = CGRectMake(self.frame.size.width - 45, 0, 50, 20);
     
-    CGFloat height = [self getStringHeightBasyFont:14 width:self.frame.size.width string:self.model.desc];
+
     
-    self.digestLabel.frame = CGRectMake(0, 20, self.frame.size.width, height);
     
-    self.contentSize = CGSizeMake(self.bounds.size.width, height + 20);
     
 }
 

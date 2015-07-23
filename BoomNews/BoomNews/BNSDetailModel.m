@@ -12,17 +12,25 @@
 
 - (void)dealloc {
     
-    [_title release];
-    [_digest release];
-    [_imgsrc release];
-    [_editorArray release];
-    [_imgextraArray release];
-    
+    [_skipID release];
+    [_docid release];
+    [_imgsum release];
+    [_imgurl release];
+    [_imgtitle release];
+    [_setname release];
+    [_note release];
+    [_skipType release];
+    [_specialID release];
     [super dealloc];
 }
+
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 
 }
+
+
+
+
 @end

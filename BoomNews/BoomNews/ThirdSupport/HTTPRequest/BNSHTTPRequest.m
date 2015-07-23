@@ -77,8 +77,11 @@ static BNSHTTPRequest *sharedRequest = nil;
 	NSArray *array = dic[key];
 	NSMutableArray *datas = [[[NSMutableArray alloc] init] autorelease];
 	for (NSDictionary *dic in array) {
-		NewsModel *model = [NewsModel modelWithDictionary:dic];
-		[datas addObject:model];
+        if (![dic[@"skipType"] isEqualToString:@"live"]) {
+            NewsModel *model = [NewsModel modelWithDictionary:dic];
+            [datas addObject:model];
+        }
+
 	}
 
 	return [datas.copy autorelease];

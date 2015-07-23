@@ -23,4 +23,6 @@
 @property (nonatomic, retain) BNSDetailModel *model;
 
 
+- (CGFloat)getStringHeightBasyFont:(CGFloat)font width:(CGFloat)width string:(NSString *)string;
+
 @end
