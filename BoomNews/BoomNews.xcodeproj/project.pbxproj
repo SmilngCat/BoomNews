@@ -208,8 +208,6 @@
 		E0D277FC1B6121F10004A47A /* UIButton+BNSLabelFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BNSLabelFont.m"; sourceTree = "<group>"; };
 		E0D277FE1B6139680004A47A /* UITableViewCell+BNSLabelFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BNSLabelFont.h"; sourceTree = "<group>"; };
 		E0D277FF1B6139680004A47A /* UITableViewCell+BNSLabelFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BNSLabelFont.m"; sourceTree = "<group>"; };
-		E0D278011B613D880004A47A /* Kabob Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kabob Regular.ttf"; sourceTree = "<group>"; };
-		E0D278021B613E340004A47A /* Kids.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kids.ttf; sourceTree = "<group>"; };
 		E0D278041B6140940004A47A /* BNSMineFontFamilyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMineFontFamilyTableViewController.h; sourceTree = "<group>"; };
 		E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineFontFamilyTableViewController.m; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 		E092F4721B56086D004DA8B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E0D278031B613E3F0004A47A /* Fonts */,
 				E092F4731B56086D004DA8B3 /* Info.plist */,
 				E0D277F91B6110EF0004A47A /* BNSResource.plist */,
 				E092F4741B56086D004DA8B3 /* main.m */,
@@ -588,15 +585,6 @@
 				E09953671B5A921C002B8D1C /* NewsTypeScrollBarButtonDelegate.h */,
 			);
 			path = ScrollBar;
-			sourceTree = "<group>";
-		};
-		E0D278031B613E3F0004A47A /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				E0D278021B613E340004A47A /* Kids.ttf */,
-				E0D278011B613D880004A47A /* Kabob Regular.ttf */,
-			);
-			name = Fonts;
 			sourceTree = "<group>";
 		};
 		F73C49DE1B60E31700842205 /* ViewControllers */ = {
