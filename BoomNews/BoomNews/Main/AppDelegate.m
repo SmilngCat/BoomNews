@@ -19,6 +19,8 @@
 @implementation AppDelegate
 
 - (void)dealloc {
+	
+	[_fontDic release];
 	[_window release];
 	[super dealloc];
 }
@@ -30,6 +32,14 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	
+	//设置全局字体
+	self.fontDic = [NSMutableDictionary dictionary];
+	_fontDic[@"fontName"] = @"CourierNewPS-ItalicMT";
+	_fontDic[@"fontSize"] = @15;
+	[[NSUserDefaults standardUserDefaults] setObject:_fontDic forKey:@"TintFont"];
+	
+	
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	// Override point for customization after application launch.
 	self.window.backgroundColor = [UIColor whiteColor];
@@ -70,7 +80,8 @@
 	//保存TabBar的高度
 	CGFloat tabBarHeight = CGRectGetHeight(rootViewController.tabBar.frame);
 	[[NSUserDefaults standardUserDefaults] setFloat:tabBarHeight forKey:@"tabBarHeight"];
-	
+
+
 	return YES;
 }
 

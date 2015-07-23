@@ -12,9 +12,30 @@
 
 @synthesize model = _model;
 
+
+#pragma mark - BNSModelCell Lifecycle
+
 - (void)dealloc {
 	
 	[_model release];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+			  reuseIdentifier:(NSString *)identifier {
+	self = [super initWithStyle:style reuseIdentifier:identifier];
+	if (self) {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
+	}
+	return self;
+}
+
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+
+}
+
 @end

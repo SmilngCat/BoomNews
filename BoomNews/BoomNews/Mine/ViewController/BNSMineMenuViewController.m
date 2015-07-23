@@ -8,7 +8,9 @@
 
 #import "BNSMineMenuViewController.h"
 
-static NSUInteger row = 0;
+static NSUInteger type = 0;
+static NSUInteger size = 0;
+
 
 @interface BNSMineMenuViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -21,6 +23,7 @@ static NSUInteger row = 0;
 
 - (void)dealloc {
 	
+	Block_release(_then);
 	[_datas release];
 	[_listTableView release];
 	[super dealloc];
@@ -30,11 +33,6 @@ static NSUInteger row = 0;
     [super viewDidLoad];
 
 	[self loadUI];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Private
@@ -57,6 +55,7 @@ static NSUInteger row = 0;
 	[self.view addSubview:_listTableView];
 }
 
+
 #pragma mark - Actions
 
 - (void)back:(id)sender {
@@ -75,11 +74,23 @@ static NSUInteger row = 0;
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LIST" forIndexPath:indexPath];
 	[cell prepareForReuse];
 	cell.textLabel.text = string;
-	if (indexPath.row == row) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	
+	if (_index == 0) {
+		
+		if (indexPath.row == type) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		}else {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
 	}else {
-		cell.accessoryType = UITableViewCellAccessoryNone;
+		
+		if (indexPath.row == size) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		}else {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
 	}
+
 	
 	return cell;
 }
@@ -95,14 +106,31 @@ static NSUInteger row = 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:row inSection:0];
-	UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousIndexPath];
-	previousCell.accessoryType = UITableViewCellAccessoryNone;
-	
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	row = indexPath.row;
+
+	if (_index == 0) {
+
+		NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:type inSection:0];
+		UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousIndexPath];
+		previousCell.accessoryType = UITableViewCellAccessoryNone;
+		
+		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		type = indexPath.row;
+
+	}else {
+
+		NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:size inSection:0];
+		UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousIndexPath];
+		previousCell.accessoryType = UITableViewCellAccessoryNone;
+		
+		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		size = indexPath.row;
+	}
+
+	id obj = _datas[indexPath.row];
+	!_then ?: _then(obj);
 }
+
 
 @end

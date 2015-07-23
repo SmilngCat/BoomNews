@@ -47,10 +47,15 @@ static Message *message = nil;
     
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        id tempObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        //使用block将此对象传回到视图控制器类里面
         
-        block(tempObj);
+        if (connectionError == nil) {
+            id tempObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            //使用block将此对象传回到视图控制器类里面
+            
+            block(tempObj);
+        }
+        
+
         
     }];
 

@@ -23,6 +23,8 @@
 	
 	[_titleLabel release];
 	[_profileImageView release];
+	
+//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -31,8 +33,19 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
+}
+
+
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	
+	_titleLabel.font = currentFont;
 }
 
 #pragma mark - setter
@@ -90,7 +103,7 @@
 
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
-		_titleLabel = [[UILabel alloc] init];
+		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_titleLabel.numberOfLines = 0;
 		_titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;

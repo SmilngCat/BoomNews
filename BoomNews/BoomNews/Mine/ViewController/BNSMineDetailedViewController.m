@@ -7,11 +7,11 @@
 //
 
 #import "BNSMineDetailedViewController.h"
-#import "BNSMineMenuViewController.h"
+#import "BNSMineFontTableViewController.h"
+
 
 @interface BNSMineDetailedViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (retain, nonatomic) NSArray *fonts;
 @property (retain, nonatomic) UITableView *menuTableView;
 @end
 
@@ -21,7 +21,6 @@
 
 - (void)dealloc {
 	
-	[_fonts release];
 	[_datas release];
  	[_menuTableView release];
 	[super dealloc];
@@ -34,7 +33,6 @@
 	//显示导航栏
 	self.navigationController.navigationBar.hidden = NO;
 
-	[self loadData];
 	[self loadUI];
 }
 
@@ -43,11 +41,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Private
-
-- (void)loadData {
-	self.fonts = @[@"AppleGothic", @"ArialMT", @"Arial-BoldMT", @"Arial-ItalicMT",@"Arial-BoldItalicMT", @"Courier", @"CourierNewPS-ItalicMT", @"GeezaPro"];
-}
 
 - (void)loadUI {
 	self.menuTableView = [[[UITableView alloc] initWithFrame:self.view.bounds] autorelease];
@@ -76,7 +69,6 @@
 
 - (void)switchSelected:(UISwitch *)sender {
 	if ([sender isOn]) {
-		NSLog(@"open");
 	}
 }
 
@@ -85,11 +77,10 @@
 - (UITableViewCellAccessoryType)accessoryTypeWithIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCellAccessoryType type = UITableViewCellAccessoryNone;
-	if (_index == 0) {
-		if (indexPath.row == 0) {
-			type = UITableViewCellAccessoryDisclosureIndicator;
-		}
-	}else {
+	if (indexPath.row == 0) {
+		type = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	else {
 		type = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	return type;
@@ -110,20 +101,18 @@
 	cell.textLabel.text = string;
 	cell.accessoryType = [self accessoryTypeWithIndexPath:indexPath];
 	
-	if (_index == 0) {
-		if (indexPath.row == 1) {
-			
-			UISwitch *switchButton = [[[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
-			[switchButton addTarget:self action:@selector(switchSelected:) forControlEvents:UIControlEventValueChanged];
-			[switchButton setOn:NO animated:YES];
-			cell.accessoryView = switchButton;
-			
-		}else if (indexPath.row == 2) {
-			
-			UILabel *capacityLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
-			capacityLabel.text = @"0.0M";
-			cell.accessoryView = capacityLabel;
-		}
+	if (indexPath.row == 1) {
+		
+		UISwitch *switchButton = [[[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+		[switchButton addTarget:self action:@selector(switchSelected:) forControlEvents:UIControlEventValueChanged];
+		[switchButton setOn:NO animated:YES];
+		cell.accessoryView = switchButton;
+		
+	}else if (indexPath.row == 2) {
+		
+		UILabel *capacityLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
+		capacityLabel.text = @"0.0M";
+		cell.accessoryView = capacityLabel;
 	}
 	
 	return cell;
@@ -145,12 +134,13 @@
 
 - (void)handleSelectedAtIndexPath:(NSIndexPath *)indexPath {
 
-	if (_index == 0) {
-		if (indexPath.row == 0) {
-			BNSMineMenuViewController *menuViewController = [[[BNSMineMenuViewController alloc] init] autorelease];
-			menuViewController.datas = _fonts;
-			[self.navigationController pushViewController:menuViewController animated:YES];
-		}
+	if (indexPath.row == 0) {
+
+		BNSMineFontTableViewController *menuViewController = [[[BNSMineFontTableViewController alloc] init] autorelease];
+		menuViewController.datas = @[@"字体类型", @"字体大小"];
+		[self.navigationController pushViewController:menuViewController animated:YES];
+	}else {
+		
 	}
 }
 

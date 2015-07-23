@@ -33,6 +33,8 @@
 	[_profileImageView release];
 	[_titleLabel release];
 	[_briefLabel release];
+	
+//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -41,8 +43,19 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
+}
+
+#pragma mark - Notification
+
+- (void)fontChanged:(NSNotification *)notification {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	
+	_titleLabel.font = currentFont;
+	_briefLabel.font = currentFont;
 }
 
 #pragma mark - setter
@@ -117,21 +130,22 @@
 
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
-		_titleLabel = [[UILabel alloc] init];
+		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_titleLabel.numberOfLines = 0;
 		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
-		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
+//		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+		
 	}
 	return _titleLabel;
 }
 
 - (UILabel *)briefLabel {
 	if (!_briefLabel) {
-		_briefLabel = [[UILabel alloc] init];
+		_briefLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_briefLabel.numberOfLines = 0;
 		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
-		_briefLabel.font = [UIFont systemFontOfSize:kFontBrief];
+//		_briefLabel.font = [UIFont systemFontOfSize:kFontBrief];
 		_briefLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _briefLabel;

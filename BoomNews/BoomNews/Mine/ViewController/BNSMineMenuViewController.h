@@ -10,7 +10,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BNSThen)(id obj);
+
 @interface BNSMineMenuViewController : UIViewController
 
+@property (assign, nonatomic) NSUInteger index;
 @property (copy, nonatomic) NSArray *datas;
+@property (copy, nonatomic) BNSThen then;
 @end

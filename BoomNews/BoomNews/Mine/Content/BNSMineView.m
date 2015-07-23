@@ -10,7 +10,10 @@
 #import "BNSMineImageView.h"
 
 #import "BNSMineViewController.h"
+
 #import "BNSMineDetailedViewController.h"
+#import "BNSMineStoreTableViewController.h"
+#import "BNSMineBetaTableViewController.h"
 
 
 @interface BNSMineView () <UITableViewDataSource, UITableViewDelegate>
@@ -149,38 +152,42 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	BNSMineDetailedViewController *detailedViewController = [[[BNSMineDetailedViewController alloc] init] autorelease];
+
 	NSMutableArray *datas = [NSMutableArray array];
-	NSUInteger index = 0;
 	
 	switch (indexPath.row) {
 		case 0: {
 			[datas addObject:@"字体设置"];
 			[datas addObject:@"夜间模式"];
 			[datas addObject:@"清理缓存"];
-			index = 0;
+			
+			BNSMineDetailedViewController *detailedViewController = [[[BNSMineDetailedViewController alloc] init] autorelease];
+			detailedViewController.datas = datas;
+			
+			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
 		}
 		case 1: {
 			[datas addObject:@"文章"];
 			[datas addObject:@"图片"];
-			index = 1;
+			
+			BNSMineStoreTableViewController *detailedViewController = [[[BNSMineStoreTableViewController alloc] init] autorelease];
+			detailedViewController.datas = datas;
+			detailedViewController.hiddenNavigationBar = YES;
+			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
 		}
 		case 2: {
 			[datas addObject:@"版本号"];
 			[datas addObject:@"关于我们"];
-			index = 2;
+			
+			BNSMineBetaTableViewController *detailedViewController = [[[BNSMineBetaTableViewController alloc] init] autorelease];
+			detailedViewController.datas = datas;
+			detailedViewController.hiddenNavigationBar = YES;
+			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
 		}
 	}
-	
-	detailedViewController.index = index;
-	detailedViewController.datas = datas;
-	
-	[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
-	
 
 }
 

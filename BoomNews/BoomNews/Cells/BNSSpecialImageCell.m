@@ -27,6 +27,8 @@
     [_titleLabel release];
     [_digestLabel release];
     [_profileImageView release];
+	
+//	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 
@@ -39,12 +41,17 @@
     self = [super initWithStyle:style reuseIdentifier:identifier];
     if (self) {
         [self buildLayout];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
     }
     return self;
-
-
-
 }
+
+
+//#pragma mark - Notification
+//
+//- (void)fontChanged:(NSNotification *)notification {
+//	
+//}
 
 #pragma mark - setter
 
@@ -114,7 +121,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.numberOfLines = 0;
         _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -126,7 +133,7 @@
 
 - (UILabel *)digestLabel {
     if (!_digestLabel) {
-        _digestLabel = [[UILabel alloc] init];
+        _digestLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _digestLabel.numberOfLines = 0;
         _digestLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _digestLabel.font = [UIFont systemFontOfSize:13];

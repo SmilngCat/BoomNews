@@ -34,6 +34,8 @@
 	[_countLabel release];
 	[_timeImageView release];
 	[_countImageView release];
+	
+//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -42,9 +44,16 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
+
+//#pragma mark - Notification
+//
+//- (void)fontChanged:(NSNotification *)notification {
+//	
+//}
 
 #pragma mark - setter
 
@@ -177,7 +186,7 @@
 
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
-		_titleLabel = [[UILabel alloc] init];
+		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_titleLabel.numberOfLines = 0;
 		_titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -197,7 +206,7 @@
 
 - (UILabel *)timeLabel {
 	if (!_timeLabel) {
-		_timeLabel = [[UILabel alloc] init];
+		_timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _timeLabel;
@@ -215,7 +224,7 @@
 
 - (UILabel *)countLabel {
 	if (!_countLabel) {
-		_countLabel = [[UILabel alloc] init];
+		_countLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_countLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _countLabel;

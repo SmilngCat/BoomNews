@@ -35,7 +35,7 @@
 	[_middleImageView release];
 	[_rightImageView release];
 	
-	NSLog(@"release");
+//	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -44,11 +44,18 @@
 	self = [super initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
 		[self buildLayout];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontNameChanged object:nil];
 	}
 	return self;
 }
 
-#pragma mark - setter
+//#pragma mark - Notification
+//
+//- (void)fontChanged:(NSNotification *)notification {
+//	
+//}
+
+#pragma mark - Setter
 
 - (void)setModel:(NewsModel *)model {
 	
@@ -129,8 +136,8 @@
 
 - (UILabel *)titleLabel {
 	if (!_titleLabel) {
-		_titleLabel = [[UILabel alloc] init];
-		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
+		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//		_titleLabel.font = [UIFont systemFontOfSize:kFontTitle];
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _titleLabel;

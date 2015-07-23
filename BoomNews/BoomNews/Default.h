@@ -18,7 +18,7 @@
 #define VideoModel BNSVideoModel
 #define MineModel BNSMineModel
 
-
+#define kBNSTintFontNameChanged 0
 
 /**
  *  轮播图滚动方向

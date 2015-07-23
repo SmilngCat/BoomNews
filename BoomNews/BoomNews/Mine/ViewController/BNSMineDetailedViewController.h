@@ -10,6 +10,5 @@
 
 @interface BNSMineDetailedViewController : UIViewController
 
-@property (assign, nonatomic) NSUInteger index;
 @property (copy, nonatomic) NSArray *datas;
 @end
