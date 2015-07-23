@@ -8,7 +8,8 @@
 
 #import "BNSMineMenuViewController.h"
 
-static NSUInteger type = 0;
+static NSUInteger family = 4;
+static NSUInteger type = 2;
 static NSUInteger size = 1;
 
 
@@ -77,7 +78,7 @@ static NSUInteger size = 1;
 	
 	if (_index == 0) {
 		
-		if (indexPath.row == type) {
+		if (_family==family && indexPath.row==type) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}else {
 			cell.accessoryType = UITableViewCellAccessoryNone;
@@ -108,13 +109,14 @@ static NSUInteger size = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	if (_index == 0) {
-
+		
 		NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:type inSection:0];
 		UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:previousIndexPath];
 		previousCell.accessoryType = UITableViewCellAccessoryNone;
 		
 		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		family = _family;
 		type = indexPath.row;
 
 	}else {

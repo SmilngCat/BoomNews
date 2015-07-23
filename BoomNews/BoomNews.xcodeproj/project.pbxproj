@@ -58,6 +58,7 @@
 		E0D277FA1B6110EF0004A47A /* BNSResource.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0D277F91B6110EF0004A47A /* BNSResource.plist */; };
 		E0D277FD1B6121F10004A47A /* UIButton+BNSLabelFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D277FC1B6121F10004A47A /* UIButton+BNSLabelFont.m */; };
 		E0D278001B6139680004A47A /* UITableViewCell+BNSLabelFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D277FF1B6139680004A47A /* UITableViewCell+BNSLabelFont.m */; };
+		E0D278061B6140940004A47A /* BNSMineFontFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */; };
 		E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */; };
 		E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */; };
 		F73C49DD1B60E2A200842205 /* BNSMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C49DC1B60E2A200842205 /* BNSMineModel.m */; };
@@ -207,6 +208,10 @@
 		E0D277FC1B6121F10004A47A /* UIButton+BNSLabelFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BNSLabelFont.m"; sourceTree = "<group>"; };
 		E0D277FE1B6139680004A47A /* UITableViewCell+BNSLabelFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BNSLabelFont.h"; sourceTree = "<group>"; };
 		E0D277FF1B6139680004A47A /* UITableViewCell+BNSLabelFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BNSLabelFont.m"; sourceTree = "<group>"; };
+		E0D278011B613D880004A47A /* Kabob Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kabob Regular.ttf"; sourceTree = "<group>"; };
+		E0D278021B613E340004A47A /* Kids.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kids.ttf; sourceTree = "<group>"; };
+		E0D278041B6140940004A47A /* BNSMineFontFamilyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMineFontFamilyTableViewController.h; sourceTree = "<group>"; };
+		E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineFontFamilyTableViewController.m; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
 		E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSNewsModel.m; path = "Reused Resource/Model/BNSNewsModel.m"; sourceTree = "<group>"; };
 		E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSPrivateModel.h; path = "Reused Resource/Model/BNSPrivateModel.h"; sourceTree = "<group>"; };
@@ -367,6 +372,7 @@
 		E092F4721B56086D004DA8B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0D278031B613E3F0004A47A /* Fonts */,
 				E092F4731B56086D004DA8B3 /* Info.plist */,
 				E0D277F91B6110EF0004A47A /* BNSResource.plist */,
 				E092F4741B56086D004DA8B3 /* main.m */,
@@ -584,6 +590,15 @@
 			path = ScrollBar;
 			sourceTree = "<group>";
 		};
+		E0D278031B613E3F0004A47A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E0D278021B613E340004A47A /* Kids.ttf */,
+				E0D278011B613D880004A47A /* Kabob Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		F73C49DE1B60E31700842205 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +610,8 @@
 				F73C49E21B60E31700842205 /* BNSMineFontTableViewController.m */,
 				F73C49E31B60E31700842205 /* BNSMineStoreTableViewController.h */,
 				F73C49E41B60E31700842205 /* BNSMineStoreTableViewController.m */,
+				E0D278041B6140940004A47A /* BNSMineFontFamilyTableViewController.h */,
+				E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */,
 				F73C49E51B60E31700842205 /* BNSMineTableViewController.h */,
 				F73C49E61B60E31700842205 /* BNSMineTableViewController.m */,
 			);
@@ -813,6 +830,7 @@
 				F73C4A1C1B60E47000842205 /* BNSMineMenuViewController.m in Sources */,
 				E092F5D61B57B5EF004DA8B3 /* UIImage+WebP.m in Sources */,
 				F73C4A011B60E41400842205 /* BNSSingleImageCell.m in Sources */,
+				E0D278061B6140940004A47A /* BNSMineFontFamilyTableViewController.m in Sources */,
 				E06260C11B5C911000D28598 /* BNSVideoTableView.m in Sources */,
 				E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */,
 				F73C49E71B60E31700842205 /* BNSMineBetaTableViewController.m in Sources */,

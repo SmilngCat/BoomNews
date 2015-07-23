@@ -7,7 +7,9 @@
 //
 
 #import "BNSMineFontTableViewController.h"
+
 #import "BNSMineMenuViewController.h"
+#import "BNSMineFontFamilyTableViewController.h"
 
 @interface BNSMineFontTableViewController ()
 
@@ -26,25 +28,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	BNSMineMenuViewController *viewController = [[[BNSMineMenuViewController alloc] init] autorelease];
-	__block typeof(viewController) weakViewController = viewController;
-	
+
 	if (indexPath.row == 0) {
-		viewController.datas = @[@"AppleGothic", @"ArialMT", @"Arial-BoldMT", @"Arial-ItalicMT",@"Arial-BoldItalicMT", @"Courier", @"CourierNewPS-ItalicMT", @"GeezaPro"];
-		viewController.index = 0;
+		BNSMineFontFamilyTableViewController *viewController = [[[BNSMineFontFamilyTableViewController alloc] init] autorelease];
+		viewController.datas = [UIFont familyNames];
+		[self.navigationController pushViewController:viewController animated:YES];
 		
-		viewController.then = ^(NSUInteger obj) {
-			
-			NSDictionary *fontDicOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
-			
-			NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
-			fontDic[@"fontName"] = weakViewController.datas[obj];
-			fontDic[@"fontSize"] = fontDicOrigin[@"fontSize"];
-			[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TintFont"];
-			[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
-			[[NSNotificationCenter defaultCenter] postNotificationName:kBNSTintFontChanged object:nil];
-		};
 	}else {
+		BNSMineMenuViewController *viewController = [[[BNSMineMenuViewController alloc] init] autorelease];
+		__block typeof(viewController) weakViewController = viewController;
 		viewController.datas = @[@"12", @"15", @"17"];
 		viewController.index = 1;
 		viewController.then = ^(NSUInteger obj) {
@@ -58,8 +50,9 @@
 			[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
 			[[NSNotificationCenter defaultCenter] postNotificationName:kBNSTintFontChanged object:nil];
 		};
+		[self.navigationController pushViewController:viewController animated:YES];
 	}
-	[self.navigationController pushViewController:viewController animated:YES];
+	
 }
 
 /*
