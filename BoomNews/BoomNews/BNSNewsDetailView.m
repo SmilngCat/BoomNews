@@ -36,22 +36,25 @@
         
         
         self.titleLabel = [[UILabel alloc]init];
-        [self addSubview:self.titleLabel];
+        [self addSubview:_titleLabel];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         
+        
         self.digestLabel = [[UILabel alloc]init];
-        [self addSubview:self.digestLabel];
+        [self addSubview:_digestLabel];
         self.digestLabel.font = [UIFont systemFontOfSize:14];
-        self.digestLabel.numberOfLines = 0;
         self.digestLabel.textColor = [UIColor whiteColor];
+        self.digestLabel.numberOfLines = 0;
+        self.digestLabel.textAlignment = NSTextAlignmentJustified;
         
         
         
         
         self.picSumLabel = [[UILabel alloc]init];
-        [self addSubview:self.picSumLabel];
+        [self addSubview:_picSumLabel];
         self.picSumLabel.textColor = [UIColor whiteColor];
+        
         
         
 
@@ -94,11 +97,6 @@
     self.titleLabel.text = model.setname;
     
     self.picSumLabel.text = [NSString stringWithFormat:@"%d/%@", 1 ,model.imgsum];
-
-    
-
-    
-    
 
 }
 

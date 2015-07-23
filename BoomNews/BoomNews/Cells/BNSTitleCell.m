@@ -40,13 +40,8 @@
 - (void)setModel:(NewsModel *)model {
 	_titleLabel.text = model.title;
 
-	if (!model.imgsrc) {
-		UIImage *absentImage = [UIImage imageNamed:Absent];
-		_profileImageView.image = absentImage;
-	}else {
-		NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-		[_profileImageView sd_setImageWithURL:imageURL];
-	}
+	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
+	[_profileImageView sd_setImageWithURL:imageURL];
 }
 
 #pragma mark - Layout 
@@ -86,6 +81,9 @@
 	if (!_profileImageView) {
 		_profileImageView = [[UIImageView alloc] init];
 		_profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		UIImage *absentImage = [UIImage imageNamed:@"absent"];
+		_profileImageView.image = absentImage;
 	}
 	return _profileImageView;
 }

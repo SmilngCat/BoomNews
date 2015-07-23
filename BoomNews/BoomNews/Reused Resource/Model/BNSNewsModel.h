@@ -19,8 +19,6 @@
 
 @property (copy, nonatomic) NSString *docid;
 @property (copy, nonatomic) NSArray *photosArray;
-
-
 + (instancetype)modelWithDictionary:(NSDictionary *)dic;
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 @end

@@ -45,7 +45,7 @@ static BNSHTTPRequest *sharedRequest = nil;
 	NSURL *url = [NSURL URLWithString:urlString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
 														   cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-													   timeoutInterval:5.f];
+													   timeoutInterval:10.f];
 	
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		

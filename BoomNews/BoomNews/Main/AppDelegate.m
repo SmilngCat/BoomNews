@@ -10,7 +10,7 @@
 #import "BNSRootViewController.h"
 #import "BNSNewsViewController.h"
 #import "BNSVideoViewController.h"
-#import "BNSAccountViewController.h"
+#import "BNSMineViewController.h"
 
 @interface AppDelegate ()
 
@@ -54,14 +54,16 @@
 	videoNavigationController.tabBarItem.title = @"视听";
 	videoNavigationController.tabBarItem.image = [UIImage imageNamed:@"video"];
 	
-	//accountViewController - embed in a navigationController
-	BNSAccountViewController *accountViewController = [[[BNSAccountViewController alloc] init] autorelease];
-	accountViewController.tabBarItem.title = @"我的";
-	accountViewController.tabBarItem.image = [UIImage imageNamed:@"mine"];
+	//MineViewController - embed in a navigationController
+	BNSMineViewController *mineViewController = [[[BNSMineViewController alloc] init] autorelease];
+	UINavigationController *mineNavigationController = [[[UINavigationController alloc] initWithRootViewController:mineViewController] autorelease];
+	mineNavigationController.navigationBar.hidden = YES;
+	mineNavigationController.tabBarItem.title = @"我的";
+	mineNavigationController.tabBarItem.image = [UIImage imageNamed:@"mine"];
 	
 	rootViewController.viewControllers = @[newsNavigationController,
 										   videoNavigationController,
-										   accountViewController];
+										   mineNavigationController];
 	
 	self.window.rootViewController = rootViewController;
 	

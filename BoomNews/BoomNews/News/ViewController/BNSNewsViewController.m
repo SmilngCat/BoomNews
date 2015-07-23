@@ -16,8 +16,11 @@
 #import "BNSNewsTableView.h"
 
 //layout
+#define WIDTH_NEWSTYPEBAR 50
 #define HEIGHT_NEWSTYPEBAR 30
-#define GAP_LEN ( (CGRectGetWidth(self.view.bounds)) / 9.f )
+
+#define GAP_LEN ( (CGRectGetWidth(self.view.bounds) - 4 * WIDTH_NEWSTYPEBAR) / 5.f )
+#define PART_LEN (WIDTH_NEWSTYPEBAR + GAP_LEN)
 
 @interface BNSNewsViewController () <UIScrollViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
 
@@ -76,25 +79,25 @@
 	 */
 	self.newsAddressArray = [NSMutableArray array];
 	//科技
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692"];
 	//娱乐
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839"];
 	//体育
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649079062"];
 	//游戏
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348654151579"];
 	//政务
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1414142214384"];
 	//历史
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1368497029546/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1368497029546"];
 	//财经
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648756099/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648756099"];
 	//军事
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648141035/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648141035"];
 	//彩票
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1356600029035"];
 	//时尚
-	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803/0-20.html"];
+	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348650593803"];
 
 }
 
@@ -109,8 +112,8 @@
 	self.newsTypeBar = [[[BNSNewsTypeScrollBar alloc] initWithFrame:CGRectMake(0, 64, width, HEIGHT_NEWSTYPEBAR)] autorelease];
 	_newsTypeBar.scrollBarButtonDelegate = self;
 	_newsTypeBar.datas = _newsTypeArray;
-	_newsTypeBar.contentSize = CGSizeMake(width + 4 * GAP_LEN, HEIGHT_NEWSTYPEBAR);
-	_newsTypeBar.contentOffset = CGPointMake(2 * GAP_LEN, 0);
+	_newsTypeBar.contentSize = CGSizeMake(width + 2 * PART_LEN, HEIGHT_NEWSTYPEBAR);
+	_newsTypeBar.contentOffset = CGPointMake(PART_LEN, 0);
 
 	//底部的转动视图
 	CGFloat contentScrollViewX = 0;
@@ -148,9 +151,6 @@
 	[self.orderView scrollViewDidEndScrollAtIndex:index - 1
 											count:_newsTypeArray.count
 										  options:OrderDirectionTypeNone];
-	
-//	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ButtonSelect"];
-	
 }
 
 /**

@@ -54,25 +54,13 @@
 	
 	_titleLabel.text = model.title;
 	
-	if (!model.imgsrc) {
-		UIImage *absentImage = [UIImage imageNamed:Absent];
-		_leftImageView.image = absentImage;
-	}else {
-		NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-		[_leftImageView sd_setImageWithURL:imageURL];
-	}
-	
-	if (model.imgextraArray) {
-        NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
-		NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
-		[_middleImageView sd_setImageWithURL:middleImageURL];
-		[_rightImageView sd_setImageWithURL:rightImageURL];
-	}else {
-		UIImage *absentImage = [UIImage imageNamed:Absent];
-		_leftImageView.image = absentImage;
-		_middleImageView.image = absentImage;
-		_rightImageView.image = absentImage;
-	}
+	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
+	[_leftImageView sd_setImageWithURL:imageURL];
+
+	NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
+	NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
+	[_middleImageView sd_setImageWithURL:middleImageURL];
+	[_rightImageView sd_setImageWithURL:rightImageURL];
 
 }
 
@@ -153,6 +141,9 @@
 		_leftImageView = [[UIImageView alloc] init];
 		_leftImageView.contentMode = UIViewContentModeScaleToFill;
 		_leftImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		UIImage *absentImage = [UIImage imageNamed:@"absent"];
+		_leftImageView.image = absentImage;
 	}
 	return _leftImageView;
 }
@@ -162,6 +153,9 @@
 		_middleImageView = [[UIImageView alloc] init];
 		_middleImageView.contentMode = UIViewContentModeScaleToFill;
 		_middleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		UIImage *absentImage = [UIImage imageNamed:@"absent"];
+		_middleImageView.image = absentImage;
 	}
 	return _middleImageView;
 }
@@ -171,6 +165,9 @@
 		_rightImageView = [[UIImageView alloc] init];
 		_rightImageView.contentMode = UIViewContentModeScaleToFill;
 		_rightImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		UIImage *absentImage = [UIImage imageNamed:@"absent"];
+		_rightImageView.image = absentImage;
 	}
 	return _rightImageView;
 }

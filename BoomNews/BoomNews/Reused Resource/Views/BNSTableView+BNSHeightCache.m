@@ -304,8 +304,10 @@ static CGFloat const kDefaultCellHeightCachedValue = -1;
 
 - (void)setInvalidate:(BOOL)invalidate {
 	objc_setAssociatedObject(self, @selector(invalidate), @(invalidate), OBJC_ASSOCIATION_RETAIN);
-	self.precacheEnabled = NO;
-	[self.cache.caches removeAllObjects];
+	if (invalidate) {
+		self.precacheEnabled = NO;
+		[self.cache.caches removeAllObjects];
+	}
 }
 
 @end

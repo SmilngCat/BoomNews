@@ -32,6 +32,8 @@
 	[_titleLabel release];
 	[_timeLabel release];
 	[_countLabel release];
+	[_timeImageView release];
+	[_countImageView release];
 	[super dealloc];
 }
 
@@ -52,7 +54,7 @@
 		[_model release];
 		_model = [model retain];
 		
-		_coverImageView.image = [UIImage imageNamed:nil];
+//		_coverImageView.image = [UIImage imageNamed:nil];
 		_titleLabel.text = nil;
 		_timeLabel.text = nil;
 		_countLabel.text = nil;
@@ -78,7 +80,14 @@
 	[self.contentView addSubview:self.coverImageView];
 	
 	UIView *view = self.contentView;
-	NSDictionary *views = NSDictionaryOfVariableBindings(view, _coverImageView, _videoPlayer, _titleLabel, _timeImageView, _timeLabel, _countImageView, _countLabel);
+	NSDictionary *views = NSDictionaryOfVariableBindings(view,
+														 _coverImageView,
+														 _videoPlayer,
+														 _titleLabel,
+														 _timeImageView,
+														 _timeLabel,
+														 _countImageView,
+														 _countLabel);
 	
 	NSDictionary *metrics = @{@"space" : @10, @"playerHeight" : @ 200, @"ImageViewHeight" : @16};
 	

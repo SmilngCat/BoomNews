@@ -18,7 +18,6 @@
 @property (copy, nonatomic) NSArray *datas;
 @property (retain, nonatomic) OrderScrollView *scrollView;
 @property (assign, nonatomic) UIViewController *viewController;
-//@property (assign, nonatomic) UIViewController *viewController;
 /**
  *  给轮播图中间的视图配置数据
  *

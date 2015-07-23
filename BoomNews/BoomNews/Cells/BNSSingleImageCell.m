@@ -15,7 +15,7 @@
 
 //layout
 #define kImageViewWidth 120
-#define kImageViewHeight 120
+#define kImageViewHeight 100
 
 @interface BNSSingleImageCell ()
 
@@ -51,13 +51,8 @@
 	_titleLabel.text = model.title;
 	_briefLabel.text = model.digest;
 
-	if (!model.imgsrc) {
-		UIImage *absentImage = [UIImage imageNamed:Absent];
-		_profileImageView.image = absentImage;
-	}else {
-		NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-		[_profileImageView sd_setImageWithURL:imageURL];
-	}
+	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
+	[_profileImageView sd_setImageWithURL:imageURL];
 }
 
 
@@ -113,6 +108,9 @@
 		_profileImageView = [[UIImageView alloc] init];
 		_profileImageView.contentMode = UIViewContentModeScaleToFill;
 		_profileImageView.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		UIImage *absentImage = [UIImage imageNamed:@"absent"];
+		_profileImageView.image = absentImage;
 	}
 	return _profileImageView;
 }

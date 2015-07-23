@@ -34,7 +34,7 @@
 }
 
 - (void)loadData {
-	self.urlString = @"http://c.m.163.com/nc/video/list/V9LG4B3A0/y/0-10.html";
+	self.urlString = @"http://c.m.163.com/nc/video/list/V9LG4B3A0/y";
 }
 
 #pragma mark - Layout
@@ -44,7 +44,9 @@
 	_videoTableView.urlString = _urlString;
 	[self.view addSubview:_videoTableView];
 	
-	[_videoTableView bns_LoadData:BNSHTTPRequestResourceTypeVideo];
+	[_videoTableView headerBeginRefreshing];
+	
+//	[_videoTableView bns_LoadData:BNSHTTPRequestResourceTypeVideo];
 }
 
 

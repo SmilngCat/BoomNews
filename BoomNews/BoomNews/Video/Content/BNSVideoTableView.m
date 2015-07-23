@@ -25,8 +25,38 @@
 	if (self) {
 		self.dataSource = self;
 		self.delegate = self;
+		
+		//refreshing
+		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
+		[self addFooterWithTarget:self action:@selector(footerRefreshing)];
 	}
 	return self;
+}
+
+#pragma mark - Refreshing
+
+- (void)headerRefreshing {
+	//清空数据源数组
+	[self.datas removeAllObjects];
+	//清空缓存区
+	self.invalidate = YES;
+	//清空tableView
+	[self reloadData];
+	
+	//加载地址偏移量回到0
+	self.offset = 0;
+	[self bns_LoadData:BNSHTTPRequestResourceTypeVideo];
+	
+	[self headerEndRefreshing];
+}
+
+- (void)footerRefreshing {
+	//加载地址偏移量累加20
+	self.offset += 20;
+	
+	[self bns_LoadData:BNSHTTPRequestResourceTypeVideo];
+	
+	[self footerEndRefreshing];
 }
 
 

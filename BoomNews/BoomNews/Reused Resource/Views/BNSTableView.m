@@ -21,6 +21,7 @@
 	objc_setAssociatedObject(self, @selector(cache), nil, OBJC_ASSOCIATION_RETAIN);
 	objc_setAssociatedObject(self, @selector(precacheEnabled), nil, OBJC_ASSOCIATION_RETAIN);
 	objc_setAssociatedObject(self, @selector(invalidate), nil, OBJC_ASSOCIATION_RETAIN);
+	
 	[_datas release];
 	[_urlString release];
 	[super dealloc];
@@ -29,15 +30,20 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
 	self = [super initWithFrame:frame style:style];
 	if (self) {
+		Class defaultCellClass = [UITableViewCell class];
 		Class mutipleImageCellClass = [BNSMutipleImageCell class];
 		Class singleImageCellClass = [BNSSingleImageCell class];
 		Class titleCellClass = [BNSTitleCell class];
 		Class videoCellClass = [BNSVideoCell class];
 		
+		[self registerClass:defaultCellClass forCellReuseIdentifier:NSStringFromClass(defaultCellClass)];
 		[self registerClass:mutipleImageCellClass forCellReuseIdentifier:NSStringFromClass(mutipleImageCellClass)];
 		[self registerClass:singleImageCellClass forCellReuseIdentifier:NSStringFromClass(singleImageCellClass)];
 		[self registerClass:titleCellClass forCellReuseIdentifier:NSStringFromClass(titleCellClass)];
 		[self registerClass:videoCellClass forCellReuseIdentifier:NSStringFromClass(videoCellClass)];
+		
+		_offset = 0;
+		_datas = [[NSMutableArray array] retain];
 	}
 	return self;
 }
@@ -45,11 +51,19 @@
 - (void)bns_LoadData:(NSUInteger)index {
 	
 	__block typeof(self) weakSelf = self;
-	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:weakSelf.urlString
+
+	NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%ld.html", weakSelf.offset, weakSelf.offset + 20];
+	[[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:urlString
 														type:index
 												  completion:^(id data) {
 													  
-													  weakSelf.datas = data;
+													  NSArray *dataArray = (NSArray *)data;
+													  if (dataArray) {
+														  for (id obj in dataArray) {
+															  [weakSelf.datas addObject:obj];
+														  }
+													  }
+													  
 													  dispatch_async(dispatch_get_main_queue(), ^{
 														  [self reloadData];
 													  });

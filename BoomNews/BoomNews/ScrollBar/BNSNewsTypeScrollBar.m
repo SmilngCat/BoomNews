@@ -8,12 +8,15 @@
 
 #import "BNSNewsTypeScrollBar.h"
 
-#define GAP ( (CGRectGetWidth(self.bounds)) / 9.f )
+#define WIDTH_NEWSTYPEBAR 50
+#define HEIGHT_NEWSTYPEBAR 30
+
+#define GAP_LEN ( (CGRectGetWidth(self.bounds) - 4 * WIDTH_NEWSTYPEBAR) / 5.f )
+#define PART_LEN (WIDTH_NEWSTYPEBAR + GAP_LEN)
 
 @interface BNSNewsTypeScrollBar ()
 
 @property (assign, nonatomic) NSInteger top;
-@property (assign, nonatomic) CGFloat scrollDistance;
 @property (retain, nonatomic) BNSNewsButton *contentButton;
 @end
 
@@ -37,8 +40,7 @@
 		self.directionalLockEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
 		
-		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30)];
-		self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30);
+		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width + 2 * PART_LEN, 30)];
 		_contentButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_contentButton];
 		
@@ -51,7 +53,7 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 4 * GAP, 30);
+	self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 2 * PART_LEN, 30);
 }
 
 #pragma mark - setter
@@ -85,49 +87,21 @@
     [_contentButton.historyButton setTitle:_datas[sixthIndex] forState:UIControlStateNormal];
 }
 
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//	
-//	NSUInteger count = _datas.count;
-//	OrderDirectionType type = 0;
-//	if (self.scrollDistance > 10) {
-//		
-//		_top = _top + 1;
-//		if (_top >= count) {
-//			_top = 0;
-//		}
-//		type = OrderDirectionTypeLeft;
-//	}else if (self.scrollDistance < -10) {
-//		
-//		_top = _top - 1;
-//		if (_top < 0) {
-//			_top = count - 1;
-//		}
-//		type = OrderDirectionTypeRight;
-//	}
-//    
-//    [self configureScrollViewAtIndex:_top count:_datas.count options:type];
-//	self.contentOffset = CGPointMake(2 * GAP, 0);
-//}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
-//	BOOL buttonSelected = [[NSUserDefaults standardUserDefaults] boolForKey:@"ButtonSelect"];
-//	if (buttonSelected) {
-//		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ButtonSelect"];
-//		return;
-//	}
 	NSUInteger count = _datas.count;
 	OrderDirectionType type = 0;
 	CGFloat offsetX = self.contentOffset.x;
-	NSLog(@"%f", offsetX);
-	if (offsetX > 2 * GAP) {
+	
+	if (offsetX > PART_LEN) {
 		
 		_top = _top + 1;
 		if (_top >= count) {
 			_top = 0;
 		}
 		type = OrderDirectionTypeLeft;
-	}else if (offsetX < 2 * GAP) {
+		
+	}else if (offsetX < PART_LEN) {
 		
 		_top = _top - 1;
 		if (_top < 0) {
@@ -136,15 +110,10 @@
 		type = OrderDirectionTypeRight;
 	}
 	
-	self.contentOffset = CGPointMake(2 * GAP, 0);
+	self.contentOffset = CGPointMake(PART_LEN, 0);
 	[self configureScrollViewAtIndex:_top count:_datas.count options:type];
 	
-
 }
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-//	
-//    self.scrollDistance = targetContentOffset->x - 2 * GAP;
-//}
 
 @end

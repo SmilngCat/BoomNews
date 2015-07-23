@@ -10,9 +10,6 @@
 #import "BNSTableView+BNSTemplateCell.h"
 #import "BNSTableView+BNSHeightCache.h"
 
-@interface BNSNewsTableView : BNSTableView
-
-@property (nonatomic, retain)UITabBarController *tabBatVC;
-
+@interface BNSNewsTableView : BNSTableView 
 
 @end

@@ -10,6 +10,8 @@
 #import "OrderScrollView.h"
 #import "OrderScrollContentView.h"
 
+#import "NSMutableArray+DepthCopy.h"
+
 
 @interface OrderView () <UIScrollViewDelegate>
 
@@ -111,25 +113,25 @@
 - (void)scrollViewDidEndScrollAtIndex:(NSUInteger)index
 								count:(NSUInteger)count
 							  options:(OrderDirectionType)options {
-	CGFloat width =  CGRectGetWidth(self.bounds);
-	[self configureScrollViewAtIndex:index count:count options:options];
 	
+	CGFloat width =  CGRectGetWidth(self.bounds);
+	_scrollView.contentOffset = CGPointMake(width, 0);
+	
+	[self configureScrollViewAtIndex:index count:count options:options];
 	
 	ContentView *leftView = (ContentView *)_scrollView.contentView.leftView;
 	ContentView *middleView = (ContentView *)_scrollView.contentView.middleView;
 	ContentView *rightView = (ContentView *)_scrollView.contentView.rightView;
-	NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	[middleView scrollToRowAtIndexPath:scrollIndexPath
-					  atScrollPosition:UITableViewScrollPositionTop
-							  animated:YES];
+//	NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//	[middleView scrollToRowAtIndexPath:scrollIndexPath
+//					  atScrollPosition:UITableViewScrollPositionTop
+//							  animated:YES];
 	
-	leftView.invalidate = NO;
-	middleView.invalidate = NO;
-	rightView.invalidate = NO;
-	
-	_scrollView.contentOffset = CGPointMake(width, 0);
-
+	leftView.invalidate = YES;
+	middleView.invalidate = YES;
+	rightView.invalidate = YES;
 }
+
 
 - (void)setViewController:(UIViewController *)viewController {
     _scrollView.contentView.leftView.viewController = viewController;
@@ -165,25 +167,34 @@
 	 */
 	switch (options) {
 		case OrderDirectionTypeNone: {
-			[leftView bns_LoadData:leftIndex];
-			[middleView bns_LoadData:middleIndex];
-			[rightView bns_LoadData:rightIndex];
+//			[leftView bns_LoadData:leftIndex];
+//			[middleView bns_LoadData:middleIndex];
+//			[rightView bns_LoadData:rightIndex];
+			[leftView headerBeginRefreshing];
+			[middleView headerBeginRefreshing];
+			[rightView headerBeginRefreshing];
 			break;
 		}
 		case OrderDirectionTypeLeft: {
-			leftView.datas = middleView.datas;
-			middleView.datas = rightView.datas;
+//			leftView.datas = middleView.datas;
+//			middleView.datas = rightView.datas;
+			[leftView.datas depthCopyWithMutableArray:middleView.datas];
+			[middleView.datas depthCopyWithMutableArray:rightView.datas];
 			[leftView reloadData];
 			[middleView reloadData];
-			[rightView bns_LoadData:rightIndex];
+//			[rightView bns_LoadData:rightIndex];
+			[rightView headerBeginRefreshing];
 			break;
 		}
 		case OrderDirectionTypeRight: {
-			rightView.datas = middleView.datas;
-			middleView.datas = leftView.datas;
+//			rightView.datas = middleView.datas;
+//			middleView.datas = leftView.datas;
+			[rightView.datas depthCopyWithMutableArray:middleView.datas];
+			[middleView.datas depthCopyWithMutableArray:leftView.datas];
 			[middleView reloadData];
 			[rightView reloadData];
-			[leftView bns_LoadData:leftIndex];
+//			[leftView bns_LoadData:leftIndex];
+			[leftView headerBeginRefreshing];
 			break;
 		}
 	}

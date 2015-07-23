@@ -8,7 +8,6 @@
 
 #import "BNSNewsTableView.h"
 #import "BNSNewsDetailViewController.h"
-
 @implementation BNSNewsTableView
 
 #pragma mark - BNSTableView Lifecycle
@@ -23,10 +22,71 @@
 	if (self) {
 		self.dataSource = self;
 		self.delegate = self;
+		
+		//refreshing
+		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
+		[self addFooterWithTarget:self action:@selector(footerRefreshing)];
 	}
 	return self;
 }
 
+#pragma mark - Refreshing
+
+- (void)headerRefreshing {
+	//清空数据源数组
+	[self.datas removeAllObjects];
+	//清空缓存区
+	self.invalidate = YES;
+	//清空tableView
+	[self reloadData];
+	
+	//加载地址偏移量回到0
+	self.offset = 0;
+	
+	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
+	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
+	[self bns_LoadData:currentIndex];
+	
+	[self headerEndRefreshing];
+}
+
+- (void)footerRefreshing {
+	//加载地址偏移量累加20
+	self.offset += 20;
+	
+	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
+	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
+	[self bns_LoadData:currentIndex];
+	
+	[self footerEndRefreshing];
+}
+
+- (NSUInteger)getCurrentIndexWithString:(NSString *)string {
+	NSUInteger index = 0;
+	if ([string isEqualToString:@"T1348649580692"]) {
+		index = 0;
+	}else if ([string isEqualToString:@"T1348648517839"]) {
+		index = 1;
+	}else if ([string isEqualToString:@"T1348649079062"]) {
+		index = 2;
+	}else if ([string isEqualToString:@"T1348654151579"]) {
+		index = 3;
+	}else if ([string isEqualToString:@"T1414142214384"]) {
+		index = 4;
+	}else if ([string isEqualToString:@"T1368497029546"]) {
+		index = 5;
+	}else if ([string isEqualToString:@"T1348648756099"]) {
+		index = 6;
+	}else if ([string isEqualToString:@"T1348648141035"]) {
+		index = 7;
+	}else if ([string isEqualToString:@"T1356600029035"]) {
+		index = 8;
+	}else if ([string isEqualToString:@"T1348650593803"]) {
+		index = 9;
+	}
+	
+	return index;
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -98,14 +158,13 @@
     detailVC.model = self.datas[indexPath.row];
     
     detailVC.hidesBottomBarWhenPushed = YES;
-
+    
     
     [self.viewController.navigationController pushViewController:detailVC animated:YES];
-
+    
     
     [detailVC release];
-
+    
     
 }
-
 @end

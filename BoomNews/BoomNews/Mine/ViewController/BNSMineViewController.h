@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNSAccountViewController : UIViewController
+@interface BNSMineViewController : UIViewController
 
 @end
