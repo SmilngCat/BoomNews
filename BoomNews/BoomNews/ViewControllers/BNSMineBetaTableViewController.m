@@ -7,7 +7,7 @@
 //
 
 #import "BNSMineBetaTableViewController.h"
-
+#import "BNSMessageViewController.h"
 @interface BNSMineBetaTableViewController ()
 
 @end
@@ -16,22 +16,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    if (indexPath.row == 0) {
+        BNSMessageViewController *messageVC = [[BNSMessageViewController alloc]init];
+        [self.navigationController pushViewController:messageVC animated:YES];
+        [messageVC release];
+    } else {
+        
+        UIAlertView *ourMessageAlertView = [[UIAlertView alloc] initWithTitle:@"关于我们" message:@"本软件由雷亚东，李昊，邵垚联合开发，仅供阅读使用，请勿用于商业和非法途径，如产生法律问题与开发者无关" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [ourMessageAlertView show];
+        [ourMessageAlertView release];
+        
+    }
+    
+    
 }
-*/
 
 @end

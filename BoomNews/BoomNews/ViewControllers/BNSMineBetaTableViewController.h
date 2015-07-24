@@ -10,4 +10,6 @@
 
 @interface BNSMineBetaTableViewController : BNSMineTableViewController
 
+
+
 @end

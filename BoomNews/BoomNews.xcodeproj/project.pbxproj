@@ -81,6 +81,8 @@
 		F73C4A1B1B60E47000842205 /* BNSMineDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A141B60E47000842205 /* BNSMineDetailedViewController.m */; };
 		F73C4A1C1B60E47000842205 /* BNSMineMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A161B60E47000842205 /* BNSMineMenuViewController.m */; };
 		F73C4A1D1B60E47000842205 /* BNSMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A181B60E47000842205 /* BNSMineViewController.m */; };
+		F73C4A411B61BC4600842205 /* BOOM新闻图标.png in Resources */ = {isa = PBXBuildFile; fileRef = F73C4A401B61BC4600842205 /* BOOM新闻图标.png */; };
+		F73C4A441B61BD7B00842205 /* BNSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */; };
 		F7916A711B606CC200CE8BC9 /* BNSNewsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A701B606CC200CE8BC9 /* BNSNewsDetailView.m */; };
 		F7916A741B606E8E00CE8BC9 /* BNSDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A731B606E8E00CE8BC9 /* BNSDetailModel.m */; };
 		F7916A771B606EAC00CE8BC9 /* BNSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A761B606EAC00CE8BC9 /* BNSNewsDetailViewController.m */; };
@@ -255,6 +257,9 @@
 		F73C4A171B60E47000842205 /* BNSMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMineViewController.h; sourceTree = "<group>"; };
 		F73C4A181B60E47000842205 /* BNSMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineViewController.m; sourceTree = "<group>"; };
 		F73C4A1E1B60E4CA00842205 /* Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Default.h; sourceTree = "<group>"; };
+		F73C4A401B61BC4600842205 /* BOOM新闻图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BOOM新闻图标.png"; sourceTree = "<group>"; };
+		F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMessageViewController.m; sourceTree = "<group>"; };
+		F73C4A431B61BD7B00842205 /* BNSMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMessageViewController.h; sourceTree = "<group>"; };
 		F7916A6F1B606CC200CE8BC9 /* BNSNewsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsDetailView.h; sourceTree = "<group>"; };
 		F7916A701B606CC200CE8BC9 /* BNSNewsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsDetailView.m; sourceTree = "<group>"; };
 		F7916A721B606E8E00CE8BC9 /* BNSDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSDetailModel.h; sourceTree = "<group>"; };
@@ -417,6 +422,7 @@
 		E092F49B1B5609C2004DA8B3 /* ThirdSupport */ = {
 			isa = PBXGroup;
 			children = (
+				F73C4A3F1B61BC3300842205 /* Picture */,
 				F7916A851B60852000CE8BC9 /* HTML设置文件 */,
 				F7916A7B1B606F4F00CE8BC9 /* BNSNewsLunBoView */,
 				E013F7591B5E874800812B35 /* MJRefresh */,
@@ -594,6 +600,8 @@
 				F73C4A161B60E47000842205 /* BNSMineMenuViewController.m */,
 				F73C49DF1B60E31700842205 /* BNSMineBetaTableViewController.h */,
 				F73C49E01B60E31700842205 /* BNSMineBetaTableViewController.m */,
+				F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */,
+				F73C4A431B61BD7B00842205 /* BNSMessageViewController.h */,
 				F73C49E11B60E31700842205 /* BNSMineFontTableViewController.h */,
 				F73C49E21B60E31700842205 /* BNSMineFontTableViewController.m */,
 				F73C49E31B60E31700842205 /* BNSMineStoreTableViewController.h */,
@@ -680,6 +688,14 @@
 				F73C4A181B60E47000842205 /* BNSMineViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F73C4A3F1B61BC3300842205 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				F73C4A401B61BC4600842205 /* BOOM新闻图标.png */,
+			);
+			name = Picture;
 			sourceTree = "<group>";
 		};
 		F7916A7B1B606F4F00CE8BC9 /* BNSNewsLunBoView */ = {
@@ -789,6 +805,7 @@
 				E05DFDB11B589D5300759CD6 /* read_me.txt in Resources */,
 				F7916A891B60852000CE8BC9 /* htmlCSS.css in Resources */,
 				E013F76A1B5E874800812B35 /* MJRefresh.bundle in Resources */,
+				F73C4A411B61BC4600842205 /* BOOM新闻图标.png in Resources */,
 				E0D277FA1B6110EF0004A47A /* BNSResource.plist in Resources */,
 				E092F47A1B56086D004DA8B3 /* Images.xcassets in Resources */,
 				F7916A881B60852000CE8BC9 /* html.txt in Resources */,
@@ -841,6 +858,7 @@
 				F73C4A1B1B60E47000842205 /* BNSMineDetailedViewController.m in Sources */,
 				F73C4A031B60E41400842205 /* BNSTitleCell.m in Sources */,
 				E013F76D1B5E874800812B35 /* MJRefreshFooterView.m in Sources */,
+				F73C4A441B61BD7B00842205 /* BNSMessageViewController.m in Sources */,
 				E0D278001B6139680004A47A /* UITableViewCell+BNSLabelFont.m in Sources */,
 				E06260CA1B5CC94D00D28598 /* BNSVideoModel.m in Sources */,
 				F73C4A001B60E41400842205 /* BNSMutipleImageCell.m in Sources */,

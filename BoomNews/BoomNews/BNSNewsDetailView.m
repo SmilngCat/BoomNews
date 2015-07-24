@@ -71,10 +71,9 @@
 
     [super layoutSubviews];
     
-    self.titleLabel.frame = CGRectMake(0, 0, self.frame.size.width, 20);
+    self.titleLabel.frame = CGRectMake(0, 0, self.frame.size.width - 50, 20);
     
     
-    //self.digestLabel.frame = CGRectMake(0, 20, self.frame.size.width, self.frame.size.height - 20);
     
     self.picSumLabel.frame = CGRectMake(self.frame.size.width - 45, 0, 50, 20);
     
