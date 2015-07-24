@@ -42,7 +42,10 @@
 - (void)loadUI {
 	self.videoTableView = [[[BNSVideoTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
 	_videoTableView.urlString = _urlString;
+	_videoTableView.viewController = self;
 	[self.view addSubview:_videoTableView];
+	
+	self.modalPresentationStyle = UIModalPresentationFullScreen;
 	
 	[_videoTableView headerBeginRefreshing];
 	

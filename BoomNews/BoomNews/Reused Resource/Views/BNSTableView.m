@@ -42,6 +42,11 @@
 		[self registerClass:titleCellClass forCellReuseIdentifier:NSStringFromClass(titleCellClass)];
 		[self registerClass:videoCellClass forCellReuseIdentifier:NSStringFromClass(videoCellClass)];
 		
+		//隐藏多余的cell
+		UIView *footerView = [[[UIView alloc] init] autorelease];
+		footerView.backgroundColor = [UIColor clearColor];
+		self.tableFooterView = footerView;
+		
 		_offset = 0;
 		_datas = [[NSMutableArray alloc] init];
 	}

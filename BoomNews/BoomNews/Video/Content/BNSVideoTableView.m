@@ -8,17 +8,16 @@
 
 #import "BNSVideoTableView.h"
 #import "BNSVideoCell.h"
+
 #import "BNSTableView+BNSTemplateCell.h"
 #import "BNSTableView+BNSHeightCache.h"
+
+#import "BNSWaitingViewController.h"
 
 @implementation BNSVideoTableView
 
 #pragma mark - BNSTableView Lifecycle
 
-- (void)dealloc {
-	
-	[super dealloc];
-}
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
 	self = [super initWithFrame:frame style:style];
@@ -36,6 +35,7 @@
 #pragma mark - Refreshing
 
 - (void)headerRefreshing {
+
 	//清空数据源数组
 	[self.datas removeAllObjects];
 	//清空缓存区
@@ -45,7 +45,9 @@
 	
 	//加载地址偏移量回到0
 	self.offset = 0;
-	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{}];
+	
+	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
+	}];
 	
 	[self headerEndRefreshing];
 }

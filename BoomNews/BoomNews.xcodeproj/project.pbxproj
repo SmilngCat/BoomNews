@@ -60,6 +60,7 @@
 		E0D278001B6139680004A47A /* UITableViewCell+BNSLabelFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D277FF1B6139680004A47A /* UITableViewCell+BNSLabelFont.m */; };
 		E0D278061B6140940004A47A /* BNSMineFontFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */; };
 		E0D2780A1B61DE0F0004A47A /* BNSCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278091B61DE0F0004A47A /* BNSCacheManager.m */; };
+		E0D2780D1B61FD750004A47A /* BNSWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D2780C1B61FD750004A47A /* BNSWaitingViewController.m */; };
 		E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */; };
 		E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */; };
 		F73C49DD1B60E2A200842205 /* BNSMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C49DC1B60E2A200842205 /* BNSMineModel.m */; };
@@ -214,6 +215,8 @@
 		E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineFontFamilyTableViewController.m; sourceTree = "<group>"; };
 		E0D278081B61DE0F0004A47A /* BNSCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSCacheManager.h; path = ThirdSupport/CacheManager/BNSCacheManager.h; sourceTree = "<group>"; };
 		E0D278091B61DE0F0004A47A /* BNSCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSCacheManager.m; path = ThirdSupport/CacheManager/BNSCacheManager.m; sourceTree = "<group>"; };
+		E0D2780B1B61FD750004A47A /* BNSWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSWaitingViewController.h; sourceTree = "<group>"; };
+		E0D2780C1B61FD750004A47A /* BNSWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSWaitingViewController.m; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
 		E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSNewsModel.m; path = "Reused Resource/Model/BNSNewsModel.m"; sourceTree = "<group>"; };
 		E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSPrivateModel.h; path = "Reused Resource/Model/BNSPrivateModel.h"; sourceTree = "<group>"; };
@@ -620,6 +623,8 @@
 				E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */,
 				F73C49E51B60E31700842205 /* BNSMineTableViewController.h */,
 				F73C49E61B60E31700842205 /* BNSMineTableViewController.m */,
+				E0D2780B1B61FD750004A47A /* BNSWaitingViewController.h */,
+				E0D2780C1B61FD750004A47A /* BNSWaitingViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				E092F59A1B56BFAA004DA8B3 /* BNSTableView+BNSTemplateCell.m in Sources */,
 				E09953691B5A921C002B8D1C /* BNSNewsTypeScrollBar.m in Sources */,
 				E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */,
+				E0D2780D1B61FD750004A47A /* BNSWaitingViewController.m in Sources */,
 				E092F5D11B57B5EF004DA8B3 /* SDWebImageManager.m in Sources */,
 				E05DFDAC1B57D89500759CD6 /* OrderView.m in Sources */,
 				E092F5D91B57B5EF004DA8B3 /* UIView+WebCacheOperation.m in Sources */,
