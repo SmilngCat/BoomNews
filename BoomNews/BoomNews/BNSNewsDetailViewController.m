@@ -26,7 +26,7 @@
 #import "BNSNewsDetailView.h"
 #import "BNSDetailModel.h"
 #import "BNSNewsDetailWebView.h"
-@interface BNSNewsDetailViewController ()<BNSScrollViewDelegate>
+@interface BNSNewsDetailViewController ()<BNSScrollViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, retain)NSMutableArray *dataArray;
 @property (nonatomic, retain)NSMutableArray *detailArray;
@@ -73,14 +73,25 @@
 - (void)loadWebView:(BNSDetailWebModel *)model {
     
     self.detailWebView = [[[BNSNewsDetailWebView alloc]initWithFrame:self.view.frame] autorelease];
+	_detailWebView.delegate = self;
     [self.view addSubview:_detailWebView];
     [self.detailWebView getThml:model];
-    
-    
-    
-    
+	
 }
 
+
+#pragma mark - UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+//	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
+	NSString *fontSize = fontDic[@"fontSize"];
+	
+	NSString *jsString = [[[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f", fontSize.floatValue] autorelease];
+//	NSString *jsString2 = [[[NSString alloc] initWithFormat:@"document.body.style.fontFamily=%@", currentFont.familyName] autorelease];
+	[webView stringByEvaluatingJavaScriptFromString:jsString];
+//	[webView stringByEvaluatingJavaScriptFromString:jsString2];
+}
 
 - (void)loadData {
     

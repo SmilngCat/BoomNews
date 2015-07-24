@@ -18,7 +18,7 @@
     [super viewDidLoad];
 
 
-    UIImage *versionImage = [UIImage imageNamed:@"BOOM新闻图标"];
+    UIImage *versionImage = [UIImage imageNamed:@"boom"];
     CGFloat imageViewHeight = versionImage.size.width / versionImage.size.height;
     UIImageView *versionImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/4, self.view.frame.size.height/4, self.view.frame.size.width/2, self.view.frame.size.width/2 / imageViewHeight)] ;
     versionImageView.image = versionImage;

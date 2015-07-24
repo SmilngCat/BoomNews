@@ -10,6 +10,10 @@
 
 @implementation BNSNewsDetailWebView
 
+- (void)dealloc {
+	[super dealloc];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
 
     self = [super initWithFrame:frame];
@@ -100,10 +104,9 @@
     [str replaceCharactersInRange:timeRange withString:detail.ptime];
     
     NSRange bodyRange = [str rangeOfString:@"#body#"];
-    
-    
-    
+	
     [str replaceCharactersInRange:bodyRange withString:detail.body];
+
     
     for (NSDictionary *dict in detail.img) {
         
@@ -117,8 +120,8 @@
             a = 1;
             b = 1;
         }
-        
-        NSMutableString *imgHtml = [NSMutableString stringWithFormat:@"<img class=\"content-image\" src=\"%@\" alt=\"\" width = %@px height = %@px /><p style=\"font-size:14px\">%@</p>",[dict objectForKey:@"src"],[NSString stringWithFormat:@"%f",self.frame.size.width - 15],[NSString stringWithFormat:@"%f",(self.frame.size.width - 10)*b/a],[dict objectForKey:@"alt"]];
+		
+        NSMutableString *imgHtml = [NSMutableString stringWithFormat:@"<img class=\"content-image\" src=\"%@\" alt=\"\" width = %@px height = %@px /><p style=\"font-size:15px\">%@</p>",[dict objectForKey:@"src"],[NSString stringWithFormat:@"%f",self.frame.size.width - 15],[NSString stringWithFormat:@"%f",(self.frame.size.width - 10)*b/a],[dict objectForKey:@"alt"]];
         
         NSRange rangeOfImg = [str rangeOfString:[dict objectForKey:@"ref"]];
         if (rangeOfImg.length != 0) {

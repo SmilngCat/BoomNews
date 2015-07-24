@@ -9,6 +9,7 @@
 #import "BNSMineDetailedViewController.h"
 #import "BNSMineFontTableViewController.h"
 
+#import "BNSCacheManager.h"
 
 @interface BNSMineDetailedViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -110,8 +111,13 @@
 		
 	}else if (indexPath.row == 2) {
 		
-		UILabel *capacityLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)] autorelease];
-		capacityLabel.text = @"0.0M";
+		NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+		//当前缓存大小
+		CGFloat cacheSize = [[BNSCacheManager defaultManager] folderSizeAtPath:cachePath];
+		
+		UILabel *capacityLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 40)] autorelease];
+		capacityLabel.textAlignment = NSTextAlignmentRight;
+		capacityLabel.text = [NSString stringWithFormat:@"%.1fM", cacheSize];
 		cell.accessoryView = capacityLabel;
 	}
 	
@@ -129,18 +135,42 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self handleSelectedAtIndexPath:indexPath];
+	[self tableView:tableView handleSelectedAtIndexPath:indexPath];
 }
 
-- (void)handleSelectedAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView handleSelectedAtIndexPath:(NSIndexPath *)indexPath {
 
+	//字体设置
 	if (indexPath.row == 0) {
 
 		BNSMineFontTableViewController *menuViewController = [[[BNSMineFontTableViewController alloc] init] autorelease];
 		menuViewController.datas = @[@"字体类型", @"字体大小"];
 		[self.navigationController pushViewController:menuViewController animated:YES];
-	}else {
 		
+	//夜间模式
+	}else if (indexPath.row == 1){
+		
+		
+	//清理缓存
+	}else if (indexPath.row == 2) {
+		NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+		//清理当前缓存
+		[[BNSCacheManager defaultManager] clearCache:cachePath];
+		
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"清理缓存" message:@"是否清理缓存?" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			
+
+			UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+			UILabel *accessoryLabel = (UILabel *)cell.accessoryView;
+			accessoryLabel.text = @"0M";
+		}];
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}];
+		
+		[alertController addAction:cancelAction];
+		[alertController addAction:confirmAction];
+		
+		[self presentViewController:alertController animated:YES completion:^{}];
 	}
 }
 

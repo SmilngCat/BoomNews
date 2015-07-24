@@ -60,7 +60,6 @@
 #pragma mark - Actions
 
 - (void)clicked:(UIButton *)sender {
-	NSLog(@"登陆失败");
 }
 
 #pragma mark - Lazy loading
