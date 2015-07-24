@@ -179,16 +179,16 @@
 			break;
 		}
 		case OrderDirectionTypeLeft: {
-			//清空原数据
+			//更新左边数据
 			[leftView.datas removeAllObjects];
-			[middleView.datas removeAllObjects];
 			[leftView reloadData];
-			[middleView reloadData];
-			
-			//加载新数据
 			[leftView.datas depthCopyWithMutableArray:middleView.datas];
-			[middleView.datas depthCopyWithMutableArray:rightView.datas];
 			[leftView reloadData];
+			
+			//更新中间数据
+			[middleView.datas removeAllObjects];
+			[middleView reloadData];
+			[middleView.datas depthCopyWithMutableArray:rightView.datas];
 			[middleView reloadData];
 
 			//下拉刷新
@@ -196,17 +196,17 @@
 			break;
 		}
 		case OrderDirectionTypeRight: {
-			//清空原数据
+			//更新右边数据
 			[rightView.datas removeAllObjects];
-			[middleView.datas removeAllObjects];
 			[rightView reloadData];
-			[middleView reloadData];
-			
-			//加载新数据
 			[rightView.datas depthCopyWithMutableArray:middleView.datas];
+			[rightView reloadData];
+			
+			//更新中间数据
+			[middleView.datas removeAllObjects];
+			[middleView reloadData];
 			[middleView.datas depthCopyWithMutableArray:leftView.datas];
 			[middleView reloadData];
-			[rightView reloadData];
 
 			//下拉刷新
 			[leftView headerBeginRefreshing];
