@@ -123,10 +123,13 @@
 	ContentView *leftView = (ContentView *)_scrollView.contentView.leftView;
 	ContentView *middleView = (ContentView *)_scrollView.contentView.middleView;
 	ContentView *rightView = (ContentView *)_scrollView.contentView.rightView;
+	
 //	NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//	[middleView scrollToRowAtIndexPath:scrollIndexPath
-//					  atScrollPosition:UITableViewScrollPositionTop
-//							  animated:YES];
+//	if (middleView.datas.count) {
+//		[middleView scrollToRowAtIndexPath:scrollIndexPath
+//						  atScrollPosition:UITableViewScrollPositionTop
+//								  animated:YES];
+//	}
 	
 	leftView.invalidate = YES;
 	middleView.invalidate = YES;
@@ -169,40 +172,47 @@
 	 */
 	switch (options) {
 		case OrderDirectionTypeNone: {
-//			[leftView bns_LoadData:leftIndex];
-//			[middleView bns_LoadData:middleIndex];
-//			[rightView bns_LoadData:rightIndex];
+			//下拉刷新
 			[leftView headerBeginRefreshing];
 			[middleView headerBeginRefreshing];
 			[rightView headerBeginRefreshing];
 			break;
 		}
 		case OrderDirectionTypeLeft: {
-//			leftView.datas = middleView.datas;
-//			middleView.datas = rightView.datas;
+			//清空原数据
+			[leftView.datas removeAllObjects];
+			[middleView.datas removeAllObjects];
+			[leftView reloadData];
+			[middleView reloadData];
+			
+			//加载新数据
 			[leftView.datas depthCopyWithMutableArray:middleView.datas];
 			[middleView.datas depthCopyWithMutableArray:rightView.datas];
 			[leftView reloadData];
 			[middleView reloadData];
-//			[rightView bns_LoadData:rightIndex];
+
+			//下拉刷新
 			[rightView headerBeginRefreshing];
 			break;
 		}
 		case OrderDirectionTypeRight: {
-//			rightView.datas = middleView.datas;
-//			middleView.datas = leftView.datas;
+			//清空原数据
+			[rightView.datas removeAllObjects];
+			[middleView.datas removeAllObjects];
+			[rightView reloadData];
+			[middleView reloadData];
+			
+			//加载新数据
 			[rightView.datas depthCopyWithMutableArray:middleView.datas];
 			[middleView.datas depthCopyWithMutableArray:leftView.datas];
 			[middleView reloadData];
 			[rightView reloadData];
-//			[leftView bns_LoadData:leftIndex];
+
+			//下拉刷新
 			[leftView headerBeginRefreshing];
 			break;
 		}
 	}
-//	BNSNewsViewController *vc = (BNSNewsViewController*)middleView.viewController;
-//	UIImage *navigationBarImage = vc.navigationBarImages[middleIndex];
-//	[middleView.viewController.navigationController.navigationBar setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefaultPrompt];
 
 }
 
