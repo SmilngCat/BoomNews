@@ -8,6 +8,7 @@
 
 #import "UITableViewCell+BNSLabelFont.h"
 
+
 @implementation UITableViewCell (BNSLabelFont)
 
 + (void)load {
@@ -29,6 +30,7 @@
 		self.textLabel.font = [UIFont fontWithName:fontDic[@"fontName"] size:size.integerValue];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fontChanged:) name:kBNSTintFontChanged object:nil];
+
 	}
 	return self;
 }

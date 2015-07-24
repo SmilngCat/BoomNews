@@ -69,7 +69,12 @@
 }
 
 - (void)switchSelected:(UISwitch *)sender {
-	if ([sender isOn]) {
+
+	UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+	if (sender.isOn) {
+		window.alpha = 0.5f;
+	}else {
+		window.alpha = 1.f;
 	}
 }
 

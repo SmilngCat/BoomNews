@@ -10,6 +10,8 @@
 #import "BNSTableView+BNSTemplateCell.h"
 #import "BNSTableView+BNSHeightCache.h"
 
+
+
 @implementation BNSTableView 
 
 #pragma mark - BNSTableView Lifecycle
@@ -24,6 +26,7 @@
 	
 	[_datas release];
 	[_urlString release];
+	
 	[super dealloc];
 }
 
@@ -52,6 +55,7 @@
 	}
 	return self;
 }
+
 
 - (BOOL)bns_LoadDataAtIndex:(NSUInteger)index completion:(void(^)(void))completion {
 	

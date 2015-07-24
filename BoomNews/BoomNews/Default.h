@@ -19,7 +19,7 @@
 #define MineModel BNSMineModel
 
 #define kBNSTintFontChanged @"TintFontChanged"
-
+#define kBNSLightMode @"kBNSLightMode"
 
 /**
  *  轮播图滚动方向
