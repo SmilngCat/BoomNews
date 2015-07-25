@@ -48,6 +48,7 @@
 
 @property (nonatomic, assign)NSInteger i;
 @property (nonatomic, assign)NSInteger j;
+@property (nonatomic, retain)UIButton *_rightButton;
 @end
 
 @implementation BNSNewsDetailViewController
@@ -69,26 +70,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self._rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self._rightButton.frame = CGRectMake(0, 0, 60, 40);
+    [self._rightButton addTarget:self action:@selector(collectAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *_rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:self._rightButton];
+    [self._rightButton setImage:[UIImage imageNamed:@"iconfont-shoucangjia-2"] forState:UIControlStateNormal];
     
-    UIBarButtonItem *_rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(collectAction:)];
     self.navigationItem.rightBarButtonItem = _rightBarButton;
-    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self loadData];
     
     
-    
+    [_rightBarButton release];
 }
 
-- (void)collectAction:(UIBarButtonItem *)sender {
+- (void)collectAction:(UIButton *)sender {
     
-    DataMessageBaseManaher *manager = [DataMessageBaseManaher shareDataBaseManager];
-    [manager openDB];
-    [manager createTable];
-    [manager insertMessage:self.newsModel];
+    if (!self._rightButton.selected) {
+        DataMessageBaseManaher *manager = [DataMessageBaseManaher shareDataBaseManager];
+        [manager openDB];
+        [manager createTable];
+        [manager insertMessage:self.newsModel];
+        UIAlertView *collectView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+        [collectView show];
+        self._rightButton.selected = YES;
+    } else {
+        UIAlertView *collectView = [[UIAlertView alloc] initWithTitle:@"已经收藏" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+        [collectView show];
+    
+    }
     
     
-    UIAlertView *collectView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
-    [collectView show];
+
+    
+    
+
+    
+
+    
+
     
     
     
@@ -128,7 +148,7 @@
 
     
     //NSLog(@"%@", self.model.imgsrc);
-    if (self.model.skipID && [self.newsModel.skipType isEqualToString:@"photoset"]) {
+    if (self.newsModel.skipID && [self.newsModel.skipType isEqualToString:@"photoset"]) {
         NSString *skipID1 = [self.newsModel.skipID substringWithRange:NSMakeRange(4, 4)];
         NSString *skipID2 = [self.newsModel.skipID substringFromIndex:9];
     __block typeof(self)weakSelf = self;

@@ -97,6 +97,7 @@
 		F7916A8F1B609A0200CE8BC9 /* BNSDetailWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A8E1B609A0200CE8BC9 /* BNSDetailWebModel.m */; };
 		F7B189EA1B635BC100CB6852 /* DataMessageBaseManaher.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B189E91B635BC100CB6852 /* DataMessageBaseManaher.m */; };
 		F7B189EC1B635C4400CB6852 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B189EB1B635C4400CB6852 /* libsqlite3.dylib */; };
+		F7B189EF1B63915B00CB6852 /* iconfont-shoucangjia-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F7B189EE1B63915B00CB6852 /* iconfont-shoucangjia-2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +290,7 @@
 		F7B189E81B635BC100CB6852 /* DataMessageBaseManaher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMessageBaseManaher.h; sourceTree = "<group>"; };
 		F7B189E91B635BC100CB6852 /* DataMessageBaseManaher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMessageBaseManaher.m; sourceTree = "<group>"; };
 		F7B189EB1B635C4400CB6852 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F7B189EE1B63915B00CB6852 /* iconfont-shoucangjia-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-shoucangjia-2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +435,7 @@
 		E092F49B1B5609C2004DA8B3 /* ThirdSupport */ = {
 			isa = PBXGroup;
 			children = (
+				F7B189ED1B63914900CB6852 /* Picture */,
 				F7B189E71B635BC100CB6852 /* DataBaseManager */,
 				E0D278071B61DDCF0004A47A /* CacheManager */,
 				F7916A851B60852000CE8BC9 /* HTML设置文件 */,
@@ -745,6 +748,14 @@
 			path = DataBaseManager;
 			sourceTree = "<group>";
 		};
+		F7B189ED1B63914900CB6852 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				F7B189EE1B63915B00CB6852 /* iconfont-shoucangjia-2.png */,
+			);
+			name = Picture;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -830,6 +841,7 @@
 				F7916A891B60852000CE8BC9 /* htmlCSS.css in Resources */,
 				E013F76A1B5E874800812B35 /* MJRefresh.bundle in Resources */,
 				E0D277FA1B6110EF0004A47A /* BNSResource.plist in Resources */,
+				F7B189EF1B63915B00CB6852 /* iconfont-shoucangjia-2.png in Resources */,
 				E092F47A1B56086D004DA8B3 /* Images.xcassets in Resources */,
 				F7916A881B60852000CE8BC9 /* html.txt in Resources */,
 			);
@@ -1053,7 +1065,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = BoomNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1066,7 +1078,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = BoomNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;

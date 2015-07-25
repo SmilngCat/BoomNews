@@ -17,7 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editbtnClick)];
+    
+    self.navigationItem.rightBarButtonItem = editBtn;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -33,13 +37,28 @@
     
     detailVC.newsModel = self.newsModelArr[indexPath.row];
     
-    
     detailVC.hidesBottomBarWhenPushed = YES;
-    
     [self.navigationController pushViewController:detailVC animated:YES];
     
     [detailVC release];
     
+}
+
+
+- (void)editbtnClick
+{
+    if ([self.navigationItem.rightBarButtonItem.title isEqual: @"编辑"])
+    {
+        self.navigationItem.rightBarButtonItem.title = @"完成";
+        [self setEditing:YES animated:YES];
+        
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem.title = @"编辑";
+        [self setEditing:NO animated:YES];
+        
+    }
 }
 
 #pragma mark -------- 删除方法
@@ -72,9 +91,6 @@
     DataMessageBaseManaher *manager = [DataMessageBaseManaher shareDataBaseManager];
     [manager openDB];
     
-    
-    
-    
     [manager deleteWithMessage:[self.newsModelArr[indexPath.row] title]];
     
     [self.datas removeObjectAtIndex:indexPath.row];
@@ -84,6 +100,15 @@
     
     
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return @"删除";
+
+}
+
+
+
 
 /*
 #pragma mark - Navigation

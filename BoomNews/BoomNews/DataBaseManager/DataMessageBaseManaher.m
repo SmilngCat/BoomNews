@@ -88,7 +88,7 @@ static sqlite3 *db = nil;
 - (void)createTable{
     //1.准备sql语句
     //建立表的sql语句
-    NSString *sqlStr = @"CREATE TABLE IF NOT  EXISTS datamessage (uid INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL,digest TEXT NOT NULL, imgsrc TEXT NOT NULL, skipID TEXT NOT NULL, skipType TEXT NOT NULL, specialID TEXT NOT NULL, docid TEXT NOT NULL)";
+    NSString *sqlStr = @"CREATE TABLE IF NOT EXISTS datamessage (uid INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL,digest TEXT NOT NULL, imgsrc TEXT NOT NULL, skipID TEXT NOT NULL, skipType TEXT NOT NULL, specialID TEXT NOT NULL, docid TEXT NOT NULL)";
     //2.执行语句
 # pragma mark  ------ 改
     int result = sqlite3_exec(db, sqlStr.UTF8String, NULL, NULL, NULL);
@@ -108,7 +108,7 @@ static sqlite3 *db = nil;
     
     //1.准备sql语句
     
-    //NSLog(@"%@", model);
+
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO datamessage(title,digest,imgsrc,skipID,skipType,specialID,docid) VALUES ('%@' , '%@' , '%@' , '%@' , '%@' , '%@' , '%@')", model.title ,model.digest, model.imgsrc, model.skipID,model.skipType, model.specialID, model.docid];
     //NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO message(imgurl) VALUES ('%@')",model.imgurl];
     //2.执行语句
@@ -180,7 +180,6 @@ static sqlite3 *db = nil;
             NSString *skipIDStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
             
             
-            
             NSString *skipTypeStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)];
             NSString *specialIDStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 6)];
             NSString *docidStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 7)];
@@ -221,6 +220,7 @@ static sqlite3 *db = nil;
     //对于查询语句比较特殊，带有一个指针，这个指针就做伴随指针
     NSString *seclectSql = @"SELECT *FROM datamessage WHERE title=?";
     //2.创建一个伴随数据
+    
     sqlite3_stmt *stmt = nil;
     
     //3.sql语句的判断，执行
@@ -231,8 +231,9 @@ static sqlite3 *db = nil;
         
         //存储查询出的数据
         mutableArray = [[[NSMutableArray alloc]init] autorelease];
-        
-        
+        //NSLog(@"%@", titleStr);
+        //NSLog(@"__________%@",title);
+        sqlite3_bind_text(stmt, 1, title.UTF8String, -1, NULL);
         //判断是否还有数据
         //使用while循环来判断每行的数据，while适用于知道循环次数的时候
         
@@ -244,8 +245,6 @@ static sqlite3 *db = nil;
             NSString *digestStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 2)];
             NSString *imgsrcStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 3)];
             NSString *skipIDStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 4)];
-            
-            
             
             NSString *skipTypeStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 5)];
             NSString *specialIDStr = [NSString stringWithUTF8String:(const char *)sqlite3_column_text(stmt, 6)];
