@@ -24,13 +24,13 @@
 	
 	viewController.then = ^(NSUInteger obj) {
 		
-		NSDictionary *fontDicOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+		NSDictionary *fontDicOrigin = [[NSUserDefaults standardUserDefaults] objectForMutableKey:@"TintFont"];
 		
 		NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
 		fontDic[@"fontName"] = weakViewController.datas[obj];
 		fontDic[@"fontSize"] = fontDicOrigin[@"fontSize"];
-		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TintFont"];
-		[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
+//		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"TintFont"];
+		[[NSUserDefaults standardUserDefaults] setObject:fontDic forMutableKey:@"TintFont"];
 		[[NSNotificationCenter defaultCenter] postNotificationName:kBNSTintFontChanged object:nil];
 	};
 	[self.navigationController pushViewController:viewController animated:YES];

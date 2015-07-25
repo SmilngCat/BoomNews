@@ -48,6 +48,15 @@
 	return self;
 }
 
+#pragma mark - Setter
+
+- (void)setViewController:(UIViewController *)viewController {
+	_scrollView.contentView.leftView.viewController = viewController;
+	_scrollView.contentView.middleView.viewController = viewController;
+	_scrollView.contentView.rightView.viewController = viewController;
+}
+
+
 #pragma mark - Layout
 
 - (void)buildLayout {
@@ -108,6 +117,13 @@
 		directionType = OrderDirectionTypeRight;
 	}
 	[self scrollViewDidEndScrollAtIndex:_top count:count options:directionType];
+	
+	//上下的轮播图互动
+	[[NSUserDefaults standardUserDefaults] setInteger:_top forMutableKey:@"Index"];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(orderView:didScrollToIndex:options:)]) {
+		[self.delegate orderView:self didScrollToIndex:_top options:directionType];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kBNSIndexChanged object:nil];
+	}
 }
 
 
@@ -136,12 +152,6 @@
 	rightView.invalidate = YES;
 }
 
-
-- (void)setViewController:(UIViewController *)viewController {
-    _scrollView.contentView.leftView.viewController = viewController;
-    _scrollView.contentView.middleView.viewController = viewController;
-    _scrollView.contentView.rightView.viewController = viewController;
-}
 
 
 - (void)configureScrollViewAtIndex:(NSUInteger)index

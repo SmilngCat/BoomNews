@@ -48,7 +48,7 @@
 #pragma mark - Notification
 
 - (void)fontChanged:(NSNotification *)notification {
-	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForMutableKey:@"TintFont"];
 	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
 	
 	_titleLabel.font = currentFont;

@@ -56,13 +56,16 @@
 	
 	static BOOL lock = NO;
 	if (!lock) {
-		lock = YES;
-		//加载地址偏移量累加20
-		self.offset += 20;
 		
-		lock = ![self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
-			lock = NO;
-		}];
+		dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+			lock = YES;
+			//加载地址偏移量累加20
+			self.offset += 20;
+			
+			lock = ![self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
+				lock = NO;
+			}];
+		});
 	}
 	[self footerEndRefreshing];
 }

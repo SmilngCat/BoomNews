@@ -25,7 +25,7 @@
 - (instancetype)bns_initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier {
 	[self bns_initWithStyle:style reuseIdentifier:identifier];
 	if (self) {
-		NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+		NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForMutableKey:@"TintFont"];
 		NSString *size = fontDic[@"fontSize"];
 		self.textLabel.font = [UIFont fontWithName:fontDic[@"fontName"] size:size.integerValue];
 		

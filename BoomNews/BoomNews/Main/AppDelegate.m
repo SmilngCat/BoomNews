@@ -36,10 +36,7 @@
 	NSMutableDictionary *fontDic = [NSMutableDictionary dictionary];
 	fontDic[@"fontName"] = @"CourierNewPS-ItalicMT";
 	fontDic[@"fontSize"] = @"15";
-	[[NSUserDefaults standardUserDefaults] setObject:fontDic forKey:@"TintFont"];
-	
-	//夜间模式
-	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"LightMode"];
+	[[NSUserDefaults standardUserDefaults] setObject:fontDic forMutableKey:@"TintFont"];
 	
 	self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	// Override point for customization after application launch.

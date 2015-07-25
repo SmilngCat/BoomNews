@@ -14,12 +14,15 @@
 #import "BNSVideoModel.h"
 #import "BNSMineModel.h"
 
+#import "NSUserDefaults+Mutable.h"
+
 #define NewsModel BNSNewsModel
 #define VideoModel BNSVideoModel
 #define MineModel BNSMineModel
 
 #define kBNSTintFontChanged @"TintFontChanged"
-#define kBNSLightMode @"kBNSLightMode"
+#define kBNSIndexChanged @"kBNSIndexChanged"
+
 
 /**
  *  轮播图滚动方向

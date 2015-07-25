@@ -20,12 +20,13 @@
 	BNSNewsTypeScrollBarButton *button= [super buttonWithType:type];
 	if (button) {
 		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-		button.translatesAutoresizingMaskIntoConstraints = NO;
+
 		[button addTarget:button
 				   action:@selector(buttonClicked:)
 		 forControlEvents:UIControlEventTouchUpInside];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:button selector:@selector(fontChanged:) name:kBNSTintFontChanged object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:button selector:@selector(indexChanged:) name:kBNSIndexChanged object:nil];
 	}
 	return button;
 }
@@ -33,10 +34,19 @@
 #pragma mark - Notification
 
 - (void)fontChanged:(NSNotification *)notification {
-	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"TintFont"];
+	
+	NSDictionary *fontDic = [[NSUserDefaults standardUserDefaults] objectForMutableKey:@"TintFont"];
 	UIFont *currentFont = [UIFont fontWithName:fontDic[@"fontName"] size:[fontDic[@"fontSize"] integerValue]];
 	
 	self.titleLabel.font = currentFont;
+}
+
+- (void)indexChanged:(NSNotification *)notification {
+	
+	NSInteger selectedIndex = [[NSUserDefaults standardUserDefaults] integerForMutableKey:@"Index"];
+	if (selectedIndex == _index) {
+		[self setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+	}
 }
 
 #pragma mark - Actions

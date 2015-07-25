@@ -13,11 +13,22 @@
 #import <UIKit/UIKit.h>
 #import "OrderScrollView.h"
 
+@class OrderView;
+@protocol OrderViewDelegate <NSObject>
+
+- (void)orderView:(OrderView *)orderView
+ didScrollToIndex:(NSUInteger)index
+		  options:(OrderDirectionType)options;
+@end
+
 @interface OrderView : UIView
 
 @property (copy, nonatomic) NSArray *datas;
 @property (retain, nonatomic) OrderScrollView *scrollView;
 @property (assign, nonatomic) UIViewController *viewController;
+
+@property (assign, nonatomic) id<OrderViewDelegate> delegate;
+
 /**
  *  给轮播图中间的视图配置数据
  *

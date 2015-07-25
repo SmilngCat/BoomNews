@@ -52,17 +52,20 @@
 
 - (void)footerRefreshing {
 	
+	__block typeof(self) weakSelf = self;
 	static BOOL lock = NO;
 	if (!lock) {
 		lock = YES;
-		//加载地址偏移量累加20
-		self.offset += 20;
-		
-		NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
-		NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
-		[self bns_LoadDataAtIndex:currentIndex completion:^{
-			lock = NO;
-		}];
+		dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),  ^{
+			//加载地址偏移量累加20
+			weakSelf.offset += 20;
+			
+			NSString *tailString = [weakSelf.urlString substringWithRange:NSMakeRange(35, 14)];
+			NSUInteger currentIndex = [weakSelf getCurrentIndexWithString:tailString];
+			[weakSelf bns_LoadDataAtIndex:currentIndex completion:^{
+				lock = NO;
+			}];
+		});
 	}
 	[self footerEndRefreshing];
 }

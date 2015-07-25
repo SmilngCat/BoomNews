@@ -19,10 +19,9 @@
 #define WIDTH_NEWSTYPEBAR 50
 #define HEIGHT_NEWSTYPEBAR 30
 
-#define GAP_LEN ( (CGRectGetWidth(self.view.bounds) - 4 * WIDTH_NEWSTYPEBAR) / 5.f )
-#define PART_LEN (WIDTH_NEWSTYPEBAR + GAP_LEN)
 
-@interface BNSNewsViewController () <UIScrollViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
+
+@interface BNSNewsViewController () <UIScrollViewDelegate, OrderViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
 
 @property (retain, nonatomic) NSMutableArray *newsTypeArray;
 @property (retain, nonatomic) NSMutableArray *newsAddressArray;
@@ -53,6 +52,9 @@
 	//关闭ViewController的自动调整scrollView功能
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	
+	//设置轮播当前显示哪一个类型的数据
+	[[NSUserDefaults standardUserDefaults] setInteger:1 forMutableKey:@"Index"];
+	
 	[self loadData];
 	[self loadUI];
 	
@@ -62,15 +64,15 @@
 	
 	NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"BNSResource" ofType:@"plist"];
 	NSArray *resourceArray = [NSArray arrayWithContentsOfFile:resourcePath];
-	NSDictionary *navigationBarImagesDic = resourceArray[0];
-	NSDictionary *newsTypeDic = resourceArray[1];
-	NSDictionary *newsAddressDic = resourceArray[2];
+	NSArray *navigationBarImagesArr = resourceArray[0];
+	NSArray *newsTypeArr = resourceArray[1];
+	NSArray *newsAddressArr = resourceArray[2];
 	
  /**
   *  navigationBarImages
   */
 	self.navigationBarImages = [NSMutableArray array];
-	[navigationBarImagesDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+	[navigationBarImagesArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger index, BOOL *stop) {
 		[_navigationBarImages addObject:obj];
 	}];
 	
@@ -89,7 +91,7 @@
 	 *  新闻类型
 	 */
 	self.newsTypeArray = [NSMutableArray array];
-	[newsTypeDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+	[newsTypeArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger index, BOOL *stop) {
 		[_newsTypeArray addObject:obj];
 	}];
 //	[_newsTypeArray addObject:@"科技"];
@@ -107,7 +109,7 @@
 	 *  新闻地址
 	 */
 	self.newsAddressArray = [NSMutableArray array];
-	[newsAddressDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+	[newsAddressArr enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger index, BOOL *stop) {
 		[_newsAddressArray addObject:obj];
 	}];
 //	//科技
@@ -140,12 +142,14 @@
 	CGFloat width = CGRectGetWidth(self.view.bounds);
 	CGFloat height = CGRectGetHeight(self.view.bounds);
 	
+	CGFloat gap_Len = (CGRectGetWidth(self.view.bounds) - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+	CGFloat part_Len = gap_Len + WIDTH_NEWSTYPEBAR;
 	//顶部的新闻类型选项栏
 	self.newsTypeBar = [[[BNSNewsTypeScrollBar alloc] initWithFrame:CGRectMake(0, 64, width, HEIGHT_NEWSTYPEBAR)] autorelease];
 	_newsTypeBar.scrollBarButtonDelegate = self;
 	_newsTypeBar.datas = _newsTypeArray;
-	_newsTypeBar.contentSize = CGSizeMake(width + 2 * PART_LEN, HEIGHT_NEWSTYPEBAR);
-	_newsTypeBar.contentOffset = CGPointMake(PART_LEN, 0);
+	_newsTypeBar.contentSize = CGSizeMake(7 * gap_Len + 6 * WIDTH_NEWSTYPEBAR, HEIGHT_NEWSTYPEBAR);
+	_newsTypeBar.contentOffset = CGPointMake(part_Len, 0);
 
 	//底部的转动视图
 	CGFloat contentScrollViewX = 0;
@@ -161,6 +165,7 @@
 	self.orderView = [[[OrderView alloc] initWithFrame:contentScrollViewFrame] autorelease];
 	_orderView.datas = _newsAddressArray;
     _orderView.viewController = self;
+	_orderView.delegate = self;
 	[_orderView configureScrollViewAtIndex:0
 									 count:_newsAddressArray.count
 								   options:OrderDirectionTypeNone];
@@ -174,12 +179,29 @@
 }
 
 
+#pragma mark - OrderViewDelegate
+
+- (void)orderView:(OrderView *)oredrView didScrollToIndex:(NSUInteger)index options:(OrderDirectionType)options{
+	
+	[_newsTypeBar configureScrollViewAtIndex:index
+									   count:_newsTypeArray.count
+									 options:options];
+}
+
+
 #pragma mark - BNSNewsTypeScrollBarButtonDelegate
 
 - (void)scrollBarButtonDidSelect:(BNSNewsTypeScrollBarButton *)button {
 
 	NSString *title = button.titleLabel.text;
 	NSUInteger index = [self indexOfString:title inArray:_newsTypeArray];
+	
+	[_newsTypeBar configureScrollViewAtIndex:index - 1
+									   count:_newsTypeArray.count
+									 options:OrderDirectionTypeNone];
+	
+	//上下轮播图互动
+	[[NSUserDefaults standardUserDefaults] setInteger:index forMutableKey:@"Index"];
 	[self.orderView scrollViewDidEndScrollAtIndex:index - 1
 											count:_newsTypeArray.count
 										  options:OrderDirectionTypeNone];

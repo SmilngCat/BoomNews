@@ -2,71 +2,41 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<dict>
-		<key>technoligy</key>
+	<array>
 		<string>technoligy</string>
-		<key>entermentain</key>
 		<string>entermentain</string>
-		<key>sports</key>
 		<string>sports</string>
-		<key>game</key>
 		<string>game</string>
-		<key>policy</key>
 		<string>policy</string>
-		<key>history</key>
 		<string>history</string>
-		<key>finance</key>
 		<string>finance</string>
-		<key>military</key>
 		<string>military</string>
-		<key>lottory</key>
 		<string>lottory</string>
-		<key>fashion</key>
 		<string>fashion</string>
-	</dict>
-	<dict>
-		<key>technoligy</key>
+	</array>
+	<array>
 		<string>科技</string>
-		<key>entermentain</key>
 		<string>娱乐</string>
-		<key>sports</key>
 		<string>体育</string>
-		<key>game</key>
 		<string>游戏</string>
-		<key>policy</key>
 		<string>政务</string>
-		<key>history</key>
 		<string>历史</string>
-		<key>finance</key>
 		<string>财经</string>
-		<key>military</key>
 		<string>军事</string>
-		<key>lottory</key>
 		<string>彩票</string>
-		<key>fashion</key>
 		<string>时尚</string>
-	</dict>
-	<dict>
-		<key>technoligy</key>
+	</array>
+	<array>
 		<string>http://c.m.163.com/nc/article/list/T1348649580692</string>
-		<key>entermentain</key>
 		<string>http://c.m.163.com/nc/article/list/T1348648517839</string>
-		<key>sports</key>
 		<string>http://c.m.163.com/nc/article/list/T1348649079062</string>
-		<key>game</key>
 		<string>http://c.m.163.com/nc/article/list/T1348654151579</string>
-		<key>policy</key>
 		<string>http://c.m.163.com/nc/article/list/T1414142214384</string>
-		<key>history</key>
 		<string>http://c.m.163.com/nc/article/list/T1368497029546</string>
-		<key>finance</key>
 		<string>http://c.m.163.com/nc/article/list/T1348648756099</string>
-		<key>military</key>
 		<string>http://c.m.163.com/nc/article/list/T1348648141035</string>
-		<key>lottory</key>
 		<string>http://c.m.163.com/nc/article/list/T1356600029035</string>
-		<key>fashion</key>
 		<string>http://c.m.163.com/nc/article/list/T1348650593803</string>
-	</dict>
+	</array>
 </array>
 </plist>

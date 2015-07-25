@@ -61,6 +61,7 @@
 		E0D278061B6140940004A47A /* BNSMineFontFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278051B6140940004A47A /* BNSMineFontFamilyTableViewController.m */; };
 		E0D2780A1B61DE0F0004A47A /* BNSCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278091B61DE0F0004A47A /* BNSCacheManager.m */; };
 		E0D2780D1B61FD750004A47A /* BNSWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D2780C1B61FD750004A47A /* BNSWaitingViewController.m */; };
+		E0D278161B62637C0004A47A /* NSUserDefaults+Mutable.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D278151B62637C0004A47A /* NSUserDefaults+Mutable.m */; };
 		E0DC355A1B58DBB400FF2E8F /* BNSNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */; };
 		E0DC356D1B58E76200FF2E8F /* BNSPrivateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC356C1B58E76200FF2E8F /* BNSPrivateModel.m */; };
 		F73C49DD1B60E2A200842205 /* BNSMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C49DC1B60E2A200842205 /* BNSMineModel.m */; };
@@ -217,6 +218,8 @@
 		E0D278091B61DE0F0004A47A /* BNSCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSCacheManager.m; path = ThirdSupport/CacheManager/BNSCacheManager.m; sourceTree = "<group>"; };
 		E0D2780B1B61FD750004A47A /* BNSWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSWaitingViewController.h; sourceTree = "<group>"; };
 		E0D2780C1B61FD750004A47A /* BNSWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSWaitingViewController.m; sourceTree = "<group>"; };
+		E0D278141B62637C0004A47A /* NSUserDefaults+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Mutable.h"; sourceTree = "<group>"; };
+		E0D278151B62637C0004A47A /* NSUserDefaults+Mutable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Mutable.m"; sourceTree = "<group>"; };
 		E0DC35581B58DBB400FF2E8F /* BNSNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSNewsModel.h; path = "Reused Resource/Model/BNSNewsModel.h"; sourceTree = "<group>"; };
 		E0DC35591B58DBB400FF2E8F /* BNSNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNSNewsModel.m; path = "Reused Resource/Model/BNSNewsModel.m"; sourceTree = "<group>"; };
 		E0DC356B1B58E76200FF2E8F /* BNSPrivateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNSPrivateModel.h; path = "Reused Resource/Model/BNSPrivateModel.h"; sourceTree = "<group>"; };
@@ -640,6 +643,8 @@
 				E0D277FC1B6121F10004A47A /* UIButton+BNSLabelFont.m */,
 				E0D277FE1B6139680004A47A /* UITableViewCell+BNSLabelFont.h */,
 				E0D277FF1B6139680004A47A /* UITableViewCell+BNSLabelFont.m */,
+				E0D278141B62637C0004A47A /* NSUserDefaults+Mutable.h */,
+				E0D278151B62637C0004A47A /* NSUserDefaults+Mutable.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -885,6 +890,7 @@
 				F7916A831B606F4F00CE8BC9 /* BNSScrollView.m in Sources */,
 				E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */,
 				E092F59F1B573C25004DA8B3 /* Model.m in Sources */,
+				E0D278161B62637C0004A47A /* NSUserDefaults+Mutable.m in Sources */,
 				F7916A7A1B606ED000CE8BC9 /* Message.m in Sources */,
 				F73C49DD1B60E2A200842205 /* BNSMineModel.m in Sources */,
 				E013F76E1B5E874800812B35 /* MJRefreshHeaderView.m in Sources */,

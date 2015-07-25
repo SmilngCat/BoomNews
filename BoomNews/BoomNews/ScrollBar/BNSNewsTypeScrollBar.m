@@ -11,8 +11,6 @@
 #define WIDTH_NEWSTYPEBAR 50
 #define HEIGHT_NEWSTYPEBAR 30
 
-#define GAP_LEN ( (CGRectGetWidth(self.bounds) - 4 * WIDTH_NEWSTYPEBAR) / 5.f )
-#define PART_LEN (WIDTH_NEWSTYPEBAR + GAP_LEN)
 
 @interface BNSNewsTypeScrollBar ()
 
@@ -36,15 +34,16 @@
 	if (self) {
 		self.delegate = self;
 		self.bounces = NO;
-		self.pagingEnabled = YES;
+//		self.pagingEnabled = YES;
 		self.directionalLockEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
 		
-		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width + 2 * PART_LEN, 30)];
-		_contentButton.translatesAutoresizingMaskIntoConstraints = NO;
+		CGFloat width = CGRectGetWidth(frame);
+		CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+		_contentButton = [[BNSNewsButton alloc] initWithFrame:CGRectMake(0, 0, 7 * gap_Len + 6 * WIDTH_NEWSTYPEBAR, HEIGHT_NEWSTYPEBAR)];
         [self addSubview:_contentButton];
-		
-		self.top = 0;
+
+		_top = 0;
 	}
 	return self;
 }
@@ -53,7 +52,10 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	self.contentButton.frame = CGRectMake(0, 0, self.bounds.size.width + 2 * PART_LEN, 30);
+	
+	CGFloat width = CGRectGetWidth(self.bounds);
+	CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+	_contentButton.frame = CGRectMake(0, 0, 7 * gap_Len + 6 * WIDTH_NEWSTYPEBAR, HEIGHT_NEWSTYPEBAR);
 }
 
 #pragma mark - setter
@@ -71,29 +73,80 @@
 - (void)configureScrollViewAtIndex:(NSUInteger)index
 							 count:(NSUInteger)count
 						   options:(OrderDirectionType)options {
-    
+	//当前选中的新闻类型
+	[[NSUserDefaults standardUserDefaults] setInteger:index + 1 forMutableKey:@"Index"];
+	
+	CGFloat width = CGRectGetWidth(self.bounds);
+	CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+	CGFloat part_Len = gap_Len + WIDTH_NEWSTYPEBAR;
+    self.contentOffset = CGPointMake(part_Len, 0);
+	
     NSUInteger firstIndex = index % count;
     NSUInteger secondIndex = (index + 1) % count;
     NSUInteger thirdIndex = (index + 2) % count;
     NSUInteger fourthIndex = (index + 3) % count;
     NSUInteger fifthIndex = (index + 4) % count;
     NSUInteger sixthIndex = (index + 5) % count;
+	
+	NSString *firstTitle = _datas[firstIndex];
+	NSString *secondTitle = _datas[secondIndex];
+	NSString *thirdTitle = _datas[thirdIndex];
+	NSString *fourthTitle = _datas[fourthIndex];
+	NSString *fifthTitle = _datas[fifthIndex];
+	NSString *sixthTitle = _datas[sixthIndex];
     
-    [_contentButton.technologyButton setTitle:_datas[firstIndex] forState:UIControlStateNormal];
-    [_contentButton.entertainmentButton setTitle:_datas[secondIndex] forState:UIControlStateNormal];
-    [_contentButton.sportsButton setTitle:_datas[thirdIndex] forState:UIControlStateNormal];
-    [_contentButton.gamesButton setTitle:_datas[fourthIndex] forState:UIControlStateNormal];
-    [_contentButton.politicsButton setTitle:_datas[fifthIndex] forState:UIControlStateNormal];
-    [_contentButton.historyButton setTitle:_datas[sixthIndex] forState:UIControlStateNormal];
+    [_contentButton.technologyButton setTitle:firstTitle
+									 forState:UIControlStateNormal];
+	[_contentButton.technologyButton setTitleColor:[UIColor blackColor]
+										  forState:UIControlStateNormal];
+	_contentButton.technologyButton.index = firstIndex;
+	
+    [_contentButton.entertainmentButton setTitle:secondTitle
+										forState:UIControlStateNormal];
+	[_contentButton.entertainmentButton setTitleColor:[UIColor blackColor]
+										  forState:UIControlStateNormal];
+	_contentButton.entertainmentButton.index = secondIndex;
+	
+    [_contentButton.sportsButton setTitle:thirdTitle
+								 forState:UIControlStateNormal];
+	[_contentButton.sportsButton setTitleColor:[UIColor blackColor]
+										  forState:UIControlStateNormal];
+	_contentButton.sportsButton.index = thirdIndex;
+	
+    [_contentButton.gamesButton setTitle:fourthTitle
+								forState:UIControlStateNormal];
+	[_contentButton.gamesButton setTitleColor:[UIColor blackColor]
+									  forState:UIControlStateNormal];
+	_contentButton.gamesButton.index = fourthIndex;
+	
+    [_contentButton.politicsButton setTitle:fifthTitle
+								   forState:UIControlStateNormal];
+	[_contentButton.politicsButton setTitleColor:[UIColor blackColor]
+									 forState:UIControlStateNormal];
+	_contentButton.politicsButton.index = fifthIndex;
+	
+    [_contentButton.historyButton setTitle:sixthTitle
+								  forState:UIControlStateNormal];
+	[_contentButton.historyButton setTitleColor:[UIColor blackColor]
+									 forState:UIControlStateNormal];
+	_contentButton.historyButton.index = sixthIndex;
+	
+	//通知类型更改 
+	[[NSNotificationCenter defaultCenter] postNotificationName:kBNSIndexChanged object:nil];
+	
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	
+	CGFloat width = CGRectGetWidth(self.bounds);
+	CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+	CGFloat part_Len = gap_Len + WIDTH_NEWSTYPEBAR;
+	
 	NSUInteger count = _datas.count;
 	OrderDirectionType type = 0;
 	CGFloat offsetX = self.contentOffset.x;
 	
-	if (offsetX > PART_LEN) {
+	if (offsetX > part_Len) {
 		
 		_top = _top + 1;
 		if (_top >= count) {
@@ -101,7 +154,7 @@
 		}
 		type = OrderDirectionTypeLeft;
 		
-	}else if (offsetX < PART_LEN) {
+	}else if (offsetX < part_Len) {
 		
 		_top = _top - 1;
 		if (_top < 0) {
@@ -110,10 +163,18 @@
 		type = OrderDirectionTypeRight;
 	}
 	
-	self.contentOffset = CGPointMake(PART_LEN, 0);
 	[self configureScrollViewAtIndex:_top count:_datas.count options:type];
 	
 }
 
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	
+	CGFloat width = CGRectGetWidth(self.bounds);
+	CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;
+	CGFloat part_Len = gap_Len + WIDTH_NEWSTYPEBAR;
+	self.contentOffset = CGPointMake(part_Len, 0);
+	
+}
 
 @end

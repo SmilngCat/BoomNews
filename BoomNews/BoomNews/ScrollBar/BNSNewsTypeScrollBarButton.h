@@ -11,5 +11,6 @@
 
 @interface BNSNewsTypeScrollBarButton : UIButton
 
+@property (assign, nonatomic) NSUInteger index;
 @property (assign, nonatomic) id<BNSNewsTypeScrollBarButtonDelegate> buttonDelegate;
 @end
