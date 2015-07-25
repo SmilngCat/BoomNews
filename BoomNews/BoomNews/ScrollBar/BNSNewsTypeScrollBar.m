@@ -73,8 +73,6 @@
 - (void)configureScrollViewAtIndex:(NSUInteger)index
 							 count:(NSUInteger)count
 						   options:(OrderDirectionType)options {
-	//当前选中的新闻类型
-	[[NSUserDefaults standardUserDefaults] setInteger:index + 1 forMutableKey:@"Index"];
 	
 	CGFloat width = CGRectGetWidth(self.bounds);
 	CGFloat gap_Len = (width - 4 * WIDTH_NEWSTYPEBAR) / 5.f;

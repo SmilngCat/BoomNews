@@ -54,6 +54,8 @@
 - (void)buttonClicked:(UIButton *)button {
 	
 	if (self.buttonDelegate && [self.buttonDelegate respondsToSelector:@selector(scrollBarButtonDidSelect:)]) {
+		//当前选中的新闻类型
+		[[NSUserDefaults standardUserDefaults] setInteger:_index forMutableKey:@"Index"];
 		[self.buttonDelegate scrollBarButtonDidSelect:self];
 	}
 }

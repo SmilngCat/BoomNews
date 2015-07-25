@@ -121,8 +121,9 @@
 	//上下的轮播图互动
 	[[NSUserDefaults standardUserDefaults] setInteger:_top forMutableKey:@"Index"];
 	if (self.delegate && [self.delegate respondsToSelector:@selector(orderView:didScrollToIndex:options:)]) {
+		//当前选中的新闻类型
+		[[NSUserDefaults standardUserDefaults] setInteger:_top + 1 forMutableKey:@"Index"];
 		[self.delegate orderView:self didScrollToIndex:_top options:directionType];
-		[[NSNotificationCenter defaultCenter] postNotificationName:kBNSIndexChanged object:nil];
 	}
 }
 
