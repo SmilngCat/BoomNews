@@ -7,7 +7,7 @@
 //
 
 #import "BNSMineTableViewController.h"
-
+@class BNSNewsDetailViewController;
 @interface BNSMineStoreTableViewController : BNSMineTableViewController
 
 @end

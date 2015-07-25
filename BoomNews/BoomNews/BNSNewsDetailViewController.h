@@ -17,4 +17,5 @@
 
 @property (nonatomic, retain) BNSDetailWebModel *webModel;
 
+@property (nonatomic, retain) BNSNewsModel *newsModel;
 @end

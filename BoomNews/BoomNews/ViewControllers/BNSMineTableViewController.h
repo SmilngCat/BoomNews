@@ -12,5 +12,8 @@
 
 //返回时隐藏导航栏
 @property (assign, nonatomic) BOOL hiddenNavigationBar;
-@property (copy, nonatomic) NSArray *datas;
+@property (retain, nonatomic) NSMutableArray *datas;
+//储存model的数组
+@property (copy, nonatomic) NSMutableArray *newsModelArr;
+
 @end

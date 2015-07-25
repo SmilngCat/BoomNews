@@ -167,7 +167,7 @@
     BNSNewsDetailViewController *detailVC = [[BNSNewsDetailViewController alloc]init];
     
     
-    detailVC.model = self.datas[indexPath.row];
+    detailVC.newsModel = self.datas[indexPath.row];
    
     
     detailVC.hidesBottomBarWhenPushed = YES;

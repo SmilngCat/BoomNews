@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BNSDetailModel.h"
 @class BNSMineViewController;
 
 @interface BNSMineView : UIView
 
 @property (assign, nonatomic) BNSMineViewController *viewController;
+
+
+@property (retain, nonatomic) BNSDetailModel *model;
+
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "BNSMineStoreTableViewController.h"
-
+#import "BNSNewsDetailViewController.h"
+#import "DataMessageBaseManaher.h"
 @interface BNSMineStoreTableViewController ()
 
 @end
@@ -16,12 +17,72 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    BNSNewsDetailViewController *detailVC = [[BNSNewsDetailViewController alloc] init];
+    
+    detailVC.newsModel = self.newsModelArr[indexPath.row];
+    
+    
+    detailVC.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+    [detailVC release];
+    
+}
+
+#pragma mark -------- 删除方法
+
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated{
+    
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:YES];
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return YES;
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return UITableViewCellEditingStyleDelete;
+    
+    
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DataMessageBaseManaher *manager = [DataMessageBaseManaher shareDataBaseManager];
+    [manager openDB];
+    
+    
+    
+    
+    [manager deleteWithMessage:[self.newsModelArr[indexPath.row] title]];
+    
+    [self.datas removeObjectAtIndex:indexPath.row];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    
+    
+    
 }
 
 /*

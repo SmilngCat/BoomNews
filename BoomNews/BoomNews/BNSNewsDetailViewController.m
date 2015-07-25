@@ -26,6 +26,12 @@
 #import "BNSNewsDetailView.h"
 #import "BNSDetailModel.h"
 #import "BNSNewsDetailWebView.h"
+
+//本地化存储
+
+#import "DataMessageBaseManaher.h"
+#import "BNSMineModel.h"
+
 @interface BNSNewsDetailViewController ()<BNSScrollViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, retain)NSMutableArray *dataArray;
@@ -47,6 +53,7 @@
 @implementation BNSNewsDetailViewController
 - (void)dealloc
 {
+    [_newsModel release];
     [_model release];
     [_detailView release];
     [_detailWebView release];
@@ -61,6 +68,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    UIBarButtonItem *_rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(collectAction:)];
+    self.navigationItem.rightBarButtonItem = _rightBarButton;
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadData];
     
@@ -68,7 +79,22 @@
     
 }
 
-
+- (void)collectAction:(UIBarButtonItem *)sender {
+    
+    DataMessageBaseManaher *manager = [DataMessageBaseManaher shareDataBaseManager];
+    [manager openDB];
+    [manager createTable];
+    [manager insertMessage:self.newsModel];
+    
+    
+    UIAlertView *collectView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+    [collectView show];
+    
+    
+    
+    
+    
+}
 
 - (void)loadWebView:(BNSDetailWebModel *)model {
     
@@ -99,12 +125,12 @@
     self.detailArray = [NSMutableArray array];
     self.noteArray = [NSMutableArray array];
  
-    NSString *skipID1 = [self.model.skipID substringWithRange:NSMakeRange(4, 4)];
-    NSString *skipID2 = [self.model.skipID substringFromIndex:9];
+
     
     //NSLog(@"%@", self.model.imgsrc);
-    if (self.model.skipID && self.model.specialID == nil) {
-        
+    if (self.model.skipID && [self.newsModel.skipType isEqualToString:@"photoset"]) {
+        NSString *skipID1 = [self.newsModel.skipID substringWithRange:NSMakeRange(4, 4)];
+        NSString *skipID2 = [self.newsModel.skipID substringFromIndex:9];
     __block typeof(self)weakSelf = self;
     [Message recivedDataWithURLString:[NSString stringWithFormat:DETAILURL, skipID1,skipID2] method:@"GET" body:nil Block:^(id object) {
         
@@ -135,7 +161,7 @@
     }];
     
     } else {
-    [Message recivedDataWithURLString:[NSString stringWithFormat:@"%@%@%@", URL, self.model.docid, URL1] method:@"GET" body:nil Block:^(id object) {
+    [Message recivedDataWithURLString:[NSString stringWithFormat:@"%@%@%@", URL, self.newsModel.docid, URL1] method:@"GET" body:nil Block:^(id object) {
         NSDictionary *dic = (NSDictionary *)object;
         NSArray *array = [dic allKeys];
         NSDictionary *tempDic = [dic objectForKey:array[0]];

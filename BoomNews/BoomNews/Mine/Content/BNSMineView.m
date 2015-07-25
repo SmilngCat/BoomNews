@@ -15,6 +15,7 @@
 #import "BNSMineStoreTableViewController.h"
 #import "BNSMineBetaTableViewController.h"
 
+#import "DataMessageBaseManaher.h"
 
 @interface BNSMineView () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,7 +32,7 @@
 - (void)dealloc {
 	
 	[_datas release];
-	
+    [_model release];
 	[_avatarImageView release];
 	[_settingTableView release];
 	[super dealloc];
@@ -168,18 +169,34 @@
 			break;
 		}
 		case 1: {
-			[datas addObject:@"文章"];
-			[datas addObject:@"图片"];
-			
-			BNSMineStoreTableViewController *detailedViewController = [[[BNSMineStoreTableViewController alloc] init] autorelease];
-			detailedViewController.datas = datas;
-			detailedViewController.hiddenNavigationBar = YES;
-			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
-			break;
+            BNSMineStoreTableViewController *detailedViewController = [[[BNSMineStoreTableViewController alloc] init] autorelease];
+            
+            NSMutableArray *newsModelArray = [NSMutableArray array];
+            [[DataMessageBaseManaher shareDataBaseManager] openDB];
+            NSArray *arr = [[DataMessageBaseManaher shareDataBaseManager] selectAll];
+            
+            for (int i = 0; i < arr.count; i ++) {
+                BNSNewsModel *model = arr[i];
+                [datas addObject:model.title];
+                [newsModelArray addObject:model];
+                
+            }
+            
+            
+#pragma mark -------- 传过去数组
+            
+            
+            detailedViewController.datas = [NSMutableArray arrayWithArray:datas];
+            detailedViewController.newsModelArr = newsModelArray;
+            
+            detailedViewController.hiddenNavigationBar = YES;
+            [self.viewController.navigationController pushViewController:detailedViewController animated:YES];
+            break;
+
 		}
 		case 2: {
-			[datas addObject:@"版本号"];
-			[datas addObject:@"关于我们"];
+            [datas addObject:@"版本号                         V 1.0"];
+			[datas addObject:@"免责声明"];
 			
 			BNSMineBetaTableViewController *detailedViewController = [[[BNSMineBetaTableViewController alloc] init] autorelease];
 			detailedViewController.datas = datas;

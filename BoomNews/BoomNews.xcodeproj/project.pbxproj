@@ -84,7 +84,6 @@
 		F73C4A1B1B60E47000842205 /* BNSMineDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A141B60E47000842205 /* BNSMineDetailedViewController.m */; };
 		F73C4A1C1B60E47000842205 /* BNSMineMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A161B60E47000842205 /* BNSMineMenuViewController.m */; };
 		F73C4A1D1B60E47000842205 /* BNSMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A181B60E47000842205 /* BNSMineViewController.m */; };
-		F73C4A441B61BD7B00842205 /* BNSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */; };
 		F7916A711B606CC200CE8BC9 /* BNSNewsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A701B606CC200CE8BC9 /* BNSNewsDetailView.m */; };
 		F7916A741B606E8E00CE8BC9 /* BNSDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A731B606E8E00CE8BC9 /* BNSDetailModel.m */; };
 		F7916A771B606EAC00CE8BC9 /* BNSNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A761B606EAC00CE8BC9 /* BNSNewsDetailViewController.m */; };
@@ -96,6 +95,8 @@
 		F7916A891B60852000CE8BC9 /* htmlCSS.css in Resources */ = {isa = PBXBuildFile; fileRef = F7916A871B60852000CE8BC9 /* htmlCSS.css */; };
 		F7916A8C1B60872F00CE8BC9 /* BNSNewsDetailWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A8B1B60872F00CE8BC9 /* BNSNewsDetailWebView.m */; };
 		F7916A8F1B609A0200CE8BC9 /* BNSDetailWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7916A8E1B609A0200CE8BC9 /* BNSDetailWebModel.m */; };
+		F7B189EA1B635BC100CB6852 /* DataMessageBaseManaher.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B189E91B635BC100CB6852 /* DataMessageBaseManaher.m */; };
+		F7B189EC1B635C4400CB6852 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B189EB1B635C4400CB6852 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,8 +266,6 @@
 		F73C4A171B60E47000842205 /* BNSMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMineViewController.h; sourceTree = "<group>"; };
 		F73C4A181B60E47000842205 /* BNSMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineViewController.m; sourceTree = "<group>"; };
 		F73C4A1E1B60E4CA00842205 /* Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Default.h; sourceTree = "<group>"; };
-		F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMessageViewController.m; sourceTree = "<group>"; };
-		F73C4A431B61BD7B00842205 /* BNSMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMessageViewController.h; sourceTree = "<group>"; };
 		F7916A6F1B606CC200CE8BC9 /* BNSNewsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSNewsDetailView.h; sourceTree = "<group>"; };
 		F7916A701B606CC200CE8BC9 /* BNSNewsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsDetailView.m; sourceTree = "<group>"; };
 		F7916A721B606E8E00CE8BC9 /* BNSDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSDetailModel.h; sourceTree = "<group>"; };
@@ -287,6 +286,9 @@
 		F7916A8B1B60872F00CE8BC9 /* BNSNewsDetailWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSNewsDetailWebView.m; sourceTree = "<group>"; };
 		F7916A8D1B609A0200CE8BC9 /* BNSDetailWebModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSDetailWebModel.h; sourceTree = "<group>"; };
 		F7916A8E1B609A0200CE8BC9 /* BNSDetailWebModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSDetailWebModel.m; sourceTree = "<group>"; };
+		F7B189E81B635BC100CB6852 /* DataMessageBaseManaher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMessageBaseManaher.h; sourceTree = "<group>"; };
+		F7B189E91B635BC100CB6852 /* DataMessageBaseManaher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMessageBaseManaher.m; sourceTree = "<group>"; };
+		F7B189EB1B635C4400CB6852 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B189EC1B635C4400CB6852 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +350,7 @@
 		E092F4661B56086D004DA8B3 = {
 			isa = PBXGroup;
 			children = (
+				F7B189EB1B635C4400CB6852 /* libsqlite3.dylib */,
 				E05DFDB01B589D5300759CD6 /* read_me.txt */,
 				E092F4711B56086D004DA8B3 /* BoomNews */,
 				E092F4851B56086D004DA8B3 /* BoomNewsTests */,
@@ -429,6 +433,7 @@
 		E092F49B1B5609C2004DA8B3 /* ThirdSupport */ = {
 			isa = PBXGroup;
 			children = (
+				F7B189E71B635BC100CB6852 /* DataBaseManager */,
 				E0D278071B61DDCF0004A47A /* CacheManager */,
 				F7916A851B60852000CE8BC9 /* HTML设置文件 */,
 				F7916A7B1B606F4F00CE8BC9 /* BNSNewsLunBoView */,
@@ -616,8 +621,6 @@
 				F73C4A161B60E47000842205 /* BNSMineMenuViewController.m */,
 				F73C49DF1B60E31700842205 /* BNSMineBetaTableViewController.h */,
 				F73C49E01B60E31700842205 /* BNSMineBetaTableViewController.m */,
-				F73C4A421B61BD7B00842205 /* BNSMessageViewController.m */,
-				F73C4A431B61BD7B00842205 /* BNSMessageViewController.h */,
 				F73C49E11B60E31700842205 /* BNSMineFontTableViewController.h */,
 				F73C49E21B60E31700842205 /* BNSMineFontTableViewController.m */,
 				F73C49E31B60E31700842205 /* BNSMineStoreTableViewController.h */,
@@ -731,6 +734,15 @@
 			);
 			name = "HTML设置文件";
 			path = "HTML设置文件副本";
+			sourceTree = "<group>";
+		};
+		F7B189E71B635BC100CB6852 /* DataBaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				F7B189E81B635BC100CB6852 /* DataMessageBaseManaher.h */,
+				F7B189E91B635BC100CB6852 /* DataMessageBaseManaher.m */,
+			);
+			path = DataBaseManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -870,7 +882,6 @@
 				F73C4A1B1B60E47000842205 /* BNSMineDetailedViewController.m in Sources */,
 				F73C4A031B60E41400842205 /* BNSTitleCell.m in Sources */,
 				E013F76D1B5E874800812B35 /* MJRefreshFooterView.m in Sources */,
-				F73C4A441B61BD7B00842205 /* BNSMessageViewController.m in Sources */,
 				E0D278001B6139680004A47A /* UITableViewCell+BNSLabelFont.m in Sources */,
 				E06260CA1B5CC94D00D28598 /* BNSVideoModel.m in Sources */,
 				F73C4A001B60E41400842205 /* BNSMutipleImageCell.m in Sources */,
@@ -888,6 +899,7 @@
 				E0D277FD1B6121F10004A47A /* UIButton+BNSLabelFont.m in Sources */,
 				F73C49E81B60E31700842205 /* BNSMineFontTableViewController.m in Sources */,
 				F7916A831B606F4F00CE8BC9 /* BNSScrollView.m in Sources */,
+				F7B189EA1B635BC100CB6852 /* DataMessageBaseManaher.m in Sources */,
 				E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */,
 				E092F59F1B573C25004DA8B3 /* Model.m in Sources */,
 				E0D278161B62637C0004A47A /* NSUserDefaults+Mutable.m in Sources */,
