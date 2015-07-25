@@ -156,6 +156,7 @@
 
 	NSMutableArray *datas = [NSMutableArray array];
 	
+    
 	switch (indexPath.row) {
 		case 0: {
 			[datas addObject:@"字体设置"];
@@ -164,13 +165,13 @@
 			
 			BNSMineDetailedViewController *detailedViewController = [[[BNSMineDetailedViewController alloc] init] autorelease];
 			detailedViewController.datas = datas;
-			
+            detailedViewController.hidesBottomBarWhenPushed = YES;
 			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
 		}
 		case 1: {
             BNSMineStoreTableViewController *detailedViewController = [[[BNSMineStoreTableViewController alloc] init] autorelease];
-            
+            detailedViewController.hidesBottomBarWhenPushed = YES;
             NSMutableArray *newsModelArray = [NSMutableArray array];
             [[DataMessageBaseManaher shareDataBaseManager] openDB];
             NSArray *arr = [[DataMessageBaseManaher shareDataBaseManager] selectAll];
@@ -195,11 +196,12 @@
 
 		}
 		case 2: {
-            [datas addObject:@"版本号                         V 1.0"];
+            [datas addObject:@"版本号  V 1.0"];
 			[datas addObject:@"免责声明"];
-			
+        
 			BNSMineBetaTableViewController *detailedViewController = [[[BNSMineBetaTableViewController alloc] init] autorelease];
 			detailedViewController.datas = datas;
+            detailedViewController.hidesBottomBarWhenPushed = YES;
 			detailedViewController.hiddenNavigationBar = YES;
 			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
