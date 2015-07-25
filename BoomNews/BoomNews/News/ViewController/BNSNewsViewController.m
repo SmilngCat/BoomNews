@@ -23,6 +23,7 @@
 
 @interface BNSNewsViewController () <UIScrollViewDelegate, OrderViewDelegate, BNSNewsTypeScrollBarButtonDelegate>
 
+@property (retain, nonatomic) NSMutableArray *navigationBarImages;
 @property (retain, nonatomic) NSMutableArray *newsTypeArray;
 @property (retain, nonatomic) NSMutableArray *newsAddressArray;
 
@@ -43,6 +44,8 @@
 	[_newsAddressArray release];
 	[_newsTypeBar release];
 	[_orderView release];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -55,10 +58,25 @@
 	//设置轮播当前显示哪一个类型的数据
 	[[NSUserDefaults standardUserDefaults] setInteger:1 forMutableKey:@"Index"];
 	
+	//接收新闻类型改变的通知
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newsTypeChanged:) name:kBNSIndexChanged object:nil];
+	
 	[self loadData];
 	[self loadUI];
 	
 }
+
+
+#pragma mark - Notification
+
+- (void)newsTypeChanged:(NSNotification *)notification {
+//	NSInteger index = [[NSUserDefaults standardUserDefaults] integerForMutableKey:@"Index"];
+//	UIImage *curImage = [UIImage imageNamed:_navigationBarImages[index]];
+//	[self.navigationController.navigationBar setBackgroundImage:curImage forBarMetrics:UIBarMetricsDefault];
+}
+
+
+#pragma mark - Private
 
 - (void)loadData {
 	

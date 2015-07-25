@@ -32,7 +32,7 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.backgroundColor = [UIColor colorWithRed:1.000 green:0.430 blue:0.175 alpha:1.000];
-		[self buildLayout];
+//		[self buildLayout];
 	}
 	return self;
 }

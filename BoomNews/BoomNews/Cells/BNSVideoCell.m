@@ -141,7 +141,7 @@
 	//coverImageView
 	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
 	
-	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeLeft multiplier:1.f constant:0]];
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeLeading multiplier:1.f constant:0]];
 	
 	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_coverImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_videoPlayer attribute:NSLayoutAttributeWidth multiplier:1.f constant:0]];
 	

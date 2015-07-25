@@ -85,26 +85,15 @@
 																			 options:0
 																			 metrics:metrics
 																			   views:views]];
-	//标题与副标题左对齐
-	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_briefLabel
-																 attribute:NSLayoutAttributeLeft
-																 relatedBy:NSLayoutRelationEqual
-																	toItem:_titleLabel
-																 attribute:NSLayoutAttributeLeft
-																multiplier:1.f constant:0]];
-	//副标题右边链接父视图
-	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_briefLabel]-|"
-																			 options:0
-																			 metrics:metrics
-																			   views:views]];
+
 	//图片的高度可增加
-	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_profileImageView(height)]-space-|"
+	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_profileImageView(>=100,<=120)]-space-|"
 																			 options:0
 																			 metrics:metrics
 																			   views:views]];
 	//标题与副标题之间的垂直布局
 	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_titleLabel]-20@749-[_briefLabel]-space-|"
-																			 options:0
+																			 options:NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing
 																			 metrics:metrics
 																			   views:views]];
 }
