@@ -57,11 +57,11 @@
 }
 
 
-- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index completion:(void(^)(void))completion {
+- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index
+			  withURLString:(NSString *)urlString
+				 completion:(void(^)(void))completion {
 	
 	__block typeof(self) weakSelf = self;
-
-	NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%ld.html", weakSelf.offset, weakSelf.offset + 19];
 	BOOL result = [[BNSHTTPRequest sharedHTTPRequest] requestWithURLString:urlString
 														type:index
 												  completion:^(id data) {

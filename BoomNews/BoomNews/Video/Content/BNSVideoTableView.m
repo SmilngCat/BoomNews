@@ -46,7 +46,8 @@
 	//加载地址偏移量回到0
 	self.offset = 0;
 	
-	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
+	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 10];
+	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString completion:^{
 	}];
 	
 	[self headerEndRefreshing];
@@ -59,10 +60,11 @@
 		
 		dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
 			lock = YES;
-			//加载地址偏移量累加20
-			self.offset += 20;
+			//加载地址偏移量累加10
+			self.offset += 10;
 			
-			lock = ![self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo completion:^{
+			NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 10];
+			[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString completion:^{
 				lock = NO;
 			}];
 		});

@@ -74,7 +74,7 @@ static BNSHTTPRequest *sharedRequest = nil;
 - (NSArray *)handleNewsData:(NSData *)data urlString:(NSString *)urlString{
 	NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 	
-	NSString *key = [urlString substringWithRange:NSMakeRange(35, 14)];
+	NSString *key = [urlString substringWithRange:NSMakeRange(36, 14)];
 	
 	NSArray *array = dic[key];
 	NSMutableArray *datas = [[[NSMutableArray alloc] init] autorelease];
@@ -92,7 +92,7 @@ static BNSHTTPRequest *sharedRequest = nil;
 - (NSArray *)handleVideoData:(NSData *)data urlString:(NSString *)urlString {
 	NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 	
-	NSString *key = [urlString substringWithRange:NSMakeRange(33, 9)];
+	NSString *key = [urlString substringWithRange:NSMakeRange(34, 9)];
 	
 	NSArray *array = dic[key];
 	NSMutableArray *datas = [[[NSMutableArray alloc] init] autorelease];

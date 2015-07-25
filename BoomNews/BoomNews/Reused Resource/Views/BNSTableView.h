@@ -44,5 +44,7 @@
  *  @param index 资源类型
  *	@return YES请求成功，NO失败.
  */
-- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index completion:(void(^)(void))completion;
+- (BOOL)bns_LoadDataAtIndex:(NSUInteger)index
+			  withURLString:(NSString *)urlString
+				 completion:(void(^)(void))completion;
 @end

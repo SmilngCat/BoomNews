@@ -34,7 +34,7 @@
 }
 
 - (void)loadData {
-	self.urlString = @"http://c.m.163.com/nc/video/list/V9LG4B3A0/y";
+	self.urlString = @"http://c.3g.163.com/nc/video/list/V9LG4B3A0/y";
 }
 
 #pragma mark - Layout

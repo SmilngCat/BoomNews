@@ -113,7 +113,7 @@
 		[_newsAddressArray addObject:obj];
 	}];
 //	//科技
-//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692"];
+//	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348649580692/20-40.html"];
 //	//娱乐
 //	[_newsAddressArray addObject:@"http://c.m.163.com/nc/article/list/T1348648517839"];
 //	//体育

@@ -43,9 +43,11 @@
 	//加载地址偏移量回到0
 	self.offset = 0;
 	
-	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(35, 14)];
+	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(36, 14)];
 	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
-	[self bns_LoadDataAtIndex:currentIndex completion:^{}];
+	
+	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 20];
+	[self bns_LoadDataAtIndex:currentIndex withURLString:urlString completion:^{}];
 	
 	[self headerEndRefreshing];
 }
@@ -60,9 +62,10 @@
 			//加载地址偏移量累加20
 			weakSelf.offset += 20;
 			
-			NSString *tailString = [weakSelf.urlString substringWithRange:NSMakeRange(35, 14)];
+			NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 20];
+			NSString *tailString = [weakSelf.urlString substringWithRange:NSMakeRange(36, 14)];
 			NSUInteger currentIndex = [weakSelf getCurrentIndexWithString:tailString];
-			[weakSelf bns_LoadDataAtIndex:currentIndex completion:^{
+			[weakSelf bns_LoadDataAtIndex:currentIndex withURLString:urlString completion:^{
 				lock = NO;
 			}];
 		});
