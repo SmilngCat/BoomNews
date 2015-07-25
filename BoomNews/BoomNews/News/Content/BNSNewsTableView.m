@@ -33,6 +33,7 @@
 		
 		//线程同步信号量
 		_semaphore = dispatch_semaphore_create(1);
+//		dispatch_semaphore_signal(_semaphore);
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
@@ -64,7 +65,7 @@
 }
 
 - (void)footerRefreshing {
-	
+
 	dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
 	
 	__block typeof(self) weakSelf = self;
@@ -79,6 +80,7 @@
 	
 	[self footerEndRefreshing];
 }
+
 
 - (NSUInteger)getCurrentIndexWithString:(NSString *)string {
 	NSUInteger index = 0;
