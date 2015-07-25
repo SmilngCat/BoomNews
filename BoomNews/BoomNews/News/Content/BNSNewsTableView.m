@@ -8,12 +8,20 @@
 
 #import "BNSNewsTableView.h"
 #import "BNSNewsDetailViewController.h"
+
+@interface BNSNewsTableView ()
+
+@property (assign, nonatomic) dispatch_semaphore_t semaphore;
+@end
+
+
 @implementation BNSNewsTableView
 
 #pragma mark - BNSTableView Lifecycle
 
 - (void)dealloc {
 	
+	dispatch_release(_semaphore);
 	[super dealloc];
 }
 
@@ -22,6 +30,9 @@
 	if (self) {
 		self.dataSource = self;
 		self.delegate = self;
+		
+		//线程同步信号量
+		_semaphore = dispatch_semaphore_create(1);
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
@@ -54,22 +65,18 @@
 
 - (void)footerRefreshing {
 	
+	dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+	
 	__block typeof(self) weakSelf = self;
-	static BOOL lock = NO;
-	if (!lock) {
-		lock = YES;
-		dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),  ^{
-			//加载地址偏移量累加20
-			weakSelf.offset += 20;
-			
-			NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 20];
-			NSString *tailString = [weakSelf.urlString substringWithRange:NSMakeRange(36, 14)];
-			NSUInteger currentIndex = [weakSelf getCurrentIndexWithString:tailString];
-			[weakSelf bns_LoadDataAtIndex:currentIndex withURLString:urlString completion:^{
-				lock = NO;
-			}];
-		});
-	}
+	weakSelf.offset += 20;
+	
+	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 20];
+	NSString *tailString = [self.urlString substringWithRange:NSMakeRange(36, 14)];
+	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
+	[self bns_LoadDataAtIndex:currentIndex withURLString:urlString completion:^{
+		dispatch_semaphore_signal(weakSelf.semaphore);
+	}];
+	
 	[self footerEndRefreshing];
 }
 
