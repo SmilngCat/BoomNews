@@ -69,6 +69,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.view.backgroundColor = [UIColor whiteColor];
     
     self._rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self._rightButton.frame = CGRectMake(0, 0, 60, 40);
