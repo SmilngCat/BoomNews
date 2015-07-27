@@ -122,7 +122,7 @@
 	[[NSUserDefaults standardUserDefaults] setInteger:_top forMutableKey:@"Index"];
 	if (self.delegate && [self.delegate respondsToSelector:@selector(orderView:didScrollToIndex:options:)]) {
 		//当前选中的新闻类型
-		[[NSUserDefaults standardUserDefaults] setInteger:_top + 1 forMutableKey:@"Index"];
+		[[NSUserDefaults standardUserDefaults] setInteger:(_top + 1) % count forMutableKey:@"Index"];
 		[self.delegate orderView:self didScrollToIndex:_top options:directionType];
 	}
 }
