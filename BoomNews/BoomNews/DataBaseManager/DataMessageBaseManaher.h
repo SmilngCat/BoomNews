@@ -39,7 +39,7 @@
 
 
 //关闭数据库
-- (void)closeDB;
+//- (void)closeDB;
 
 
 //获取doucuments路径

@@ -149,7 +149,9 @@
 	if (indexPath.row == 0) {
 
 		BNSMineFontTableViewController *menuViewController = [[[BNSMineFontTableViewController alloc] init] autorelease];
-		menuViewController.datas = @[@"字体类型", @"字体大小"];
+		menuViewController.datas = [NSMutableArray array];
+		[menuViewController.datas addObject:@"字体类型"];
+		[menuViewController.datas addObject:@"字体大小"];
 		[self.navigationController pushViewController:menuViewController animated:YES];
 		
 	//夜间模式

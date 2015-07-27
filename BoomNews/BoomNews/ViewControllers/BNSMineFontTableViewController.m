@@ -31,7 +31,7 @@
 
 	if (indexPath.row == 0) {
 		BNSMineFontFamilyTableViewController *viewController = [[[BNSMineFontFamilyTableViewController alloc] init] autorelease];
-		viewController.datas = [UIFont familyNames];
+		viewController.datas = [NSMutableArray arrayWithArray:[UIFont familyNames]];
 		[self.navigationController pushViewController:viewController animated:YES];
 		
 	}else {

@@ -33,7 +33,6 @@
 		
 		//线程同步信号量
 		_semaphore = dispatch_semaphore_create(1);
-//		dispatch_semaphore_signal(_semaphore);
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
