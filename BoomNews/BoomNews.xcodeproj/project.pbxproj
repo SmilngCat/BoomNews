@@ -16,6 +16,7 @@
 		E013F7701B5E874800812B35 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E013F7671B5E874800812B35 /* UIScrollView+MJRefresh.m */; };
 		E013F7711B5E874800812B35 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E013F7691B5E874800812B35 /* UIView+MJExtension.m */; };
 		E0157DB01B59157000ABB769 /* BNSTableView+BNSHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E0157DAF1B59157000ABB769 /* BNSTableView+BNSHeightCache.m */; };
+		E055BE121B6611B30079B4E3 /* BNSMineDragToScalelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E055BE111B6611B30079B4E3 /* BNSMineDragToScalelTableView.m */; };
 		E05DFDAA1B57D89500759CD6 /* OrderScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA51B57D89500759CD6 /* OrderScrollContentView.m */; };
 		E05DFDAB1B57D89500759CD6 /* OrderScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA71B57D89500759CD6 /* OrderScrollView.m */; };
 		E05DFDAC1B57D89500759CD6 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E05DFDA91B57D89500759CD6 /* OrderView.m */; };
@@ -129,6 +130,8 @@
 		E013F7691B5E874800812B35 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		E0157DAE1B59157000ABB769 /* BNSTableView+BNSHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BNSTableView+BNSHeightCache.h"; path = "Reused Resource/Views/BNSTableView+BNSHeightCache.h"; sourceTree = "<group>"; };
 		E0157DAF1B59157000ABB769 /* BNSTableView+BNSHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BNSTableView+BNSHeightCache.m"; path = "Reused Resource/Views/BNSTableView+BNSHeightCache.m"; sourceTree = "<group>"; };
+		E055BE101B6611B30079B4E3 /* BNSMineDragToScalelTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNSMineDragToScalelTableView.h; sourceTree = "<group>"; };
+		E055BE111B6611B30079B4E3 /* BNSMineDragToScalelTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNSMineDragToScalelTableView.m; sourceTree = "<group>"; };
 		E05DFDA41B57D89500759CD6 /* OrderScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderScrollContentView.h; sourceTree = "<group>"; };
 		E05DFDA51B57D89500759CD6 /* OrderScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderScrollContentView.m; sourceTree = "<group>"; };
 		E05DFDA61B57D89500759CD6 /* OrderScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderScrollView.h; sourceTree = "<group>"; };
@@ -701,6 +704,8 @@
 				F73C4A0F1B60E47000842205 /* BNSMineImageView.m */,
 				F73C4A101B60E47000842205 /* BNSMineView.h */,
 				F73C4A111B60E47000842205 /* BNSMineView.m */,
+				E055BE101B6611B30079B4E3 /* BNSMineDragToScalelTableView.h */,
+				E055BE111B6611B30079B4E3 /* BNSMineDragToScalelTableView.m */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				E092F5D41B57B5EF004DA8B3 /* UIImage+GIF.m in Sources */,
 				E0D277FD1B6121F10004A47A /* UIButton+BNSLabelFont.m in Sources */,
 				F73C49E81B60E31700842205 /* BNSMineFontTableViewController.m in Sources */,
+				E055BE121B6611B30079B4E3 /* BNSMineDragToScalelTableView.m in Sources */,
 				F7916A831B606F4F00CE8BC9 /* BNSScrollView.m in Sources */,
 				F7B189EA1B635BC100CB6852 /* DataMessageBaseManaher.m in Sources */,
 				E092F5321B5696A7004DA8B3 /* BNSVideoViewController.m in Sources */,

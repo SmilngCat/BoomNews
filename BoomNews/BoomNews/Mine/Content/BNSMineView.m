@@ -7,7 +7,7 @@
 //
 
 #import "BNSMineView.h"
-#import "BNSMineImageView.h"
+#import "BNSMineDragToScalelTableView.h"
 
 #import "BNSMineViewController.h"
 
@@ -21,8 +21,7 @@
 
 @property (retain, nonatomic) NSMutableArray *datas;
 
-@property (retain, nonatomic) BNSMineImageView *avatarImageView;
-@property (retain, nonatomic) UITableView *settingTableView;
+@property (retain, nonatomic) BNSMineDragToScalelTableView *settingTableView;
 @end
 
 @implementation BNSMineView
@@ -33,7 +32,6 @@
 	
 	[_datas release];
     [_model release];
-	[_avatarImageView release];
 	[_settingTableView release];
 	[super dealloc];
 }
@@ -64,63 +62,70 @@
 #pragma mark - Layout
 
 - (void)buildLayout {
-	[self addSubview:self.avatarImageView];
+
 	[self addSubview:self.settingTableView];
 	
-	CGFloat tabBarHeight = [[NSUserDefaults standardUserDefaults] floatForKey:@"tabBarHeight"];
-	UIView *view = self;
-	NSDictionary *views = NSDictionaryOfVariableBindings(view,
-														 _avatarImageView,
-														_settingTableView);
-	NSDictionary *metrics = @{@"imageViewHeight" : @300,
-							  @"tableViewHeight" : @200,
-							  @"tabBarHeight" : @(tabBarHeight)};
-	
-	//imageview的宽度
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_avatarImageView]|"
-																 options:0
-																 metrics:metrics
-																   views:views]];
+	UIImageView *scaleImageView = _settingTableView.scaleImageView;
+	NSDictionary *views = NSDictionaryOfVariableBindings(self,
+														_settingTableView,
+														 scaleImageView);
+	CGFloat width = CGRectGetWidth(self.bounds);
+	NSDictionary *metrics = @{@"scaleWidth" : @(width)};
 	
 	//tableView的宽度
 	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_settingTableView]|"
 																 options:0
-																 metrics:metrics
+																 metrics:0
 																   views:views]];
+	
 	//tableView的高度
-	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_avatarImageView(<=imageViewHeight)]-20-[_settingTableView(tableViewHeight)]-tabBarHeight@249-|"
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_settingTableView]|"
+																 options:0
+																 metrics:0
+																   views:views]];
+	//scaleImageView的宽度
+	[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[scaleImageView(scaleWidth)]"
 																 options:0
 																 metrics:metrics
 																   views:views]];
 	
+	CGFloat height = CGRectGetHeight(self.bounds) * 0.5f;
+	_settingTableView.contentInset = UIEdgeInsetsMake(height, 0, 0, 0);
 }
+
 
 
 #pragma mark - Lazy loading
 
-- (BNSMineImageView *)avatarImageView {
-	if (!_avatarImageView) {
-		_avatarImageView = [[BNSMineImageView alloc] init];
-		_avatarImageView.translatesAutoresizingMaskIntoConstraints = NO;
-	}
-	return _avatarImageView;
-}
-
-- (UITableView *)settingTableView {
+- (BNSMineDragToScalelTableView *)settingTableView {
 	if (!_settingTableView) {
-		_settingTableView = [[UITableView alloc] init];
+		_settingTableView = [[BNSMineDragToScalelTableView alloc] init];
 		_settingTableView.dataSource = self;
 		_settingTableView.delegate = self;
-		[_settingTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SETTING"];
-		
-		//隐藏多余的cell
-		UIView *footerView = [[[UIView alloc] init] autorelease];
-		footerView.backgroundColor = [UIColor clearColor];
-		_settingTableView.tableFooterView = footerView;
-		
 		_settingTableView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	return _settingTableView;
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(BNSMineDragToScalelTableView *)scrollView {
+
+	CGFloat height = CGRectGetHeight(scrollView.bounds) * 0.5f;
+	CGFloat offset = - height - scrollView.contentOffset.y;
+	if (offset < 0) {
+		scrollView.constraint.constant = - height;
+		scrollView.contentOffset = CGPointMake(0, -(height));
+		scrollView.contentInset = UIEdgeInsetsMake(height, 0, 0, 0);
+		return ;
+	}else {
+		scrollView.constraint.constant = - height - offset;
+	}
+
+//	[UIView animateWithDuration:0.1f animations:^{
+//		[scrollView layoutIfNeeded];
+//	}];
 }
 
 

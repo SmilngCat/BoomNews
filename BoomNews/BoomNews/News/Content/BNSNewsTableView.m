@@ -129,8 +129,8 @@
 	NewsModel *model = self.datas[indexPath.row];
 	[cell setModel:model];
 	
-	[cell setNeedsLayout];
-	[cell layoutIfNeeded];
+//	[cell setNeedsLayout];
+//	[cell layoutIfNeeded];
 
 }
 

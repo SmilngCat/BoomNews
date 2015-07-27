@@ -12,9 +12,8 @@
 
 @interface BNSMineView : UIView
 
-@property (assign, nonatomic) BNSMineViewController *viewController;
-
 
 @property (retain, nonatomic) BNSDetailModel *model;
+@property (assign, nonatomic) BNSMineViewController *viewController;
 
 @end

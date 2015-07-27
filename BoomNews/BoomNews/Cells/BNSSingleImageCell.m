@@ -57,11 +57,17 @@
 #pragma mark - setter
 
 - (void)setModel:(NewsModel *)model {
-	_titleLabel.text = model.title;
-	_briefLabel.text = model.digest;
-
-	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-	[_profileImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+	
+	if (_model != model) {
+		[_model release];
+		_model = [model retain];
+		
+		_titleLabel.text = model.title;
+		_briefLabel.text = model.digest;
+		
+		NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
+		[_profileImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+	}
 }
 
 
@@ -77,25 +83,40 @@
 														 _profileImageView,
 														 _titleLabel,
 														 _briefLabel);
-	NSDictionary *metrics = @{@"space" : @10,
+	NSDictionary *metrics = @{
 							  @"width" : @(kImageViewWidth),
 							  @"height" : @(kImageViewHeight)};
 	//增加图片与标题之间的横向布局
-	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_profileImageView(width)]-space-[_titleLabel]-|"
+	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_profileImageView(width)]-[_titleLabel]-|"
 																			 options:0
 																			 metrics:metrics
 																			   views:views]];
+	//图片与标题和副标题之间上下对齐
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_titleLabel attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
+	
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_briefLabel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0]];
 
 	//图片的高度可增加
-	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_profileImageView(>=100,<=120)]-space-|"
-																			 options:0
-																			 metrics:metrics
-																			   views:views]];
+//	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_profileImageView]-space-|"
+//																			 options:0
+//																			 metrics:metrics
+//																			   views:views]];
 	//标题与副标题之间的垂直布局
-	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_titleLabel]-20@749-[_briefLabel]-space-|"
+	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_titleLabel]-[_briefLabel]-|"
 																			 options:NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing
 																			 metrics:metrics
 																			   views:views]];
+	
+	//_profileImageView的高度以显示设置的约束为主
+	[_profileImageView setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+	[_profileImageView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+	
+	//_titleLabel和_briefLabel的高度以intrinsic Contentsize的约束为主
+	[_titleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+	[_titleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh + 1 forAxis:UILayoutConstraintAxisVertical];
+	
+	[_briefLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
+	[_briefLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh + 1 forAxis:UILayoutConstraintAxisVertical];
 }
 
 

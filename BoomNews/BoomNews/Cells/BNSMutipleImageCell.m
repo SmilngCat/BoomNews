@@ -59,15 +59,20 @@
 
 - (void)setModel:(NewsModel *)model {
 	
-	_titleLabel.text = model.title;
-	
-	NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
-	[_leftImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
-
-	NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
-	NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
-	[_middleImageView sd_setImageWithURL:middleImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
-	[_rightImageView sd_setImageWithURL:rightImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+	if (_model != model) {
+		[_model release];
+		_model = [model retain];
+		
+		_titleLabel.text = model.title;
+		
+		NSURL *imageURL = [NSURL URLWithString:model.imgsrc];
+		[_leftImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+		
+		NSURL *middleImageURL = [NSURL URLWithString:[model.imgextraArray[0] imgsrc]];
+		NSURL *rightImageURL = [NSURL URLWithString:[model.imgextraArray[1] imgsrc]];
+		[_middleImageView sd_setImageWithURL:middleImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+		[_rightImageView sd_setImageWithURL:rightImageURL placeholderImage:[UIImage imageNamed:@"absent"]];
+	}
 
 }
 
