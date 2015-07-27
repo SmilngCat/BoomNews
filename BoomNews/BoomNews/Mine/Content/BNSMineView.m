@@ -190,7 +190,7 @@
             detailedViewController.datas = [NSMutableArray arrayWithArray:datas];
             detailedViewController.newsModelArr = newsModelArray;
             
-            detailedViewController.hiddenNavigationBar = YES;
+//            detailedViewController.hiddenNavigationBar = YES;
             [self.viewController.navigationController pushViewController:detailedViewController animated:YES];
             break;
 
@@ -202,7 +202,7 @@
 			BNSMineBetaTableViewController *detailedViewController = [[[BNSMineBetaTableViewController alloc] init] autorelease];
 			detailedViewController.datas = datas;
             detailedViewController.hidesBottomBarWhenPushed = YES;
-			detailedViewController.hiddenNavigationBar = YES;
+//			detailedViewController.hiddenNavigationBar = YES;
 			[self.viewController.navigationController pushViewController:detailedViewController animated:YES];
 			break;
 		}

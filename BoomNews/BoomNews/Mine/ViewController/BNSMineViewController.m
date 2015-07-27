@@ -15,7 +15,7 @@
 
 @implementation BNSMineViewController
 
-#pragma mark - AccountViewController Lifecycle
+#pragma mark - BNSMineViewController Lifecycle
 
 - (void)dealloc {
 	[super dealloc];
@@ -24,15 +24,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	//隐藏导航栏
-	self.navigationController.navigationBar.hidden = YES;
-
 	BNSMineView *mineView = [[[BNSMineView alloc] initWithFrame:self.view.bounds] autorelease];
 	mineView.viewController = self;
 	
 	[self.view addSubview:mineView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	//隐藏导航栏
+	[self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	//显示导航栏
+	[self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 
 
 @end

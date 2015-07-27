@@ -23,8 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//显示导航栏
-	self.navigationController.navigationBar.hidden = NO;
 	
 	//隐藏多余的cell
 	UIView *footerView = [[[UIView alloc] init] autorelease];
@@ -34,18 +32,18 @@
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"MINECELL"];
 	
 	//自定义返回按钮
-	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-	self.navigationItem.leftBarButtonItem = backBarButtonItem;
+//	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
+//	self.navigationItem.leftBarButtonItem = backBarButtonItem;
 }
 
 #pragma mark - Actions
 
-- (void)back:(id)sender {
-	if (_hiddenNavigationBar) {
-		self.navigationController.navigationBar.hidden = YES;
-	}
-	[self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)back:(id)sender {
+//	if (_hiddenNavigationBar) {
+//		self.navigationController.navigationBar.hidden = YES;
+//	}
+//	[self.navigationController popViewControllerAnimated:YES];
+//}
 
 #pragma mark - Table view data source
 

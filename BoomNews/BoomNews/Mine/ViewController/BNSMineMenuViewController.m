@@ -49,19 +49,20 @@ static NSUInteger size = 1;
 	footerView.backgroundColor = [UIColor clearColor];
 	_listTableView.tableFooterView = footerView;
 	
-	//自定义返回按钮
-	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-	self.navigationItem.leftBarButtonItem = backBarButtonItem;
-	
 	[self.view addSubview:_listTableView];
+	
+	//自定义返回按钮
+//	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
+//	self.navigationItem.leftBarButtonItem = backBarButtonItem;
+
 }
 
 
 #pragma mark - Actions
 
-- (void)back:(id)sender {
-	[self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)back:(id)sender {
+//	[self.navigationController popViewControllerAnimated:YES];
+//}
 
 #pragma mark - UITableViewDataSource
 

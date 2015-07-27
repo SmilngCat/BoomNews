@@ -57,16 +57,16 @@
 	[self.view addSubview:_menuTableView];
 	
 	//自定义返回按钮
-	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
-	self.navigationItem.leftBarButtonItem = backBarButtonItem;
+//	UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(back:)];
+//	self.navigationItem.leftBarButtonItem = backBarButtonItem;
 }
 
 #pragma mark - Actions
 
-- (void)back:(id)sender {
-	self.navigationController.navigationBar.hidden = YES;
-	[self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)back:(id)sender {
+//	self.navigationController.navigationBar.hidden = YES;
+//	[self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)switchSelected:(UISwitch *)sender {
 
