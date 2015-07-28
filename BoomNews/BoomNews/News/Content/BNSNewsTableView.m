@@ -129,8 +129,8 @@
 	NewsModel *model = self.datas[indexPath.row];
 	[cell setModel:model];
 	
-//	[cell setNeedsLayout];
-//	[cell layoutIfNeeded];
+	[cell setNeedsLayout];
+	[cell layoutIfNeeded];
 
 }
 
@@ -152,7 +152,7 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 50;
+	return 44.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

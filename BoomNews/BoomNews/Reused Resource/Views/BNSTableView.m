@@ -45,6 +45,8 @@
 		[self registerClass:titleCellClass forCellReuseIdentifier:NSStringFromClass(titleCellClass)];
 		[self registerClass:videoCellClass forCellReuseIdentifier:NSStringFromClass(videoCellClass)];
 		
+		self.rowHeight = UITableViewAutomaticDimension;
+		
 		//隐藏多余的cell
 		UIView *footerView = [[[UIView alloc] init] autorelease];
 		footerView.backgroundColor = [UIColor clearColor];

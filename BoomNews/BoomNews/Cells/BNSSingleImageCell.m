@@ -91,21 +91,16 @@
 																			 options:0
 																			 metrics:metrics
 																			   views:views]];
-	//图片与标题和副标题之间上下对齐
-	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_titleLabel attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
 	
-	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_briefLabel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0]];
-
-	//图片的高度可增加
-//	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-space-[_profileImageView]-space-|"
-//																			 options:0
-//																			 metrics:metrics
-//																			   views:views]];
 	//标题与副标题之间的垂直布局
 	[self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_titleLabel]-[_briefLabel]-|"
 																			 options:NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing
 																			 metrics:metrics
 																			   views:views]];
+	//图片与标题和副标题之间上下对齐
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_titleLabel attribute:NSLayoutAttributeTop multiplier:1.f constant:0]];
+	
+	[self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_profileImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_briefLabel attribute:NSLayoutAttributeBottom multiplier:1.f constant:0]];
 	
 	//_profileImageView的高度以显示设置的约束为主
 	[_profileImageView setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
@@ -117,6 +112,19 @@
 	
 	[_briefLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
 	[_briefLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh + 1 forAxis:UILayoutConstraintAxisVertical];
+	
+}
+
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	
+	CGFloat width = [UIScreen mainScreen].bounds.size.width - 120 - 30;
+	
+	_titleLabel.preferredMaxLayoutWidth = width;
+	_briefLabel.preferredMaxLayoutWidth = width;
+
+	[super layoutSubviews];
 }
 
 
@@ -135,9 +143,11 @@
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		_titleLabel.numberOfLines = 0;
-		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
+		_titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 		
+		CGFloat width = [UIScreen mainScreen].bounds.size.width - 120 - 30;
+		_titleLabel.preferredMaxLayoutWidth = width;
 	}
 	return _titleLabel;
 }
@@ -148,6 +158,9 @@
 		_briefLabel.numberOfLines = 0;
 		_briefLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		_briefLabel.translatesAutoresizingMaskIntoConstraints = NO;
+		
+		CGFloat width = [UIScreen mainScreen].bounds.size.width - 120 - 30;
+		_briefLabel.preferredMaxLayoutWidth = width;
 	}
 	return _briefLabel;
 }
