@@ -14,6 +14,11 @@
 
 #import "BNSWaitingViewController.h"
 
+@interface BNSVideoTableView ()
+
+@property (assign, nonatomic) BOOL freshingDone;
+@end
+
 @implementation BNSVideoTableView
 
 #pragma mark - BNSTableView Lifecycle
@@ -24,6 +29,8 @@
 	if (self) {
 		self.dataSource = self;
 		self.delegate = self;
+		
+		_freshingDone = YES;
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
@@ -47,7 +54,17 @@
 	self.offset = 0;
 	
 	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 10];
+	
+	__block typeof(self) weakSelf = self;
 	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:NO completion:^{
+		//加载地址偏移量累加10
+		weakSelf.offset += 10;
+		
+		NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%d.html", weakSelf.offset, 10];
+		[weakSelf bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:YES completion:^{
+			weakSelf.cacheValidate = YES;
+		}];
+
 	}];
 	
 	[self headerEndRefreshing];
@@ -55,25 +72,41 @@
 
 - (void)footerRefreshing {
 	
-	static BOOL lock = NO;
-	if (!lock) {
-		
-		dispatch_barrier_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-			lock = YES;
-			//加载地址偏移量累加10
-			self.offset += 10;
+	if (_freshingDone) {
+		_freshingDone = NO;
+
+		if (self.cacheValidate) {
+			//加载缓存数据
+			for (id obj in self.cache1) {
+				[self.datas addObject:obj];
+			}
+			[self.cache1 removeAllObjects];
 			
-			NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html", self.offset, 10];
-			[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:NO completion:^{
-				lock = NO;
-			}];
-		});
+			//更新View
+			_freshingDone = YES;
+			[self reloadData];
+			
+			//再缓存
+			self.cacheValidate = NO;
+			[self updateDataIfNeeded];
+		}
+
 	}
 	[self footerEndRefreshing];
 }
 
+- (void)updateDataIfNeeded {
+	//加载地址偏移量累加10
+	self.offset += 10;
+	
+	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html",self.offset, 10];
+	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:YES completion:^{
+		self.cacheValidate = YES;
+	}];
 
-#pragma mark - UITableViewDataSource 
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return self.datas.count;
