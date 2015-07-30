@@ -146,11 +146,6 @@
 	middleView.offset = 0;
 	rightView.offset = 0;
 	
-	//重启刷新功能
-	leftView.freshingDone = YES;
-	middleView.freshingDone = YES;
-	rightView.freshingDone = YES;
-	
 	//清空缓存
 	leftView.invalidate = YES;
 	middleView.invalidate = YES;

@@ -8,9 +8,11 @@
 
 #import "BNSNewsTableView.h"
 #import "BNSNewsDetailViewController.h"
+#import "NSMutableArray+DepthCopy.h"
 
 @interface BNSNewsTableView ()
 
+@property (assign, nonatomic) dispatch_semaphore_t semaphore;
 @end
 
 
@@ -20,6 +22,7 @@
 
 - (void)dealloc {
 	
+	dispatch_release(_semaphore);
 	[super dealloc];
 }
 
@@ -30,7 +33,7 @@
 		self.delegate = self;
 		
 		//线程同步信号量
-		_freshingDone = YES;
+		_semaphore = dispatch_semaphore_create(0);
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
@@ -68,10 +71,10 @@
 		NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%d.html", weakSelf.offset, 20];
 		NSString *tailString = [weakSelf.urlString substringWithRange:NSMakeRange(36, 14)];
 		NSUInteger currentIndex = [weakSelf getCurrentIndexWithString:tailString];
-		[weakSelf bns_LoadDataAtIndex:currentIndex
-						withURLString:urlString
-								cache:YES completion:^{
+							
+		[weakSelf bns_LoadDataAtIndex:currentIndex withURLString:urlString cache:YES completion:^{
 			weakSelf.cacheValidate = YES;
+			dispatch_semaphore_signal(_semaphore);
 		}];
 	}];
 	
@@ -79,28 +82,28 @@
 }
 
 - (void)footerRefreshing {
-	
-	if (_freshingDone) {
-		_freshingDone = NO;
-		
-		//缓存可用
-		if (self.cacheValidate) {
-			
-			//加载缓存数据
-			for (id obj in self.cache1) {
-				[self.datas addObject:obj];
-			}
-			[self.cache1 removeAllObjects];
-			
-			//更新View
-			_freshingDone = YES;
-			[self reloadData];
-			
-			//再缓存
-			self.cacheValidate = NO;
-			[self updateDataIfNeeded];
 
-		}
+	long success = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC));
+	
+	//超时
+	if (success) {
+		[self footerEndRefreshing];
+		return;
+	}
+	
+	//缓存可用
+	if (self.cacheValidate) {
+		
+		//加载缓存数据
+		[self.datas addObjectWithNoDumplicating:self.cache1];
+		[self.cache1 removeAllObjects];
+		
+		//更新View
+		[self reloadData];
+		
+		//再缓存
+		self.cacheValidate = NO;
+		[self updateDataIfNeeded];
 	}
 	
 	[self footerEndRefreshing];
@@ -115,6 +118,7 @@
 	NSUInteger currentIndex = [self getCurrentIndexWithString:tailString];
 	[self bns_LoadDataAtIndex:currentIndex withURLString:urlString cache:YES completion:^{
 		weakSelf.cacheValidate = YES;
+		dispatch_semaphore_signal(_semaphore);
 	}];
 }
 

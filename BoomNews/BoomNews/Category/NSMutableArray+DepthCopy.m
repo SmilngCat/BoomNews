@@ -23,4 +23,26 @@
 		[self addObject:obj];
 	}];
 }
+
+- (void)addObjectWithNoDumplicating:(NSMutableArray *)array {
+	if (!array) {
+		return;
+	}
+
+	__block BOOL duplicate = NO;
+	for (id model in array) {
+		[self enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop) {
+			if ([[obj title] isEqualToString:[model title]]) {
+				duplicate = YES;
+				*stop = YES;
+			}
+		}];
+		if (!duplicate) {
+			[self addObject:model];
+		}else {
+			duplicate = NO;
+			continue;
+		}
+	}
+}
 @end

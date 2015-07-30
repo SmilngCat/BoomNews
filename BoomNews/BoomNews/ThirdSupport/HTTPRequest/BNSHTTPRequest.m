@@ -53,7 +53,7 @@ static BNSHTTPRequest *sharedRequest = nil;
 		
 		if (error) {
 			result = NO;
-			NSLog(@"%@", error.localizedDescription);
+//			NSLog(@"%@", error.localizedDescription);
 		}else {
 			result = YES;
 			NSArray *datas = nil;

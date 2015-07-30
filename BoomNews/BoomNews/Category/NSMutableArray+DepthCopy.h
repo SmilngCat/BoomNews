@@ -11,4 +11,5 @@
 @interface NSMutableArray (DepthCopy)
 
 - (void)depthCopyWithMutableArray:(NSMutableArray *)array;
+- (void)addObjectWithNoDumplicating:(NSMutableArray *)array;
 @end

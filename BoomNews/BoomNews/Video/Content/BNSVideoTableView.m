@@ -9,6 +9,7 @@
 #import "BNSVideoTableView.h"
 #import "BNSVideoCell.h"
 
+#import "NSMutableArray+DepthCopy.h"
 #import "BNSTableView+BNSTemplateCell.h"
 #import "BNSTableView+BNSHeightCache.h"
 
@@ -16,13 +17,18 @@
 
 @interface BNSVideoTableView ()
 
-@property (assign, nonatomic) BOOL freshingDone;
+@property (assign, nonatomic) dispatch_semaphore_t semaphore;
 @end
 
 @implementation BNSVideoTableView
 
 #pragma mark - BNSTableView Lifecycle
 
+- (void)dealloc {
+	
+	dispatch_release(_semaphore);
+	[super dealloc];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
 	self = [super initWithFrame:frame style:style];
@@ -30,7 +36,7 @@
 		self.dataSource = self;
 		self.delegate = self;
 		
-		_freshingDone = YES;
+		_semaphore = dispatch_semaphore_create(0);
 		
 		//refreshing
 		[self addHeaderWithTarget:self action:@selector(headerRefreshing)];
@@ -63,6 +69,7 @@
 		NSString *urlString = [weakSelf.urlString stringByAppendingFormat:@"/%ld-%d.html", weakSelf.offset, 10];
 		[weakSelf bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:YES completion:^{
 			weakSelf.cacheValidate = YES;
+			dispatch_semaphore_signal(_semaphore);
 		}];
 
 	}];
@@ -72,26 +79,27 @@
 
 - (void)footerRefreshing {
 	
-	if (_freshingDone) {
-		_freshingDone = NO;
-
-		if (self.cacheValidate) {
-			//加载缓存数据
-			for (id obj in self.cache1) {
-				[self.datas addObject:obj];
-			}
-			[self.cache1 removeAllObjects];
-			
-			//更新View
-			_freshingDone = YES;
-			[self reloadData];
-			
-			//再缓存
-			self.cacheValidate = NO;
-			[self updateDataIfNeeded];
-		}
-
+	long success = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC));
+	
+	//超时
+	if (success) {
+		[self footerEndRefreshing];
+		return;
 	}
+
+	if (self.cacheValidate) {
+		//加载缓存数据
+		[self.datas addObjectWithNoDumplicating:self.cache1];
+		[self.cache1 removeAllObjects];
+		
+		//更新View
+		[self reloadData];
+		
+		//再缓存
+		self.cacheValidate = NO;
+		[self updateDataIfNeeded];
+	}
+
 	[self footerEndRefreshing];
 }
 
@@ -102,6 +110,7 @@
 	NSString *urlString = [self.urlString stringByAppendingFormat:@"/%ld-%d.html",self.offset, 10];
 	[self bns_LoadDataAtIndex:BNSHTTPRequestResourceTypeVideo withURLString:urlString cache:YES completion:^{
 		self.cacheValidate = YES;
+		dispatch_semaphore_signal(_semaphore);
 	}];
 
 }
@@ -127,13 +136,12 @@
 	
 	[cell setNeedsLayout];
 	[cell layoutIfNeeded];
-	
+//	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3ull*NSEC_PER_SEC), dispatch_get_main_queue(), ^{});
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
 	return 44.f;
 }
 

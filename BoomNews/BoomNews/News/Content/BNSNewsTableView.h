@@ -12,5 +12,4 @@
 
 @interface BNSNewsTableView : BNSTableView 
 
-@property (assign, nonatomic) BOOL freshingDone;
 @end
