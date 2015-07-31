@@ -40,7 +40,11 @@
 #pragma mark - Layout
 
 - (void)loadUI {
-	self.videoTableView = [[[BNSVideoTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain] autorelease];
+	CGFloat tabBarHeight = [[NSUserDefaults standardUserDefaults] floatForKey:@"tabBarHeight"];
+	CGFloat height = CGRectGetHeight(self.view.bounds) - 64  - tabBarHeight;
+	CGFloat width = CGRectGetWidth(self.view.bounds);
+	
+	self.videoTableView = [[[BNSVideoTableView alloc] initWithFrame:CGRectMake(0, 0, width, height) style:UITableViewStylePlain] autorelease];
 	_videoTableView.urlString = _urlString;
 	_videoTableView.viewController = self;
 	[self.view addSubview:_videoTableView];
