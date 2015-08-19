@@ -24,19 +24,14 @@
    
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
     if (indexPath.row == 0) {
-
-    } else if (indexPath.row == 1){
-        
         UIAlertView *ourMessageAlertView = [[UIAlertView alloc] initWithTitle:@"免责声明" message:@"本软件仅供阅读使用，请勿用于商业和非法途径，如产生法律问题与开发者无关" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [ourMessageAlertView show];
         [ourMessageAlertView release];
-        
-	}else {
+    } else {
 		
 		UIAlertView *ourMessageAlertView = [[UIAlertView alloc] initWithTitle:@"关于我们" message:@"本软件由雷亚东、李昊、邵垚联合制作\n联系我们(QQ:748234040@qq.com)" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
 		[ourMessageAlertView show];

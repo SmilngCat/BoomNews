@@ -59,7 +59,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MINECELL" forIndexPath:indexPath];
     
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    
+	
 	cell.textLabel.text = _datas[indexPath.row];
     
     return cell;

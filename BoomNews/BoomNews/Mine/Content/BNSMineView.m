@@ -140,7 +140,9 @@
 	MineModel *model = _datas[indexPath.row];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETTING" forIndexPath:indexPath];
 	[cell prepareForReuse];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 	cell.imageView.image = [UIImage imageNamed:model.image];
 	cell.textLabel.text = model.title;
 	
@@ -202,7 +204,6 @@
 
 		}
 		case 2: {
-            [datas addObject:@"版本号    V 1.0"];
 			[datas addObject:@"免责声明"];
 			[datas addObject:@"关于我们"];
         
